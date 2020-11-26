@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment> Project Configuration </comment>
+<entry key="Simva.RefreshToken">eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI2Y2IwZWFmNC1iOWM1LTQ0ZWQtODYzZC05ZGRjMWU5ZmEyODMifQ.eyJpYXQiOjE2MDYzOTQwMjMsImp0aSI6IjZjZmMxZTI3LWVjYmItNDJjMS05MDFmLWU2NzU1OGFiNjcyYSIsImlzcyI6Imh0dHBzOi8vc3NvLnNpbXZhLmUtdWNtLmVzL2F1dGgvcmVhbG1zL3NpbXZhIiwiYXVkIjoiaHR0cHM6Ly9zc28uc2ltdmEuZS11Y20uZXMvYXV0aC9yZWFsbXMvc2ltdmEiLCJzdWIiOiIxODBmNzExZi1iZjE1LTRlNDQtYjNlYS05M2YwN2NiYTZkM2MiLCJ0eXAiOiJPZmZsaW5lIiwiYXpwIjoidWFkdmVudHVyZSIsInNlc3Npb25fc3RhdGUiOiI5ODllNjBlZi0xNDZmLTRiYjYtODAzYy00YjRlNjJhMzE5MmYiLCJzY29wZSI6Im9mZmxpbmVfYWNjZXNzIHByb2ZpbGUgZW1haWwifQ.IH8cKLih15Y2Q--JCC3F5-5NcZHG5dLkAuNlM-Q55zY</entry>
+<entry key="Chapter0.SceneId.X">2</entry>
+<entry key="Chapter0.SceneId.Y">3</entry>
+<entry key="Chapter0.Outside.X">-424</entry>
+<entry key="Chapter0.Outside.Y">-24</entry>
+<entry key="Chapter0.Door.X">-207</entry>
+<entry key="Chapter0.Door.Y">-34</entry>
+<entry key="Chapter0.Hall.X">208</entry>
+<entry key="Chapter0.Hall.Y">-14</entry>
+<entry key="Chapter0.Room1.X">836</entry>
+<entry key="Chapter0.Room1.Y">322</entry>
+<entry key="Chapter0.Room2.X">-339</entry>
+<entry key="Chapter0.Room2.Y">232</entry>
+<entry key="Chapter0.Room4.X">-56</entry>
+<entry key="Chapter0.Room4.Y">463</entry>
+<entry key="Chapter0.PlantaSuperior.X">336</entry>
+<entry key="Chapter0.PlantaSuperior.Y">446</entry>
+<entry key="Chapter0.Room3.X">600</entry>
+<entry key="Chapter0.Room3.Y">486</entry>
+<entry key="Chapter0.RoomFinal.X">-200</entry>
+<entry key="Chapter0.RoomFinal.Y">509</entry>
+<entry key="Chapter0.HallLeft.X">-369</entry>
+<entry key="Chapter0.HallLeft.Y">216</entry>
+<entry key="Chapter0.HallRight.X">873</entry>
+<entry key="Chapter0.HallRight.Y">201</entry>
+<entry key="Chapter0.RoomDownRight.X">886</entry>
+<entry key="Chapter0.RoomDownRight.Y">443</entry>
+<entry key="Chapter0.RoomDownLeft.X">-410</entry>
+<entry key="Chapter0.RoomDownLeft.Y">430</entry>
+<entry key="Chapter0.Up.X">242</entry>
+<entry key="Chapter0.Up.Y">216</entry>
+<entry key="Chapter0.UpLeft.X">14</entry>
+<entry key="Chapter0.UpLeft.Y">222</entry>
+<entry key="Chapter0.UpRight.X">522</entry>
+<entry key="Chapter0.UpRight.Y">214</entry>
+<entry key="Chapter0.RoomUpRight.X">568</entry>
+<entry key="Chapter0.RoomUpRight.Y">418</entry>
+<entry key="Chapter0.RoomUpLeft.X">-36</entry>
+<entry key="Chapter0.RoomUpLeft.Y">429</entry>
+<entry key="Chapter0.RoomUp.X">248</entry>
+<entry key="Chapter0.RoomUp.Y">407</entry>
+<entry key="Chapter0.Despacho.X">267</entry>
+<entry key="Chapter0.Despacho.Y">510</entry>
+</properties>
+

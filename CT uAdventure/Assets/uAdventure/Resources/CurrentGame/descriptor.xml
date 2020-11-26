@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<game-descriptor versionNumber="0">
+  <title>La mansión paranormal</title>
+  <description>
+  </description>
+  <application-identifier>
+  </application-identifier>
+  <configuration keepShowing="no" keyboard-navigation="disabled" defaultClickAction="showDetails" perspective="regular" dragBehaviour="considerNonTargets" show-save-load="yes" show-reset="yes" autosave="no" save-on-suspend="no" restore-after-open="no">
+    <gui type="contextual" inventoryPosition="icon" inventoryImage="assets/special/DefaultInventory.png" inventoryX="28.26613" inventoryY="593.8204" inventoryScale="0.1">
+      <cursors>
+        <cursor type="default" uri="gui/cursors/cursor.png" />
+        <cursor type="over" uri="gui/cursors/cursorHand.png" />
+        <cursor type="action" uri="gui/cursors/cursorHand.png" />
+        <cursor type="exit" uri="gui/cursors/cursorHand.png" />
+      </cursors>
+      <arrows>
+        <arrow type="default" uri="gui/cursors/cursor.png" />
+        <arrow type="over" uri="gui/cursors/cursorHand.png" />
+        <arrow type="action" uri="gui/cursors/cursorHand.png" />
+        <arrow type="exit" uri="gui/cursors/cursorHand.png" />
+      </arrows>
+    </gui>
+    <mode playerTransparent="yes" />
+    <graphics mode="windowed" />
+  </configuration>
+  <extension-objects>
+    <tracker rawCopy="yes" storageType="LOCAL" traceFormat="CSV" host="" trackingCode="" flushInterval="3" debug="no" />
+  </extension-objects>
+  <contents>
+    <chapter path="chapter1.xml">
+      <title>
+      </title>
+      <description>
+      </description>
+    </chapter>
+  </contents>
+</game-descriptor>

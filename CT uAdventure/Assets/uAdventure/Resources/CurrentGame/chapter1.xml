@@ -1,0 +1,2598 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<eAdventure version="2">
+  <player>
+    <resources name="No name">
+      <asset type="standup" uri="assets/special/EmptyAnimation" />
+      <asset type="standdown" uri="assets/special/EmptyAnimation" />
+      <asset type="standright" uri="assets/special/EmptyAnimation" />
+      <asset type="standleft" uri="assets/special/EmptyAnimation" />
+      <asset type="speakup" uri="assets/special/EmptyAnimation" />
+      <asset type="speakdown" uri="assets/special/EmptyAnimation" />
+      <asset type="speakright" uri="assets/special/EmptyAnimation" />
+      <asset type="speakleft" uri="assets/special/EmptyAnimation" />
+      <asset type="useright" uri="assets/special/EmptyAnimation" />
+      <asset type="useleft" uri="assets/special/EmptyAnimation" />
+      <asset type="walkup" uri="assets/special/EmptyAnimation" />
+      <asset type="walkdown" uri="assets/special/EmptyAnimation" />
+      <asset type="walkright" uri="assets/special/EmptyAnimation" />
+      <asset type="walkleft" uri="assets/special/EmptyAnimation" />
+    </resources>
+    <textcolor showsSpeechBubble="no" bubbleBkgColor="#FFFFFF" bubbleBorderColor="#000000">
+      <frontcolor color="#FFFFFF" />
+      <bordercolor color="#000000" />
+    </textcolor>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+    <voice name="" synthesizeAlways="no" />
+  </player>
+  <character id="JohnGold" behaviour="normal">
+    <resources name="Idle">
+      <asset type="standup" uri="assets/special/EmptyAnimation" />
+      <asset type="standdown" uri="assets/animation/JohnGoldIdle.eaa.xml" />
+      <asset type="standright" uri="assets/special/EmptyAnimation" />
+      <asset type="standleft" uri="assets/special/EmptyAnimation" />
+      <asset type="speakup" uri="assets/special/EmptyAnimation" />
+      <asset type="speakdown" uri="assets/special/EmptyAnimation" />
+      <asset type="speakright" uri="assets/special/EmptyAnimation" />
+      <asset type="speakleft" uri="assets/special/EmptyAnimation" />
+      <asset type="useright" uri="assets/special/EmptyAnimation" />
+      <asset type="useleft" uri="assets/special/EmptyAnimation" />
+      <asset type="walkup" uri="assets/special/EmptyAnimation" />
+      <asset type="walkdown" uri="assets/special/EmptyAnimation" />
+      <asset type="walkright" uri="assets/special/EmptyAnimation" />
+      <asset type="walkleft" uri="assets/special/EmptyAnimation" />
+    </resources>
+    <textcolor showsSpeechBubble="yes" bubbleBkgColor="#FFF594" bubbleBorderColor="#000000">
+      <frontcolor color="#FFFFFF" />
+      <bordercolor color="#000000" />
+    </textcolor>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+    <voice name="" synthesizeAlways="no" />
+    <actions>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <documentation>Created with target conversation: JohnGoldConver1</documentation>
+        <condition>
+          <inactive flag="JohnGoldConver1Done" />
+        </condition>
+        <effect>
+          <trigger-conversation idTarget="JohnGoldConver1" />
+          <condition />
+        </effect>
+      </talk-to>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <documentation>Created with target conversation: JohnGoldConver2</documentation>
+        <condition>
+          <either>
+            <inactive flag="puzzle1" />
+            <inactive flag="puzzle2" />
+          </either>
+        </condition>
+        <effect>
+          <trigger-conversation idTarget="JohnGoldConver2" />
+          <condition />
+        </effect>
+      </talk-to>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <documentation>Created with target conversation: JohnGoldConver3</documentation>
+        <condition>
+          <either>
+            <inactive flag="puzzle1" />
+            <inactive flag="puzzle2" />
+            <inactive flag="puzzle4" />
+            <less-than var="JackCopperConverDone" value="2" />
+            <less-than var="JimSilverConverDone" value="2" />
+            <less-than var="JohnGoldConverDone" value="2" />
+            <inactive flag="puzzle3" />
+          </either>
+        </condition>
+        <effect>
+          <trigger-conversation idTarget="JhonGoldConver3" />
+          <condition />
+        </effect>
+      </talk-to>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <documentation>Created with target conversation: Brothers</documentation>
+        <effect>
+          <trigger-conversation idTarget="BrothersConversation" />
+          <condition />
+        </effect>
+      </talk-to>
+    </actions>
+  </character>
+  <character id="JimSilver" behaviour="normal">
+    <resources name="Idle">
+      <asset type="standup" uri="assets/special/EmptyAnimation" />
+      <asset type="standdown" uri="assets/animation/JimSilverIdle.eaa.xml" />
+      <asset type="standright" uri="assets/special/EmptyAnimation" />
+      <asset type="standleft" uri="assets/special/EmptyAnimation" />
+      <asset type="speakup" uri="assets/special/EmptyAnimation" />
+      <asset type="speakdown" uri="assets/special/EmptyAnimation" />
+      <asset type="speakright" uri="assets/special/EmptyAnimation" />
+      <asset type="speakleft" uri="assets/special/EmptyAnimation" />
+      <asset type="useright" uri="assets/special/EmptyAnimation" />
+      <asset type="useleft" uri="assets/special/EmptyAnimation" />
+      <asset type="walkup" uri="assets/special/EmptyAnimation" />
+      <asset type="walkdown" uri="assets/special/EmptyAnimation" />
+      <asset type="walkright" uri="assets/special/EmptyAnimation" />
+      <asset type="walkleft" uri="assets/special/EmptyAnimation" />
+    </resources>
+    <textcolor showsSpeechBubble="no" bubbleBkgColor="#ADADAD" bubbleBorderColor="#000000">
+      <frontcolor color="#FFFFFF" />
+      <bordercolor color="#000000" />
+    </textcolor>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+    <voice name="" synthesizeAlways="no" />
+    <actions>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <documentation>Created with target conversation: JimSilverConver1</documentation>
+        <condition>
+          <inactive flag="JimSilverConver1Done" />
+        </condition>
+        <effect>
+          <trigger-conversation idTarget="JimSilverConver1" />
+          <condition />
+        </effect>
+      </talk-to>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <documentation>Created with target conversation: JimSilverConver2</documentation>
+        <condition>
+          <inactive flag="puzzle1" />
+        </condition>
+        <effect>
+          <trigger-conversation idTarget="JimSilverConver2" />
+          <condition />
+        </effect>
+      </talk-to>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <documentation>Created with target conversation: JimSilverConver3</documentation>
+        <condition>
+          <either>
+            <inactive flag="puzzle1" />
+            <inactive flag="puzzle2" />
+            <inactive flag="puzzle4" />
+            <less-than var="JackCopperConverDone" value="2" />
+            <less-than var="JimSilverConverDone" value="2" />
+            <less-than var="JohnGoldConverDone" value="2" />
+            <inactive flag="puzzle3" />
+          </either>
+        </condition>
+        <effect>
+          <trigger-conversation idTarget="JimSilverConver3" />
+          <condition />
+        </effect>
+      </talk-to>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <documentation>Created with target conversation: Brothers</documentation>
+        <effect>
+          <trigger-conversation idTarget="BrothersConversation" />
+          <condition />
+        </effect>
+      </talk-to>
+    </actions>
+  </character>
+  <character id="JackCopper" behaviour="normal">
+    <resources name="Idle">
+      <asset type="standup" uri="assets/special/EmptyAnimation" />
+      <asset type="standdown" uri="assets/animation/JackCopperIdle.eaa.xml" />
+      <asset type="standright" uri="assets/special/EmptyAnimation" />
+      <asset type="standleft" uri="assets/special/EmptyAnimation" />
+      <asset type="speakup" uri="assets/special/EmptyAnimation" />
+      <asset type="speakdown" uri="assets/special/EmptyAnimation" />
+      <asset type="speakright" uri="assets/special/EmptyAnimation" />
+      <asset type="speakleft" uri="assets/special/EmptyAnimation" />
+      <asset type="useright" uri="assets/special/EmptyAnimation" />
+      <asset type="useleft" uri="assets/special/EmptyAnimation" />
+      <asset type="walkup" uri="assets/special/EmptyAnimation" />
+      <asset type="walkdown" uri="assets/special/EmptyAnimation" />
+      <asset type="walkright" uri="assets/special/EmptyAnimation" />
+      <asset type="walkleft" uri="assets/special/EmptyAnimation" />
+    </resources>
+    <textcolor showsSpeechBubble="no" bubbleBkgColor="#E2AA70" bubbleBorderColor="#000000">
+      <frontcolor color="#FFFFFF" />
+      <bordercolor color="#000000" />
+    </textcolor>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+    <voice name="" synthesizeAlways="no" />
+    <actions>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <documentation>Created with target conversation: JackCopperConver1</documentation>
+        <condition>
+          <inactive flag="JackCopperConver1Done" />
+        </condition>
+        <effect>
+          <trigger-conversation idTarget="JackCopperConver1" />
+          <condition />
+        </effect>
+      </talk-to>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <documentation>Created with target conversation: JackCopperConver2</documentation>
+        <condition>
+          <inactive flag="puzzle4Clue" />
+        </condition>
+        <effect>
+          <trigger-conversation idTarget="JackCopperConver2" />
+          <condition />
+        </effect>
+      </talk-to>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <documentation>Created with target conversation: JackCopperConver2.5</documentation>
+        <condition>
+          <inactive flag="puzzle4" />
+        </condition>
+        <effect>
+          <trigger-conversation idTarget="JackCopperConver2.5" />
+          <condition />
+        </effect>
+      </talk-to>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <documentation>Created with target conversation: JackCopperConver3</documentation>
+        <condition>
+          <either>
+            <inactive flag="puzzle1" />
+            <inactive flag="puzzle2" />
+            <inactive flag="puzzle4" />
+            <less-than var="JackCopperConverDone" value="2" />
+            <less-than var="JimSilverConverDone" value="2" />
+            <less-than var="JohnGoldConverDone" value="2" />
+            <inactive flag="puzzle3" />
+          </either>
+        </condition>
+        <effect>
+          <trigger-conversation idTarget="JackCopperConver3" />
+          <condition />
+        </effect>
+      </talk-to>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <documentation>Created with target conversation: Brothers</documentation>
+        <effect>
+          <trigger-conversation idTarget="BrothersConversation" />
+          <condition />
+        </effect>
+      </talk-to>
+    </actions>
+  </character>
+  <character id="ButtlerIrons" behaviour="normal">
+    <resources name="No name">
+      <asset type="standup" uri="assets/special/EmptyAnimation" />
+      <asset type="standdown" uri="assets/animation/ButtlerIdle.eaa.xml" />
+      <asset type="standright" uri="assets/special/EmptyAnimation" />
+      <asset type="standleft" uri="assets/special/EmptyAnimation" />
+      <asset type="speakup" uri="assets/special/EmptyAnimation" />
+      <asset type="speakdown" uri="assets/special/EmptyAnimation" />
+      <asset type="speakright" uri="assets/special/EmptyAnimation" />
+      <asset type="speakleft" uri="assets/special/EmptyAnimation" />
+      <asset type="useright" uri="assets/special/EmptyAnimation" />
+      <asset type="useleft" uri="assets/special/EmptyAnimation" />
+      <asset type="walkup" uri="assets/special/EmptyAnimation" />
+      <asset type="walkdown" uri="assets/special/EmptyAnimation" />
+      <asset type="walkright" uri="assets/special/EmptyAnimation" />
+      <asset type="walkleft" uri="assets/special/EmptyAnimation" />
+    </resources>
+    <textcolor showsSpeechBubble="no" bubbleBkgColor="#545454" bubbleBorderColor="#000000">
+      <frontcolor color="#FFFFFF" />
+      <bordercolor color="#000000" />
+    </textcolor>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+    <voice name="" synthesizeAlways="no" />
+    <actions>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <documentation>Created with target conversation: ButtlerIronsConver1</documentation>
+        <condition>
+          <inactive flag="ButtlerIronsConver1Done" />
+        </condition>
+        <effect>
+          <trigger-conversation idTarget="ButtlerIronsConver1" />
+          <condition />
+        </effect>
+      </talk-to>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <documentation>Created with target conversation: ButtlerIronsConver2</documentation>
+        <effect>
+          <trigger-conversation idTarget="ButtlerIronsConver2" />
+          <condition />
+        </effect>
+      </talk-to>
+    </actions>
+  </character>
+  <character id="LadyAdaMantine" behaviour="normal">
+    <resources name="No name">
+      <asset type="standup" uri="assets/special/EmptyAnimation" />
+      <asset type="standdown" uri="assets/animation/AdaMantineIdle.eaa.xml" />
+      <asset type="standright" uri="assets/special/EmptyAnimation" />
+      <asset type="standleft" uri="assets/special/EmptyAnimation" />
+      <asset type="speakup" uri="assets/special/EmptyAnimation" />
+      <asset type="speakdown" uri="assets/special/EmptyAnimation" />
+      <asset type="speakright" uri="assets/special/EmptyAnimation" />
+      <asset type="speakleft" uri="assets/special/EmptyAnimation" />
+      <asset type="useright" uri="assets/special/EmptyAnimation" />
+      <asset type="useleft" uri="assets/special/EmptyAnimation" />
+      <asset type="walkup" uri="assets/special/EmptyAnimation" />
+      <asset type="walkdown" uri="assets/special/EmptyAnimation" />
+      <asset type="walkright" uri="assets/special/EmptyAnimation" />
+      <asset type="walkleft" uri="assets/special/EmptyAnimation" />
+    </resources>
+    <textcolor showsSpeechBubble="no" bubbleBkgColor="#A2FFB4" bubbleBorderColor="#000000">
+      <frontcolor color="#FFFFFF" />
+      <bordercolor color="#000000" />
+    </textcolor>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+    <voice name="" synthesizeAlways="no" />
+    <actions>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <documentation>Created with target conversation: LAdyAdaMantineConver1</documentation>
+        <effect>
+          <trigger-conversation idTarget="LadyAdaMantineConver1" />
+          <condition />
+        </effect>
+      </talk-to>
+    </actions>
+  </character>
+  <character id="TinMan" behaviour="normal">
+    <resources name="No name">
+      <asset type="standup" uri="assets/special/EmptyAnimation" />
+      <asset type="standdown" uri="assets/animation/TinManIdle.eaa.xml" />
+      <asset type="standright" uri="assets/special/EmptyAnimation" />
+      <asset type="standleft" uri="assets/special/EmptyAnimation" />
+      <asset type="speakup" uri="assets/special/EmptyAnimation" />
+      <asset type="speakdown" uri="assets/special/EmptyAnimation" />
+      <asset type="speakright" uri="assets/special/EmptyAnimation" />
+      <asset type="speakleft" uri="assets/special/EmptyAnimation" />
+      <asset type="useright" uri="assets/special/EmptyAnimation" />
+      <asset type="useleft" uri="assets/special/EmptyAnimation" />
+      <asset type="walkup" uri="assets/special/EmptyAnimation" />
+      <asset type="walkdown" uri="assets/special/EmptyAnimation" />
+      <asset type="walkright" uri="assets/special/EmptyAnimation" />
+      <asset type="walkleft" uri="assets/special/EmptyAnimation" />
+    </resources>
+    <textcolor showsSpeechBubble="no" bubbleBkgColor="#84B9BE" bubbleBorderColor="#000000">
+      <frontcolor color="#FFFFFF" />
+      <bordercolor color="#000000" />
+    </textcolor>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+    <voice name="" synthesizeAlways="no" />
+    <actions>
+      <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
+        <documentation>Created with target conversation: TinManConversation</documentation>
+        <effect>
+          <trigger-conversation idTarget="TinManConversation" />
+          <condition />
+          <trigger-cutscene idTarget="EndCutscene" />
+          <condition />
+        </effect>
+      </talk-to>
+    </actions>
+  </character>
+  <scene id="Outside" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
+    <documentation>
+    </documentation>
+    <resources name="MainScene">
+      <asset type="background" uri="assets/background/mansion_outside.png" />
+      <asset type="bgmusic" uri="assets/audio/music.mp3" />
+    </resources>
+    <name>
+    </name>
+    <default-initial-position x="400" y="450" />
+    <exits>
+      <exit rectangular="yes" x="786" y="431" width="348" height="150" hasInfluenceArea="no" idTarget="Door" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="1000" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+      </exit>
+    </exits>
+    <objects>
+      <object-ref idTarget="Key" x="362" y="435" scale="0.1151208" layer="0" hasInfluenceArea="no" />
+      <object-ref idTarget="UpArrow" x="965" y="557" scale="0.1500883" layer="1" hasInfluenceArea="no" />
+    </objects>
+    <active-areas>
+      <active-area id="Fuente" rectangular="no" x="1298" y="198" width="364" height="636" hasInfluenceArea="yes" influenceX="0" influenceY="0" influenceWidth="404" influenceHeight="676" behaviour="normal">
+        <description>
+          <name>
+          </name>
+          <brief>
+          </brief>
+          <detailed>
+          </detailed>
+        </description>
+        <actions>
+          <examine needsGoTo="no" keepDistance="0" not-effects="no">
+            <effect>
+              <speak-player>¡Vaya! Esta fuente sigue funcionando perfectamente.</speak-player>
+              <condition />
+              <speak-player>Qué curioso...</speak-player>
+              <condition />
+            </effect>
+          </examine>
+        </actions>
+        <point x="1298" y="380" />
+        <point x="1455" y="198" />
+        <point x="1639" y="324" />
+        <point x="1662" y="663" />
+        <point x="1647" y="834" />
+        <point x="1427" y="834" />
+        <point x="1392" y="631" />
+        <point x="1339" y="545" />
+      </active-area>
+    </active-areas>
+  </scene>
+  <scene id="Door" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
+    <documentation>
+    </documentation>
+    <resources name="No name">
+      <asset type="background" uri="assets/background/entrance_door.png" />
+    </resources>
+    <name>
+    </name>
+    <default-initial-position x="400" y="450" />
+    <exits>
+      <exit rectangular="yes" x="669" y="324" width="626" height="567" hasInfluenceArea="no" idTarget="Hall" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="3000" not-effects="yes">
+        <exit-look text="" cursor-path="" sound-path="" />
+        <condition>
+          <active flag="keyFound" />
+        </condition>
+        <effect>
+          <play-sound uri="assets/audio/enterDoor.mp3" />
+          <condition />
+          <consume-object idTarget="Key" />
+          <condition />
+          <speak-player>(Has usado la llave.)</speak-player>
+          <condition />
+        </effect>
+        <post-effect>
+          <speak-player>Vaya... ¡esta mansión es enorme!</speak-player>
+          <condition />
+          <speak-player>Oh, ahí está John. Debería hablar con él.</speak-player>
+          <condition />
+          <speak-player>(La puerta se cierra detrás de ti.)</speak-player>
+          <condition />
+        </post-effect>
+        <not-effect>
+          <speak-player>Está cerrada con llave...</speak-player>
+          <condition />
+          <speak-player>Debe de haber alguna llave cerca.</speak-player>
+          <condition />
+          <play-sound background="no" uri="assets/audio/doorLocked.mp3" />
+          <condition />
+        </not-effect>
+      </exit>
+      <exit rectangular="yes" x="0" y="902" width="1923" height="180" hasInfluenceArea="no" idTarget="Outside" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="1000" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+      </exit>
+    </exits>
+    <objects>
+      <object-ref idTarget="DownArrow" x="945" y="1064" scale="0.2440403" layer="0" hasInfluenceArea="no" />
+    </objects>
+  </scene>
+  <scene id="Hall" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
+    <documentation>
+    </documentation>
+    <resources name="No name">
+      <asset type="background" uri="assets/background/great_stairs_down.png" />
+    </resources>
+    <name>
+    </name>
+    <default-initial-position x="400" y="450" />
+    <exits>
+      <exit rectangular="yes" x="1694" y="146" width="222" height="797" hasInfluenceArea="no" idTarget="HallRight" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="yes">
+        <exit-look text="" cursor-path="" sound-path="" />
+        <condition>
+          <active flag="JohnGoldConver1Done" />
+        </condition>
+        <not-effect>
+          <speak-player>Primero debería de hablar con John.</speak-player>
+          <condition />
+        </not-effect>
+      </exit>
+      <exit rectangular="yes" x="1" y="174" width="254" height="779" hasInfluenceArea="no" idTarget="HallLeft" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="yes">
+        <exit-look text="" cursor-path="" sound-path="" />
+        <condition>
+          <active flag="JohnGoldConver1Done" />
+        </condition>
+        <not-effect>
+          <speak-player>Primero debería de hablar con John.</speak-player>
+          <condition />
+        </not-effect>
+      </exit>
+      <exit rectangular="yes" x="654" y="306" width="605" height="220" hasInfluenceArea="no" idTarget="Up" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="yes">
+        <exit-look text="" cursor-path="" sound-path="" />
+        <condition>
+          <active flag="JohnGoldConver1Done" />
+        </condition>
+        <not-effect>
+          <speak-player>Primero debería de hablar con John.</speak-player>
+          <condition />
+        </not-effect>
+      </exit>
+    </exits>
+    <objects>
+      <object-ref idTarget="UpArrow" x="955" y="500" scale="0.2217429" layer="0" hasInfluenceArea="no" />
+      <object-ref idTarget="LeftArrow" x="98" y="822" scale="0.2672" layer="2" hasInfluenceArea="no" />
+      <object-ref idTarget="RightArrow" x="1809" y="801" scale="0.2698073" layer="1" hasInfluenceArea="no" />
+    </objects>
+    <characters>
+      <character-ref idTarget="JohnGold" x="1195" y="1148" scale="2.451553" orientation="2" layer="3" hasInfluenceArea="no">
+        <condition>
+          <either>
+            <inactive flag="puzzle1" />
+            <inactive flag="puzzle2" />
+            <inactive flag="puzzle4" />
+            <less-than var="JackCopperConverDone" value="2" />
+            <less-than var="JimSilverConverDone" value="2" />
+            <less-than var="JohnGoldConverDone" value="2" />
+            <inactive flag="puzzle3" />
+          </either>
+        </condition>
+      </character-ref>
+    </characters>
+  </scene>
+  <scene id="HallLeft" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
+    <documentation>
+    </documentation>
+    <resources name="No name">
+      <asset type="background" uri="assets/background/left_down.png" />
+    </resources>
+    <name>
+    </name>
+    <default-initial-position x="400" y="450" />
+    <exits>
+      <exit rectangular="yes" x="1692" y="134" width="226" height="877" hasInfluenceArea="no" idTarget="Hall" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+      </exit>
+      <exit rectangular="no" x="437" y="586" width="254" height="244" hasInfluenceArea="no" idTarget="RoomDownLeft" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+        <point x="445" y="586" />
+        <point x="691" y="589" />
+        <point x="684" y="824" />
+        <point x="437" y="830" />
+      </exit>
+    </exits>
+    <objects>
+      <object-ref idTarget="RightArrow" x="1812" y="804" scale="0.2486263" layer="0" hasInfluenceArea="no" />
+      <object-ref idTarget="UpArrow" x="558" y="807" scale="0.1198862" layer="1" hasInfluenceArea="no" />
+    </objects>
+  </scene>
+  <scene id="HallRight" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
+    <documentation>
+    </documentation>
+    <resources name="No name">
+      <asset type="background" uri="assets/background/right_down.png" />
+    </resources>
+    <name>
+    </name>
+    <default-initial-position x="400" y="450" />
+    <exits>
+      <exit rectangular="yes" x="5" y="129" width="253" height="817" hasInfluenceArea="no" idTarget="Hall" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+      </exit>
+      <exit rectangular="no" x="1285" y="584" width="262" height="254" hasInfluenceArea="no" idTarget="RoomDownRight" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+        <point x="1285" y="593" />
+        <point x="1538" y="584" />
+        <point x="1547" y="838" />
+        <point x="1291" y="831" />
+      </exit>
+    </exits>
+    <objects>
+      <object-ref idTarget="LeftArrow" x="96" y="792" scale="0.2368" layer="0" hasInfluenceArea="no" />
+      <object-ref idTarget="UpArrow" x="1417" y="820" scale="0.107992" layer="1" hasInfluenceArea="no" />
+    </objects>
+  </scene>
+  <scene id="RoomDownRight" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
+    <documentation>
+    </documentation>
+    <resources name="No name">
+      <asset type="background" uri="assets/background/music_room.png" />
+    </resources>
+    <name>
+    </name>
+    <default-initial-position x="400" y="450" />
+    <exits>
+      <exit rectangular="yes" x="266" y="885" width="1317" height="210" hasInfluenceArea="no" idTarget="HallRight" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+      </exit>
+      <exit rectangular="no" x="1080" y="149" width="300" height="309" hasInfluenceArea="no" idTarget="Minijuego1" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+        <point x="1080" y="160" />
+        <point x="1380" y="149" />
+        <point x="1354" y="458" />
+        <point x="1082" y="412" />
+        <condition>
+          <inactive flag="puzzle1" />
+          <active flag="JimSilverConver1Done" />
+        </condition>
+      </exit>
+    </exits>
+    <objects>
+      <object-ref idTarget="DownArrow" x="973" y="1070" scale="0.2622173" layer="2" hasInfluenceArea="no" />
+      <object-ref idTarget="ClueCode" x="717" y="543" scale="0.4378764" layer="1" hasInfluenceArea="no">
+        <condition>
+          <active flag="JackCopperConver1Done" />
+        </condition>
+      </object-ref>
+    </objects>
+    <characters>
+      <character-ref idTarget="JimSilver" x="208" y="813" scale="2.427523" orientation="2" layer="0" hasInfluenceArea="no">
+        <condition>
+          <either>
+            <inactive flag="puzzle1" />
+            <inactive flag="puzzle2" />
+            <inactive flag="puzzle4" />
+            <less-than var="JackCopperConverDone" value="2" />
+            <less-than var="JimSilverConverDone" value="2" />
+            <less-than var="JohnGoldConverDone" value="2" />
+            <inactive flag="puzzle3" />
+          </either>
+        </condition>
+      </character-ref>
+    </characters>
+    <active-areas>
+      <active-area id="Mesa" rectangular="no" x="760" y="740" width="268" height="135" hasInfluenceArea="no" behaviour="normal">
+        <description>
+          <name>
+          </name>
+          <brief>
+          </brief>
+          <detailed>
+          </detailed>
+        </description>
+        <actions>
+          <examine needsGoTo="no" keepDistance="0" not-effects="no">
+            <effect>
+              <speak-player>Parece que la gente se divertía bastante aquí...</speak-player>
+              <condition />
+            </effect>
+          </examine>
+        </actions>
+        <point x="767" y="773" />
+        <point x="868" y="740" />
+        <point x="1006" y="762" />
+        <point x="1028" y="826" />
+        <point x="949" y="864" />
+        <point x="834" y="875" />
+        <point x="760" y="833" />
+      </active-area>
+      <active-area id="Flores1" rectangular="no" x="1420" y="466" width="163" height="132" hasInfluenceArea="no" behaviour="normal">
+        <description>
+          <name>
+          </name>
+          <brief>
+          </brief>
+          <detailed>
+          </detailed>
+        </description>
+        <actions>
+          <examine needsGoTo="no" keepDistance="0" not-effects="no">
+            <effect>
+              <speak-player>Unas bonitas flores decoradas con velas.</speak-player>
+              <condition />
+            </effect>
+          </examine>
+        </actions>
+        <point x="1450" y="484" />
+        <point x="1523" y="466" />
+        <point x="1570" y="490" />
+        <point x="1583" y="545" />
+        <point x="1557" y="588" />
+        <point x="1502" y="598" />
+        <point x="1454" y="588" />
+        <point x="1420" y="532" />
+      </active-area>
+    </active-areas>
+  </scene>
+  <scene id="RoomDownLeft" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
+    <documentation>
+    </documentation>
+    <resources name="No name">
+      <asset type="background" uri="assets/background/pool_room.png" />
+    </resources>
+    <name>
+    </name>
+    <default-initial-position x="400" y="450" />
+    <exits>
+      <exit rectangular="yes" x="333" y="889" width="1345" height="188" hasInfluenceArea="no" idTarget="HallLeft" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+      </exit>
+      <exit rectangular="no" x="779" y="591" width="806" height="127" hasInfluenceArea="no" idTarget="Minijuego2" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+        <point x="1083" y="591" />
+        <point x="1585" y="666" />
+        <point x="1159" y="718" />
+        <point x="779" y="609" />
+        <condition>
+          <inactive flag="puzzle2" />
+          <active flag="ButtlerIronsConver1Done" />
+        </condition>
+      </exit>
+    </exits>
+    <objects>
+      <object-ref idTarget="DownArrow" x="1030" y="1060" scale="0.2145357" layer="1" hasInfluenceArea="no" />
+    </objects>
+    <characters>
+      <character-ref idTarget="ButtlerIrons" x="1633" y="872" scale="1.012184" orientation="2" layer="0" hasInfluenceArea="no" />
+    </characters>
+  </scene>
+  <scene id="Up" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
+    <documentation>
+    </documentation>
+    <resources name="No name">
+      <asset type="background" uri="assets/background/great_stairs_up.png" />
+    </resources>
+    <name>
+    </name>
+    <default-initial-position x="400" y="450" />
+    <exits>
+      <exit rectangular="yes" x="355" y="896" width="1286" height="180" hasInfluenceArea="no" idTarget="Hall" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+      </exit>
+      <exit rectangular="yes" x="1692" y="172" width="228" height="683" hasInfluenceArea="no" idTarget="UpRight" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="yes">
+        <exit-look text="" cursor-path="" sound-path="" />
+        <not-effect>
+          <speak-player>Está bloqueada. Necesito completar los puzles antes.</speak-player>
+          <condition />
+        </not-effect>
+      </exit>
+      <exit rectangular="yes" x="1" y="173" width="225" height="703" hasInfluenceArea="no" idTarget="UpLeft" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+      </exit>
+      <exit rectangular="no" x="870" y="372" width="223" height="191" hasInfluenceArea="no" idTarget="RoomUp" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="yes">
+        <exit-look text="" cursor-path="" sound-path="" />
+        <point x="870" y="372" />
+        <point x="1093" y="372" />
+        <point x="1088" y="563" />
+        <point x="874" y="563" />
+        <condition>
+          <active flag="metaPuzzle" />
+        </condition>
+        <not-effect>
+          <play-sound background="no" uri="" />
+          <condition />
+          <speak-player>¡Ah! La puerta está electrificada.</speak-player>
+          <condition />
+          <speak-player>Parece que está asociado a un mecanismo que conecta con otras habitaciones.</speak-player>
+          <condition />
+        </not-effect>
+      </exit>
+      <exit rectangular="yes" x="900" y="258" width="166" height="82" hasInfluenceArea="no" idTarget="Minijuego3" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+        <condition>
+          <inactive flag="metaPuzzle" />
+          <active flag="puzzle1" />
+          <active flag="puzzle2" />
+          <active flag="puzzle4" />
+        </condition>
+      </exit>
+    </exits>
+    <objects>
+      <object-ref idTarget="DownArrow" x="1017" y="1058" scale="0.2012469" layer="8" hasInfluenceArea="no" />
+      <object-ref idTarget="LeftArrow" x="82" y="730" scale="0.2119619" layer="0" hasInfluenceArea="no" />
+      <object-ref idTarget="RightArrow" x="1837" y="733" scale="0.217981" layer="1" hasInfluenceArea="no" />
+      <object-ref idTarget="UpArrow" x="987" y="536" scale="0.09412881" layer="2" hasInfluenceArea="no" />
+      <object-ref idTarget="Electricity" x="986" y="520" scale="0.2659979" layer="3" hasInfluenceArea="no">
+        <condition>
+          <inactive flag="metaPuzzle" />
+        </condition>
+      </object-ref>
+      <object-ref idTarget="MetaPuzzle" x="985" y="336" scale="0.188705" layer="4" hasInfluenceArea="no" />
+    </objects>
+    <characters>
+      <character-ref idTarget="JohnGold" x="898" y="890" scale="1.160037" orientation="2" layer="7" hasInfluenceArea="no">
+        <condition>
+          <active flag="puzzle1" />
+          <active flag="puzzle2" />
+          <active flag="puzzle4" />
+          <equals var="JackCopperConverDone" value="2" />
+          <equals var="JimSilverConverDone" value="2" />
+          <equals var="JohnGoldConverDone" value="2" />
+          <active flag="puzzle3" />
+        </condition>
+      </character-ref>
+      <character-ref idTarget="JimSilver" x="1476" y="860" scale="1.218341" orientation="2" layer="6" hasInfluenceArea="no">
+        <condition>
+          <active flag="puzzle1" />
+          <active flag="puzzle2" />
+          <active flag="puzzle4" />
+          <equals var="JackCopperConverDone" value="2" />
+          <equals var="JimSilverConverDone" value="2" />
+          <equals var="JohnGoldConverDone" value="2" />
+          <active flag="puzzle3" />
+        </condition>
+      </character-ref>
+      <character-ref idTarget="JackCopper" x="722" y="834" scale="1.23456" orientation="2" layer="5" hasInfluenceArea="no">
+        <condition>
+          <active flag="puzzle4" />
+          <active flag="puzzle1" />
+          <active flag="puzzle2" />
+          <equals var="JackCopperConverDone" value="2" />
+          <equals var="JohnGoldConverDone" value="2" />
+          <equals var="JimSilverConverDone" value="2" />
+          <active flag="puzzle3" />
+        </condition>
+      </character-ref>
+    </characters>
+  </scene>
+  <scene id="UpLeft" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
+    <documentation>
+    </documentation>
+    <resources name="No name">
+      <asset type="background" uri="assets/background/left_up.png" />
+    </resources>
+    <name>
+    </name>
+    <default-initial-position x="400" y="450" />
+    <exits>
+      <exit rectangular="yes" x="1707" y="150" width="207" height="744" hasInfluenceArea="no" idTarget="Up" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+      </exit>
+      <exit rectangular="no" x="521" y="426" width="185" height="230" hasInfluenceArea="no" idTarget="RoomUpLeft" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+        <point x="521" y="452" />
+        <point x="697" y="426" />
+        <point x="706" y="608" />
+        <point x="540" y="656" />
+      </exit>
+    </exits>
+    <objects>
+      <object-ref idTarget="RightArrow" x="1827" y="742" scale="0.222781" layer="0" hasInfluenceArea="no" />
+      <object-ref idTarget="UpArrow" x="621" y="621" scale="0.1025613" layer="1" hasInfluenceArea="no" />
+    </objects>
+  </scene>
+  <scene id="UpRight" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
+    <documentation>
+    </documentation>
+    <resources name="No name">
+      <asset type="background" uri="assets/background/right_up.png" />
+    </resources>
+    <name>
+    </name>
+    <default-initial-position x="400" y="450" />
+    <exits>
+      <exit rectangular="yes" x="4" y="144" width="218" height="754" hasInfluenceArea="no" idTarget="Up" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+      </exit>
+      <exit rectangular="no" x="1207" y="357" width="185" height="220" hasInfluenceArea="no" idTarget="RoomUpRight" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+        <point x="1227" y="357" />
+        <point x="1392" y="381" />
+        <point x="1367" y="577" />
+        <point x="1207" y="536" />
+      </exit>
+    </exits>
+    <objects>
+      <object-ref idTarget="LeftArrow" x="95" y="755" scale="0.2275809" layer="0" hasInfluenceArea="no" />
+      <object-ref idTarget="UpArrow" x="1292" y="535" scale="0.09778879" layer="1" hasInfluenceArea="no" />
+    </objects>
+  </scene>
+  <scene id="RoomUpRight" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
+    <documentation>
+    </documentation>
+    <resources name="No name">
+      <asset type="background" uri="assets/background/side_room.png" />
+    </resources>
+    <name>
+    </name>
+    <default-initial-position x="400" y="450" />
+    <exits>
+      <exit rectangular="yes" x="381" y="898" width="1154" height="179" hasInfluenceArea="no" idTarget="UpRight" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+      </exit>
+      <exit rectangular="yes" x="585" y="182" width="113" height="218" hasInfluenceArea="no" idTarget="Minijuego5" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+        <condition>
+          <inactive flag="puzzle3" />
+        </condition>
+      </exit>
+    </exits>
+    <objects>
+      <object-ref idTarget="DownArrow" x="967" y="1058" scale="0.2276947" layer="1" hasInfluenceArea="no" />
+    </objects>
+    <characters>
+      <character-ref idTarget="LadyAdaMantine" x="1411" y="872" scale="0.8527148" orientation="2" layer="0" hasInfluenceArea="no" />
+    </characters>
+    <active-areas>
+      <active-area id="Chimenea" rectangular="no" x="583" y="495" width="146" height="173" hasInfluenceArea="no" behaviour="normal">
+        <description>
+          <name>
+          </name>
+          <brief>
+          </brief>
+          <detailed>
+          </detailed>
+        </description>
+        <actions>
+          <examine needsGoTo="no" keepDistance="0" not-effects="no">
+            <effect>
+              <speak-player>Esta chimenea desprende mucho calor...</speak-player>
+              <condition />
+              <speak-player>Me encantaría quedarme un rato aquí, pero aún me queda mucho por hacer.</speak-player>
+              <condition />
+              <speak-char idTarget="LadyAdaMantine">¿Te sirvo una copa?</speak-char>
+              <condition />
+              <speak-player>No, gracias.</speak-player>
+              <condition />
+            </effect>
+          </examine>
+        </actions>
+        <point x="583" y="510" />
+        <point x="722" y="495" />
+        <point x="729" y="636" />
+        <point x="591" y="668" />
+      </active-area>
+    </active-areas>
+  </scene>
+  <scene id="RoomUpLeft" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
+    <documentation>
+    </documentation>
+    <resources name="No name">
+      <asset type="background" uri="assets/background/library_crate.png" />
+    </resources>
+    <name>
+    </name>
+    <default-initial-position x="400" y="450" />
+    <exits>
+      <exit rectangular="yes" x="372" y="912" width="1208" height="171" hasInfluenceArea="no" idTarget="UpLeft" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+      </exit>
+      <exit rectangular="no" x="1248" y="396" width="148" height="226" hasInfluenceArea="no" idTarget="Minijuego4" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+        <point x="1254" y="400" />
+        <point x="1396" y="396" />
+        <point x="1386" y="622" />
+        <point x="1248" y="599" />
+        <condition>
+          <inactive flag="puzzle4" />
+          <active flag="JackCopperConver1Done" />
+          <active flag="puzzle4Clue" />
+        </condition>
+      </exit>
+    </exits>
+    <objects>
+      <object-ref idTarget="DownArrow" x="1001" y="1049" scale="0.1910357" layer="1" hasInfluenceArea="no" />
+    </objects>
+    <characters>
+      <character-ref idTarget="JackCopper" x="1583" y="936" scale="2.352464" orientation="2" layer="0" hasInfluenceArea="no">
+        <condition>
+          <either>
+            <inactive flag="puzzle1" />
+            <inactive flag="puzzle2" />
+            <inactive flag="puzzle4" />
+            <less-than var="JackCopperConverDone" value="2" />
+            <less-than var="JimSilverConverDone" value="2" />
+            <less-than var="JohnGoldConverDone" value="2" />
+            <inactive flag="puzzle3" />
+          </either>
+        </condition>
+      </character-ref>
+    </characters>
+    <active-areas>
+      <active-area id="Libros1" rectangular="no" x="353" y="333" width="128" height="181" hasInfluenceArea="no" behaviour="normal">
+        <description>
+          <name>
+          </name>
+          <brief>
+          </brief>
+          <detailed>
+          </detailed>
+        </description>
+        <actions>
+          <examine needsGoTo="no" keepDistance="0" not-effects="no">
+            <effect>
+              <speak-player>Las estanterias estan llenas de libros.</speak-player>
+              <condition />
+              <speak-player>Son todos sobre cosas de infrormática, lógica, matemáticas, etc.</speak-player>
+              <condition />
+              <speak-player>Oh, aquí hay uno que pone "Pensamiento Computacional, el futuro de la enseñanza".</speak-player>
+              <condition />
+            </effect>
+          </examine>
+        </actions>
+        <point x="353" y="333" />
+        <point x="479" y="335" />
+        <point x="481" y="512" />
+        <point x="363" y="514" />
+      </active-area>
+    </active-areas>
+  </scene>
+  <scene id="RoomUp" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
+    <documentation>
+    </documentation>
+    <resources name="No name">
+      <asset type="background" uri="assets/background/guests_hall.png" />
+    </resources>
+    <name>
+    </name>
+    <default-initial-position x="400" y="450" />
+    <exits>
+      <exit rectangular="yes" x="1709" y="148" width="213" height="785" hasInfluenceArea="no" idTarget="Despacho" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+      </exit>
+      <exit rectangular="no" x="361" y="304" width="289" height="260" hasInfluenceArea="no" idTarget="Up" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+        <point x="361" y="304" />
+        <point x="646" y="319" />
+        <point x="650" y="555" />
+        <point x="462" y="564" />
+        <point x="439" y="514" />
+        <point x="372" y="514" />
+      </exit>
+    </exits>
+    <objects>
+      <object-ref idTarget="RightArrow" x="1849" y="755" scale="0.2140976" layer="0" hasInfluenceArea="no" />
+      <object-ref idTarget="UpArrow" x="507" y="519" scale="0.09856772" layer="1" hasInfluenceArea="no" />
+    </objects>
+    <active-areas>
+      <active-area id="MesaComedor" rectangular="no" x="636" y="542" width="791" height="319" hasInfluenceArea="no" behaviour="normal">
+        <description>
+          <name>
+          </name>
+          <brief>
+          </brief>
+          <detailed>
+          </detailed>
+        </description>
+        <actions>
+          <examine needsGoTo="no" keepDistance="0" not-effects="no">
+            <effect>
+              <speak-player>El dueño debía de organizar fiestas increíbles.</speak-player>
+              <condition />
+              <speak-player>Es una pena que se haya ido...</speak-player>
+              <condition />
+            </effect>
+          </examine>
+        </actions>
+        <point x="643" y="555" />
+        <point x="829" y="542" />
+        <point x="1384" y="647" />
+        <point x="1427" y="798" />
+        <point x="1071" y="861" />
+        <point x="636" y="623" />
+      </active-area>
+    </active-areas>
+  </scene>
+  <scene id="Despacho" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
+    <documentation>
+    </documentation>
+    <resources name="No name">
+      <asset type="background" uri="assets/background/main_room.png" />
+    </resources>
+    <name>
+    </name>
+    <default-initial-position x="400" y="450" />
+    <exits>
+      <exit rectangular="yes" x="379" y="895" width="1166" height="181" hasInfluenceArea="no" idTarget="RoomUp" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+        <exit-look text="" cursor-path="" sound-path="" />
+      </exit>
+    </exits>
+    <objects>
+      <object-ref idTarget="DownArrow" x="960" y="1053" scale="0.1903289" layer="2" hasInfluenceArea="no" />
+      <object-ref idTarget="DiarioDeBaltaItem" x="260" y="887" scale="0.06818414" layer="0" hasInfluenceArea="no" />
+    </objects>
+    <characters>
+      <character-ref idTarget="TinMan" x="1684" y="960" scale="2.974025" orientation="2" layer="1" hasInfluenceArea="no" />
+    </characters>
+    <active-areas>
+      <active-area id="ActiveAreaId" rectangular="no" x="464" y="109" width="133" height="223" hasInfluenceArea="no" behaviour="normal">
+        <description>
+          <name>
+          </name>
+          <brief>
+          </brief>
+          <detailed>
+          </detailed>
+        </description>
+        <actions>
+          <examine needsGoTo="no" keepDistance="0" not-effects="no">
+            <effect>
+              <speak-player>Hmm.. parece un retrato del dueño de la mansión.</speak-player>
+              <condition />
+              <speak-player>La placa dorada está un poco oxidada, pero se puede leer:</speak-player>
+              <condition />
+              <speak-player>"Balt.. Man... ..nandez"</speak-player>
+              <condition />
+            </effect>
+          </examine>
+        </actions>
+        <point x="464" y="109" />
+        <point x="595" y="139" />
+        <point x="597" y="332" />
+        <point x="468" y="323" />
+      </active-area>
+      <active-area id="Jarrón" rectangular="no" x="1030" y="491" width="118" height="158" hasInfluenceArea="no" behaviour="normal">
+        <description>
+          <name>
+          </name>
+          <brief>
+          </brief>
+          <detailed>
+          </detailed>
+        </description>
+        <actions>
+          <examine needsGoTo="no" keepDistance="0" not-effects="no">
+            <effect>
+              <speak-player>Es uno de esos jarrones carísimos que subastan en el mercado.</speak-player>
+              <condition />
+              <speak-player>Me pregunto qué valor tiene este...</speak-player>
+              <condition />
+            </effect>
+          </examine>
+        </actions>
+        <point x="1031" y="493" />
+        <point x="1126" y="491" />
+        <point x="1148" y="550" />
+        <point x="1117" y="644" />
+        <point x="1057" y="649" />
+        <point x="1030" y="595" />
+      </active-area>
+    </active-areas>
+  </scene>
+  <unity-scene id="Minijuego1" scene="Assets/Scenes/Puzzle1.unity" />
+  <unity-scene id="Minijuego2" scene="Assets/Scenes/Puzzle2.unity" />
+  <unity-scene id="Minijuego3" scene="Assets/Scenes/Puzzle3.unity" />
+  <unity-scene id="Minijuego4" scene="Assets/Scenes/Puzzle4.unity" />
+  <unity-scene id="Minijuego5" scene="Assets/Scenes/Puzzle5.unity" />
+  <object id="Key" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/key.png" />
+      <asset type="icon" uri="assets/special/EmptyIcon.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+    <actions>
+      <grab needsGoTo="yes" keepDistance="35" not-effects="no">
+        <effect>
+          <remove-element idTarget="Key" />
+          <condition />
+          <generate-object idTarget="Key" />
+          <condition />
+          <activate flag="keyFound" />
+          <condition />
+          <play-sound background="no" uri="assets/audio/itemFound.mp3" />
+          <condition />
+          <speak-player>¡Ajá! Esta es la llave de la puerta principal</speak-player>
+          <condition />
+        </effect>
+      </grab>
+    </actions>
+  </object>
+  <object id="ClueCode" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/pista.png" />
+      <asset type="icon" uri="assets/icon/pista.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+    <actions>
+      <grab needsGoTo="yes" keepDistance="35" not-effects="no">
+        <effect>
+          <remove-element idTarget="ClueCode" />
+          <condition />
+          <generate-object idTarget="ClueCode" />
+          <condition />
+          <activate flag="puzzle4Clue" />
+          <condition />
+        </effect>
+      </grab>
+    </actions>
+  </object>
+  <object id="DownArrow" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/downArrows.png" />
+      <asset type="icon" uri="assets/special/EmptyIcon.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+  </object>
+  <object id="UpArrow" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/upArrows.png" />
+      <asset type="icon" uri="assets/special/EmptyIcon.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+  </object>
+  <object id="LeftArrow" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/leftArrows.png" />
+      <asset type="icon" uri="assets/special/EmptyIcon.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+  </object>
+  <object id="RightArrow" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/rightArrows.png" />
+      <asset type="icon" uri="assets/special/EmptyIcon.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+  </object>
+  <object id="Electricity" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/electricity.png" />
+      <asset type="icon" uri="assets/special/EmptyIcon.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+  </object>
+  <object id="DiarioDeBaltaItem" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/bookItem.png" />
+      <asset type="icon" uri="assets/special/EmptyIcon.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+    <actions>
+      <examine needsGoTo="no" keepDistance="0" not-effects="no">
+        <effect>
+          <trigger-book idTarget="DiarioDeBalta" />
+          <condition />
+        </effect>
+      </examine>
+    </actions>
+  </object>
+  <object id="PuzzleClue" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="PuzzleClue">
+      <asset type="image" uri="assets/image/puzzleObject.png" />
+      <asset type="icon" uri="assets/icon/puzzleObject.png" />
+    </resources>
+    <description>
+      <name>PuzzleClue</name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+  </object>
+  <object id="MetaPuzzle" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/1.jpg" />
+      <asset type="icon" uri="assets/special/EmptyIcon.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+    <actions>
+      <examine needsGoTo="no" keepDistance="0" not-effects="no">
+        <condition>
+          <either>
+            <inactive flag="puzzle1" />
+            <inactive flag="puzzle2" />
+            <inactive flag="puzzle3" />
+            <inactive flag="puzzle4" />
+          </either>
+        </condition>
+        <effect>
+          <speak-player>Parece que el mecanismo esta relacionado con la electricidad pero esta bloqueado.</speak-player>
+          <condition />
+          <speak-player>Debería mirar en las demas habitaciones.</speak-player>
+          <condition />
+        </effect>
+      </examine>
+    </actions>
+  </object>
+  <graph-conversation id="JohnGoldConver1">
+    <dialogue-node nodeindex="0" editor-x="50" editor-y="50">
+      <speak-player>
+        <resources name="No name" />
+        <text>Parece que la casa está vacía.</text>
+      </speak-player>
+      <condition />
+      <speak-player>
+        <resources name="No name" />
+        <text>¿Has visto algo interesante?</text>
+      </speak-player>
+      <condition />
+      <child nodeindex="1" />
+    </dialogue-node>
+    <dialogue-node nodeindex="1" editor-x="438" editor-y="52">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Hmm.. todo parece estar en orden.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Como es tu primer día, voy a asegurarme de que conoces el caso.</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="2" />
+    </dialogue-node>
+    <dialogue-node nodeindex="2" editor-x="734" editor-y="66">
+      <speak-player>
+        <resources name="No name" />
+        <text>Eh, de acuerdo.</text>
+      </speak-player>
+      <condition />
+      <child nodeindex="3" />
+    </dialogue-node>
+    <dialogue-node nodeindex="3" editor-x="1035" editor-y="80">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>¿Cómo se llama esta mansión?</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="4" />
+    </dialogue-node>
+    <option-node nodeindex="4" random="yes" keepShowing="yes" showUserOption="yes" preListening="yes" editor-x="1384" editor-y="45" x="1384" y="45">
+      <speak-player>
+        <text>La mansión Fernández Manjón.</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="5" />
+      <speak-player>
+        <text>La mansión paranormal.</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="6" />
+      <speak-player>
+        <text>La mansión Addams.</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="7" />
+    </option-node>
+    <dialogue-node nodeindex="5" editor-x="1715" editor-y="11">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Hm. Siguiente pregunta.</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="8" />
+    </dialogue-node>
+    <dialogue-node nodeindex="6" editor-x="1717" editor-y="528">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>No, ese es el nombre del juego.</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="4" />
+    </dialogue-node>
+    <dialogue-node nodeindex="7" editor-x="1373" editor-y="527">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Ehm.. creo que has visto muchas películas de mansiones.</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="4" />
+    </dialogue-node>
+    <dialogue-node nodeindex="8" editor-x="2067" editor-y="28">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>¿Qué ha ocurrido aquí?</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="9" />
+    </dialogue-node>
+    <option-node nodeindex="9" random="yes" keepShowing="yes" showUserOption="yes" preListening="yes" editor-x="2383" editor-y="21" x="2383" y="21">
+      <speak-player>
+        <text>El dueño desapareció hace años y ahora ocurren sucesos paranormales en la mansión.</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="10" />
+      <speak-player>
+        <text>La casa estaba en venta y la familia que la compró ha sido asesinada hace varios días.</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="11" />
+      <speak-player>
+        <text>El dueño huyó porque la casa estaba llena de zombis, venimos a ver si queda alguno.</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="12" />
+    </option-node>
+    <dialogue-node nodeindex="10" editor-x="2932" editor-y="0">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Eso es.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Los vecinos y el alcalde del pueblo han informado de que extraños sonidos provenían de aquí.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Última pregunta.</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="13" />
+    </dialogue-node>
+    <dialogue-node nodeindex="11" editor-x="2564" editor-y="488">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>No, no es eso.</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="9" />
+    </dialogue-node>
+    <dialogue-node nodeindex="12" editor-x="2322" editor-y="493">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>¿Zombis? ¿En serio?</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="9" />
+    </dialogue-node>
+    <dialogue-node nodeindex="13" editor-x="3437" editor-y="0">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>¿Cual es nuestro objetivo?</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="14" />
+    </dialogue-node>
+    <option-node nodeindex="14" random="yes" keepShowing="yes" showUserOption="yes" preListening="yes" editor-x="3865" editor-y="0" x="3865" y="0">
+      <speak-player>
+        <text>Acceder al despacho del antiguo dueño, situado en la planta superior.</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="15" />
+      <speak-player>
+        <text>Encontrar el cadáver del dueño y reportarlo a la policía.</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="16" />
+      <speak-player>
+        <text>Acabar con lo que sea que esté produciendo estos sucesos paranormales.</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="17" />
+    </option-node>
+    <dialogue-node nodeindex="15" editor-x="4272" editor-y="29">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>¡Así es! Buen trabajo.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Ahora ya puedes empezar a trabajar.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Mis dos hermanos también están en la mansión.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Aunque dudo que sean de mucha ayuda...</text>
+      </speak-char>
+      <condition />
+      <speak-player>
+        <resources name="No name" />
+        <text>De acuerdo.</text>
+      </speak-player>
+      <condition />
+      <end-conversation>
+        <effect>
+          <activate flag="JohnGoldConver1Done" />
+          <condition />
+        </effect>
+      </end-conversation>
+    </dialogue-node>
+    <dialogue-node nodeindex="16" editor-x="4004" editor-y="516">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>¿Qué? No hay ningún cadáver.</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="14" />
+    </dialogue-node>
+    <dialogue-node nodeindex="17" editor-x="3736" editor-y="517">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Sí, claro, y llamamos a los Cazafantasmas también.</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="14" />
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="JohnGoldConver2">
+    <dialogue-node nodeindex="0" editor-x="224" editor-y="53">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Te pareces a mis hermanos, perdiendo el tiempo en una situación como esta.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Todavía quedan pistas por encontrar en esta planta.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>¡Deja de holgazanear y vuelve al trabajo!</text>
+      </speak-char>
+      <condition />
+      <end-conversation />
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="JhonGoldConver3">
+    <dialogue-node nodeindex="0" editor-x="50" editor-y="50">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Hmmm.. has conseguido descubrir todas las pistas del primer piso, tienes talento chaval.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Si tan solo uno de mis hermanos fuese la mitad de hábil que tú, mi familia no estaría en esta situación.</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="1" />
+    </dialogue-node>
+    <option-node nodeindex="1" showUserOption="yes" preListening="yes" editor-x="417" editor-y="58" x="417" y="58">
+      <speak-player>
+        <text>¿Qué pasó exactamente con tu familia?</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="2" />
+      <speak-player>
+        <text>(Ignorar comentario sobre su familia)</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="3" />
+      <speak-player>
+        <text>....</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="2" />
+    </option-node>
+    <dialogue-node nodeindex="2" editor-x="829" editor-y="0">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>No voy a contarte mis problemas familiares...</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>...</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Bueno, si insistes te diré que mi familia procede de una larga estirpe de famosos detectives,</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>pero la actual generación no es ni una sombra de lo que nuestra familia era.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Todo es culpa de mis hermanos que ni siquiera son capaces de resolver un simple acertijo.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Aunque quizás estoy siendo muy duro con ellos...</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Suficiente, no es momento de hablar de dramas familiares, este caso es más importante.</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="4" />
+      <effect>
+        <set-value var="JohnGoldConverDone" value="2" />
+        <condition />
+      </effect>
+    </dialogue-node>
+    <dialogue-node nodeindex="3" editor-x="879" editor-y="374">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>...</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="4" />
+      <effect>
+        <set-value var="JohnGoldConverDone" value="1" />
+        <condition>
+          <equals var="JohnGoldConverDone" value="0" />
+        </condition>
+      </effect>
+    </dialogue-node>
+    <dialogue-node nodeindex="4" editor-x="1391" editor-y="191">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Deberías subir al segundo piso, ahí podrían haber más pistas que descubrir.</text>
+      </speak-char>
+      <condition />
+      <end-conversation />
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="JimSilverConver1">
+    <dialogue-node nodeindex="0" editor-x="50" editor-y="50">
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>Huh, supongo que tú eres la "ayuda ", yo soy Jim Silver.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>Tu presencia no es necesaria, soy capaz de descifrar este acertijo yo solo. A pesar de lo que diga mi hermano.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>Por tu reacción entiendo que ya has conocido a John.</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="1" />
+    </dialogue-node>
+    <option-node nodeindex="1" showUserOption="yes" preListening="yes" editor-x="668" editor-y="229" x="668" y="229">
+      <speak-player>
+        <text>Así es, parece una buena persona.</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="2" />
+      <speak-player>
+        <text>Sí, para ser tu hermano no parecéis muy cercanos.</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="3" />
+      <speak-player>
+        <text>Es una persona peculiar.</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="3" />
+    </option-node>
+    <dialogue-node nodeindex="2" editor-x="1075" editor-y="52">
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>Veo que no eres muy buen detective, aunque tampoco esperaba mucho viniendo de John.</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="4" />
+    </dialogue-node>
+    <dialogue-node nodeindex="3" editor-x="1175" editor-y="287">
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>No tengo mucho que decir sobre él aparte de lo molesto que es siempre alabando a nuestra familia.</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="4" />
+    </dialogue-node>
+    <dialogue-node nodeindex="4" editor-x="1586" editor-y="160">
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>Volviendo al enigma, en el armario hay una caja fuerte con una pista dentro.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>Puedes intentar abrirla si quieres pero ni siquiera yo he sido capaz de resolverlo.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>La clave está en encontrar el patrón de giro.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>Pero aún sabiéndolo no es fácil resolverlo.</text>
+      </speak-char>
+      <condition />
+      <end-conversation>
+        <effect>
+          <activate flag="JimSilverConver1Done" />
+          <condition />
+        </effect>
+      </end-conversation>
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="JimSilverConver2">
+    <dialogue-node nodeindex="0" editor-x="145" editor-y="38">
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>Huh, no hay suerte, ¿eh?</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>Me lo imaginaba...</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>Si quieres un consejo, creo que la clave está en encontrar el PATRON de la rotación.</text>
+      </speak-char>
+      <condition />
+      <end-conversation />
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="JimSilverConver3">
+    <dialogue-node nodeindex="0" editor-x="50" editor-y="50">
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>#! ¡¿Cómo?! ¡Has conseguido resolver un desafío que para mi era imposible!</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>Puede que el criterio de John no sea tan malo después de todo...</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>Dime, ¿qué ha pasado al completar el desafío?</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="1" />
+    </dialogue-node>
+    <option-node nodeindex="1" preListening="yes" editor-x="559" editor-y="42" x="559" y="42">
+      <speak-player>
+        <text>Apareció un objeto, pero no entiendo su utilidad...</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="2" />
+      <speak-player>
+        <text>Nada interesante.</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="3" />
+      <speak-player>
+        <text>...</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="3" />
+    </option-node>
+    <dialogue-node nodeindex="2" editor-x="1180" editor-y="0">
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>Interesante... puede que sea de utilidad, teniendo en cuenta que la mansión está llena de acertijos.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>Debería comentar esto con mis hermanos.</text>
+      </speak-char>
+      <condition />
+      <end-conversation>
+        <effect>
+          <set-value var="JimSilverConverDone" value="2" />
+          <condition />
+        </effect>
+      </end-conversation>
+    </dialogue-node>
+    <dialogue-node nodeindex="3" editor-x="1164" editor-y="308">
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>Está bien, guárdate tus secretos... en realidad no me importa tanto.</text>
+      </speak-char>
+      <condition />
+      <end-conversation>
+        <effect>
+          <set-value var="JimSilverConverDone" value="1" />
+          <condition>
+            <equals var="JimSilverConverDone" value="0" />
+          </condition>
+        </effect>
+      </end-conversation>
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="ButtlerIronsConver1">
+    <dialogue-node nodeindex="0" editor-x="50" editor-y="50">
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>Bienvenido, soy el mayordomo de esta casa.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>El detective Gold me hizo venir para responder unas preguntas pero todavía no ha llegado...</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>Supongo que usted es el detective junior del que me habló. ¿Hay algo que quieras saber?</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="1" />
+    </dialogue-node>
+    <option-node nodeindex="1" showUserOption="yes" preListening="yes" editor-x="578" editor-y="11" x="578" y="11">
+      <speak-player>
+        <text>¿Qué pasó en esta mansión?</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="2" />
+      <speak-player>
+        <text>¿Qué escondía el dueño en su despacho?</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="3" />
+      <speak-player>
+        <text>¿Quién es el dueño?</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="4" />
+      <speak-player>
+        <text>Nada más, gracias.</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="5" />
+    </option-node>
+    <dialogue-node nodeindex="2" editor-x="0" editor-y="445">
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>Un día el dueño desapareció de la mansión y desde entonces no hemos vuelto a verle.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>Además, se escuchaban sonidos metálicos en el piso de arriba. Todos los trabajadores vivíamos asustados y fuimos abandonando la mansión...</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="1" />
+    </dialogue-node>
+    <dialogue-node nodeindex="3" editor-x="308" editor-y="455">
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>Nadie sabe lo que hay en el despacho del dueño, era muy reservado al respecto.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>Una vez un empleado nuevo entró sin permiso al despacho. El dueño le despidió al momento.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>Por eso todos evitábamos esa habitación.</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="1" />
+    </dialogue-node>
+    <dialogue-node nodeindex="4" editor-x="746" editor-y="464">
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>La mansión ha pertenecido durante generaciones a la familia Fernández Manjón.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>Sin embargo, el dueño actual es muy misterioso y callado. Los empleados apenas le veíamos fuera de su despacho.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>Si quieres saber más, habla con Lady Ada Mantine. Ella era más cercana al dueño y te podría ayudar con el caso.</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="1" />
+    </dialogue-node>
+    <dialogue-node nodeindex="5" editor-x="1042" editor-y="50">
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>Si eso es todo, sólo me queda una cosa que darte.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>Al llegar a la habitación encontré este papel destrozado. Es complicado, pero a lo mejor eres capaz de recuperar parte de él.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>Seguramente tenga información importante.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>Recuerdo que en los laterales había más cantidad de tinta. Además, en la sección del medio faltaba tinta.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>Dejé los fragmentos encima de esta mesa de billar.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>Buena suerte, joven detective.</text>
+      </speak-char>
+      <condition />
+      <end-conversation>
+        <effect>
+          <activate flag="ButtlerIronsConver1Done" />
+          <condition />
+        </effect>
+      </end-conversation>
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="ButtlerIronsConver2">
+    <dialogue-node nodeindex="0" editor-x="50" editor-y="50">
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>#! ¡Increíble! ¡Has conseguido resolver el acertijo!</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>Con tus habilidades es posible que puedas descubrir el secreto de la mansión.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>Más acertijos te esperan en el segundo piso que debes resolver.</text>
+      </speak-char>
+      <condition>
+        <active flag="puzzle1" />
+      </condition>
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>Mmm... aún quedan pistas por resolver en este piso, me lo dice mi instinto.</text>
+      </speak-char>
+      <condition>
+        <inactive flag="puzzle1" />
+      </condition>
+      <speak-char idTarget="ButtlerIrons">
+        <resources name="No name" />
+        <text>¡Sigue asi joven!</text>
+      </speak-char>
+      <condition />
+      <end-conversation />
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="JackCopperConver1">
+    <dialogue-node nodeindex="0" editor-x="50" editor-y="50">
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>Hola, tú debes ser el detective junior que llamó mi hermano. Yo soy Jack Copper, el hermano menor de John.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>Me alegro de que mi hermano te llamase, la verdad es que estoy teniendo problemas con este acertijo.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>En ese armario hay una pista para acceder al despacho pero esta bloqueado por una contraseña de símbolos.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>Creo que hay que colocar los símbolos de una manera en concreto, pero no sé por dónde empezar. Debe de haber alguna pista cerca.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>No te recomiendo intentar sacar la combinación a fuerza bruta. Parece demasiado complicado...</text>
+      </speak-char>
+      <condition />
+      <end-conversation>
+        <effect>
+          <activate flag="JackCopperConver1Done" />
+          <condition />
+        </effect>
+      </end-conversation>
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="JackCopperConver2">
+    <dialogue-node nodeindex="0" editor-x="33" editor-y="0">
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>Si no encontramos una pista sobre la secuencia, no conseguiremos resolver el acertijo.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>Confío en ti, junior. Yo seguiré probando combinaciones, aunque cualquiera de mis hermanos resultaría más útil...</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="1" />
+    </dialogue-node>
+    <option-node nodeindex="1" preListening="yes" editor-x="86" editor-y="243" x="86" y="243">
+      <speak-player>
+        <text>¿Por qué dices eso?</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="2" />
+      <speak-player>
+        <text>No lo creo, tus hermanos no son tan buenos detectives.</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="3" />
+      <speak-player>
+        <text>...</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="4" />
+    </option-node>
+    <dialogue-node nodeindex="2" editor-x="1036" editor-y="0">
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>Desde pequeño siempre he sido el sensible que no servía para resolver casos.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>La verdad es... que a mí no me gusta ser detective, pero es la tradición familiar...</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>No me importa ser detective si eso satisface a mi familia.</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="5" />
+      <effect>
+        <set-value var="JackCopperConverDone" value="2" />
+        <condition />
+      </effect>
+    </dialogue-node>
+    <dialogue-node nodeindex="3" editor-x="596" editor-y="111">
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>Creo que les infravaloras, mis hermanos siempre han sido mejores detectives que yo.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>Aunque Jonh se centre mucho en honrar a nuestros antepasados y Jim sea un poco creido,</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>confío plenamente en sus habilidades como detectives.</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="2" />
+    </dialogue-node>
+    <dialogue-node nodeindex="4" editor-x="1097" editor-y="446">
+      <speak-player>
+        <resources name="No name" />
+        <text>...</text>
+      </speak-player>
+      <condition />
+      <child nodeindex="5" />
+      <effect>
+        <set-value var="JackCopperConverDone" value="1" />
+        <condition>
+          <equals var="JackCopperConverDone" value="0" />
+        </condition>
+      </effect>
+    </dialogue-node>
+    <dialogue-node nodeindex="5" editor-x="1374" editor-y="218">
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>Deberíamos seguir trabajando... no me gustaría enfadar a mis hermanos, la verdad.</text>
+      </speak-char>
+      <condition />
+      <end-conversation />
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="JackCopperConver2.5">
+    <dialogue-node nodeindex="0" editor-x="50" editor-y="50">
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>#! ¡Ohhh!, has conseguido encontrar la pista que necesitábamos para resolver el puzzle.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>Ahora resolver el cifrado deberia ser posible.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>Adelante, junior, inténtalo.</text>
+      </speak-char>
+      <condition />
+      <end-conversation />
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="JackCopperConver3">
+    <dialogue-node nodeindex="0" editor-x="83" editor-y="45">
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>#! ¡Guau! ¡Lo has resuelto!</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>Ahora entiendo lo que es ser un detective profesional.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>Puede que deba replantearme mi profesion jeje...</text>
+      </speak-char>
+      <condition />
+      <end-conversation />
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="LadyAdaMantineConver1">
+    <dialogue-node nodeindex="0" editor-x="50" editor-y="50">
+      <speak-char idTarget="LadyAdaMantine">
+        <resources name="No name" />
+        <text>Hola, guapetón. Así que tú eres el junior que está resolviendo el caso, ¿eh?</text>
+      </speak-char>
+      <condition />
+      <speak-player>
+        <resources name="No name" />
+        <text>Así es. Vengo a resolver el misterio de la mansion ¿Me puedes decir quien eres tu?</text>
+      </speak-player>
+      <condition>
+        <inactive flag="ButtlerIronsConver1Done" />
+      </condition>
+      <speak-player>
+        <resources name="No name" />
+        <text>Así es. El mayordomo Irons me dijo que hablase contigo para recoger más datos acerca del caso.</text>
+      </speak-player>
+      <condition>
+        <active flag="ButtlerIronsConver1Done" />
+      </condition>
+      <speak-char idTarget="LadyAdaMantine">
+        <resources name="No name" />
+        <text>Oh, míralo, qué profesional... Sí, mi nombre es Lady Ada Mantine. Soy amiga del dueño de la mansión y es por eso que me han llamado.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="LadyAdaMantine">
+        <resources name="No name" />
+        <text>Siempre me invitaba a todas sus fiestas y eventos. Eran increíbles, y siempre había una comida riquísima.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="LadyAdaMantine">
+        <resources name="No name" />
+        <text>¿Qué quieres saber acerca de él?</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="1" />
+    </dialogue-node>
+    <option-node nodeindex="1" preListening="yes" editor-x="981" editor-y="42" x="981" y="42">
+      <speak-player>
+        <text>¿Por qué nadie dice su nombre? ¿Cómo se llamaba?</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="2" />
+      <speak-player>
+        <text>¿De qué lo conoces?</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="3" />
+      <speak-player>
+        <text>¿Has visto algo misterioso por aqui?</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="4" />
+      <speak-player>
+        <text>Nada, gracias por tu tiempo.</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="5" />
+    </option-node>
+    <dialogue-node nodeindex="2" editor-x="1588" editor-y="34">
+      <speak-char idTarget="LadyAdaMantine">
+        <resources name="No name" />
+        <text>Oh, eso...</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="LadyAdaMantine">
+        <resources name="No name" />
+        <text>Él prefería que le conociesen por sus apellidos, pues estaba muy orgulloso de su familia y su herencia.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="LadyAdaMantine">
+        <resources name="No name" />
+        <text>Aunque en una ocasión, cuando estábamos a solas en su despacho luego de una fiesta encontré su diario.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="LadyAdaMantine">
+        <resources name="No name" />
+        <text>Y en él pude observar unas letras bordadas en la tapa que ponían: "B.F.M"</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="1" />
+    </dialogue-node>
+    <dialogue-node nodeindex="3" editor-x="1618" editor-y="325">
+      <speak-char idTarget="LadyAdaMantine">
+        <resources name="No name" />
+        <text>Nos conocimos de pequeños. Nuestras familias siempre habían sido muy amigas.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="LadyAdaMantine">
+        <resources name="No name" />
+        <text>Pero él siempre estaba pensando en minijuegos, acertijos, etc.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="LadyAdaMantine">
+        <resources name="No name" />
+        <text>Fue por ese motivo que nos distanciamos. No le volvi a ver hasta el momento en el que heredó la mansión y quiso invitar a todos sus conocidos.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="LadyAdaMantine">
+        <resources name="No name" />
+        <text>Se le veía tan alegre...</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="1" />
+    </dialogue-node>
+    <dialogue-node nodeindex="4" editor-x="1406" editor-y="558">
+      <speak-char idTarget="LadyAdaMantine">
+        <resources name="No name" />
+        <text>Nada que destaque mucho...</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="LadyAdaMantine">
+        <resources name="No name" />
+        <text>Aunque me pareció ver algo escrito en el cuadro que hay sobre la chimenea.</text>
+      </speak-char>
+      <condition />
+      <end-conversation />
+    </dialogue-node>
+    <dialogue-node nodeindex="5" editor-x="997" editor-y="653">
+      <speak-char idTarget="LadyAdaMantine">
+        <resources name="No name" />
+        <text>A ti, joven. Suerte con el caso.</text>
+      </speak-char>
+      <condition />
+      <end-conversation />
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="TinManConversation">
+    <dialogue-node nodeindex="0" editor-x="50" editor-y="50">
+      <speak-char idTarget="TinMan">
+        <resources name="No name" />
+        <text>#! ¡Ohh! Alguien ha conseguido resolver los acertijos del maestro.</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="1" />
+    </dialogue-node>
+    <option-node nodeindex="1" showUserOption="yes" preListening="yes" editor-x="463" editor-y="4" x="463" y="4">
+      <speak-player>
+        <text>¿Quién o qué eres?</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="2" />
+      <speak-player>
+        <text>¿El maestro?</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="2" />
+    </option-node>
+    <dialogue-node nodeindex="2" editor-x="873" editor-y="11">
+      <speak-char idTarget="TinMan">
+        <resources name="No name" />
+        <text>Soy "El hombre de hojalata". Aunque no soy un hombre ni tampoco estoy hecho de hojalata.  JA JA JA</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="TinMan">
+        <resources name="No name" />
+        <text>El dueño de esta mansión es el maestro. Él fue quien me creó como parte de su investigación.</text>
+      </speak-char>
+      <condition />
+      <speak-player>
+        <resources name="No name" />
+        <text>¿Qué investigación?</text>
+      </speak-player>
+      <condition />
+      <speak-char idTarget="TinMan">
+        <resources name="No name" />
+        <text>El maestro pretendía mejorar sus habilidades resolviendo problemas, hasta el punto de superar a las maquinas.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="TinMan">
+        <resources name="No name" />
+        <text>Para eso llenó de acertijos esta mansión y me creó a mí para aumentar la dificultad.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="TinMan">
+        <resources name="No name" />
+        <text>Pero en uno de los ensayos... el último puzle era demasiado complicado... y me quedé encerrado en esta habitación.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="TinMan">
+        <resources name="No name" />
+        <text>Como los experimentos no podían continuar, el maestro se jubiló y se marchó a su casa en las Bahamas. Y desde entonces he estado encerrado en esta habitación.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="TinMan">
+        <resources name="No name" />
+        <text>Pero.. si tú has conseguido solucionar el acertijo del maestro... eso quiere decir que... ¡su investigacion fue un completo éxito!</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="TinMan">
+        <resources name="No name" />
+        <text>Has logrado resolver el puzzle que ni siquiera yo pude. Enhorabuena</text>
+      </speak-char>
+      <condition />
+      <speak-player>
+        <resources name="No name" />
+        <text>Supongo que al final todos los sucesos paranormales tenian una explicacion "logica".</text>
+      </speak-player>
+      <condition />
+      <speak-player>
+        <resources name="No name" />
+        <text>Huh.. Quien lo hubiese pensado.</text>
+      </speak-player>
+      <condition />
+      <end-conversation>
+        <effect>
+          <activate flag="fin" />
+          <condition />
+        </effect>
+      </end-conversation>
+    </dialogue-node>
+  </graph-conversation>
+  <graph-conversation id="BrothersConversation">
+    <dialogue-node nodeindex="0" editor-x="0" editor-y="42">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Con que has resuelto todos los acertijos de la mansión, ¿eh?</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>Eso parece... este detective junior no se anda con tonterías</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>La verdad es que no nos deja en muy buena posición... pero me alegro de que los puzles hayan sido resueltos.</text>
+      </speak-char>
+      <condition />
+      <child nodeindex="1" />
+    </dialogue-node>
+    <option-node nodeindex="1" showUserOption="yes" preListening="yes" editor-x="524" editor-y="11" x="524" y="11">
+      <speak-player>
+        <text>¿Qué vais a hacer ahora?</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="2" />
+      <speak-player>
+        <text>Aún queda el acertijo final, ¿no?</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="3" />
+      <speak-player>
+        <text>...</text>
+        <resources name="No name" />
+      </speak-player>
+      <condition />
+      <child nodeindex="2" />
+    </option-node>
+    <dialogue-node nodeindex="2" editor-x="1304" editor-y="34">
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>Yo... tengo que confesaros algo... creo que voy a dejar de ser detective.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>#! ¿Qué? ¿Rompiendo la tradicion familiar?</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>Ya empieza...</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>Pues sí. Ver al junior trabajar me ha hecho darme cuenta de que no sirvo para esto. Y hacerlo por la familia no me va a hacer mejor detective.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Mmm... supongo que tienes razón. El junior me ha hecho ver que la tradición no es tan importante como yo creía. Siento haber sido tan duro con vosotros...</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>No penséis que yo voy a dar un discurso emotivo o decir que he aprendido una lección, ja. Eso no va conmigo.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>Jajaja, no esperaba menos de ti, Jim...</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Bueno, bueno... después de esta reflexión, ha llegado la hora de... ¡terminar con el misterio de la mansión Fernández Manjón!</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>Adelante junior, el ultimo puzzle te espera.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
+        <text>Buena suerte, aunque no la necesitas</text>
+      </speak-char>
+      <condition />
+      <end-conversation />
+    </dialogue-node>
+    <dialogue-node nodeindex="3" editor-x="609" editor-y="419">
+      <speak-char idTarget="JohnGold">
+        <resources name="No name" />
+        <text>Tienes razón, pero para tí debería ser pan comido.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JimSilver">
+        <resources name="No name" />
+        <text>Sí. Además, parece que la solución involucra los objetos que obtuviste en los otros acertijos.</text>
+      </speak-char>
+      <condition />
+      <speak-player>
+        <resources name="No name" />
+        <text>Supongo que el caso está casi cerrado, ¿qué haréis cuando todo esto acabe?</text>
+      </speak-player>
+      <condition />
+      <child nodeindex="2" />
+    </dialogue-node>
+  </graph-conversation>
+  <book id="DiarioDeBalta" xNextPage="707" yNextPage="507" xPreviousPage="20" yPreviousPage="507">
+    <resources name="No name">
+      <asset type="background" uri="assets/background/book.png" />
+      <asset type="arrowLeftNormal" uri="assets/special/DefaultLeftNormalArrow.png" />
+      <asset type="arrowLeftOver" uri="assets/special/DefaultLeftOverArrow.png" />
+      <asset type="arrowRightNormal" uri="assets/special/DefaultLeftNormalArrow.png" />
+      <asset type="arrowRightOver" uri="assets/special/DefaultLeftOverArrow.png" />
+    </resources>
+    <text>
+      <title>.                   Día 10/08/1915</title>.                                    Hoy comienzo con mi plan maestro...
+.                                    Debo construir los puzles, construir al robot, conectarlo todo, etc.
+.                                    Seguro que con todo esto podré terminar la investigación que llevo tanto tiempo 
+.                                   queriendo llevar a cabo.<title>.                   Día 24/11/1920</title>.                                    Hoy he terminado por fin de construir a mi "Hombre de hojalata". 
+.                                    Ha sido duro, pero al final todo da sus frutos, ¿no?
+.                                    Por suerte todos los acertijos ya están colocados y conectados.<img src="assets/image/balta.jpg" /></text>
+  </book>
+  <videoscene canSkip="no" id="InitialCutscene" start="yes" idTarget="Outside" destinyX="-2147483648" destinyY="2147483647" transitionTime="1000" transitionType="5" next="new-scene" class="accesible" type="cutscene">
+    <documentation>
+    </documentation>
+    <resources name="InitialCutscene">
+      <asset type="video" uri="assets/video/cutsceneStart.mp4" />
+      <asset type="slides" uri="assets/special/EmptyAnimation" />
+    </resources>
+    <name>
+    </name>
+  </videoscene>
+  <videoscene canSkip="no" id="EndCutscene" start="no" next="go-back" class="accesible" type="cutscene">
+    <documentation>
+    </documentation>
+    <resources name="EndCutscene">
+      <asset type="video" uri="assets/video/cutsceneEnd.mp4" />
+      <asset type="slides" uri="assets/special/EmptyAnimation" />
+    </resources>
+    <name>
+    </name>
+  </videoscene>
+</eAdventure>
