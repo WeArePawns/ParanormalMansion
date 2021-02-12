@@ -2304,6 +2304,15 @@
   <entry key="Inventory.Type5">Fixed on bottom</entry>
   <entry key="Inventory.Type6">Icon freely positioned</entry>
   
+  <!-- Id Validation -->
+  <entry key="Validation.Id.IsEmpty">Id must not be empty</entry>
+  <entry key="Validation.Id.ContainsSpaces">Id must not contain spaces</entry>
+  <entry key="Validation.Id.NotValidCharacter">Id contains a not valid character. Valid characters are alphanumeric and "_", "-", ".", ":".</entry>
+  <entry key="Validation.Id.NotStartsWithLetter">Id must start with a letter</entry>
+  <entry key="Validation.Id.IsReservedPlayerValue">Id must not be the reserved Player tag</entry>
+  <entry key="Validation.Id.IsAlreadyUsedy">Id is already in use</entry>
+  
+  
   <!-- Buttons -->
   <entry key="Buttons.Hint">Hover the icon to see the highlighted version</entry>
   <entry key="Buttons.Normal">Normal</entry>
@@ -2473,4 +2482,13 @@
   <entry key="QR.QRScannerEffect.ListType.WhiteList">White list</entry>
   <entry key="QR.QRScannerEffectEditor.Message">Message</entry>
   <entry key="QR.QRScannerEffectEditor.ListType">List type</entry>
+  
+  <!-- Unity Plugin -->
+
+  <entry key="UnityPlugin.SceneWindow.InBuildSettings">Scene is in Build Settings, everything will work fine.</entry>
+  <entry key="UnityPlugin.SceneWindow.MainSceneInBuildSettings">Main uAdventure Scene is in Build Settings, everything will work fine.</entry>
+  <entry key="UnityPlugin.SceneWindow.SceneNotInBuildSettings">The scene is not in Build Settings, the engine won't be able to load it!</entry>
+  <entry key="UnityPlugin.SceneWindow.MainSceneNotInBuildSettings">uAdventure main scene is not in Build Settings, the engine won't be able to return to it!</entry>
+  <entry key="UnityPlugin.SceneWindow.AddSceneToBuildSettings">Add scene to Build Settings</entry>
+  
 </properties>

@@ -320,11 +320,11 @@ namespace uAdventure.Editor
                 {
                     if (elementFactoryView.DefaultIds.ContainsKey(type))
                     {
-                        controller.ShowInputDialog(title, message, elementFactoryView.DefaultIds[type], (o, s) => continueAddingElement(type, s));
+                        controller.ShowInputIdDialog(title, message, Controller.Instance.makeElementValid(elementFactoryView.DefaultIds[type]), (o, s) => continueAddingElement(type, s));
                     }
                     else
                     {
-                        controller.ShowInputDialog(title, message, (o, s) => continueAddingElement(type, s));
+                        controller.ShowInputIdDialog(title, message, "", (o, s) => continueAddingElement(type, s));
                     }
                 }
                 else if (elementFactory.ReferencesId(type))
@@ -572,6 +572,12 @@ namespace uAdventure.Editor
                     Controller.Instance.IdentifierSummary.addId(hasId.GetType(), hasId.getId());
                 }
 
+                if (isRemove) // This means is undoing
+                {
+                    // Update references to var and flags in case the element contains them
+                    Controller.Instance.updateVarFlagSummary();
+                }
+
                 return true;
             }
 
@@ -588,6 +594,9 @@ namespace uAdventure.Editor
                     Controller.Instance.deleteIdentifierReferences(hasId.getId());
                     Controller.Instance.IdentifierSummary.deleteId(hasId.GetType(), hasId.getId());
                 }
+
+                // Update references to var and flags in case the element contains them
+                Controller.Instance.updateVarFlagSummary();
 
                 return true;
             }

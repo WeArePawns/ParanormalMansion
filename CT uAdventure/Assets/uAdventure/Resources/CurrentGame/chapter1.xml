@@ -75,10 +75,7 @@
       <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
         <documentation>Created with target conversation: JohnGoldConver2</documentation>
         <condition>
-          <either>
-            <inactive flag="puzzle1" />
-            <inactive flag="puzzle2" />
-          </either>
+          <global-state-ref id="PlantaBajaCompletada" value="false" />
         </condition>
         <effect>
           <trigger-conversation idTarget="JohnGoldConver2" />
@@ -88,15 +85,7 @@
       <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
         <documentation>Created with target conversation: JohnGoldConver3</documentation>
         <condition>
-          <either>
-            <inactive flag="puzzle1" />
-            <inactive flag="puzzle2" />
-            <inactive flag="puzzle4" />
-            <less-than var="JackCopperConverDone" value="2" />
-            <less-than var="JimSilverConverDone" value="2" />
-            <less-than var="JohnGoldConverDone" value="2" />
-            <inactive flag="puzzle3" />
-          </either>
+          <global-state-ref id="ConversacionHermanos" value="false" />
         </condition>
         <effect>
           <trigger-conversation idTarget="JhonGoldConver3" />
@@ -166,15 +155,7 @@
       <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
         <documentation>Created with target conversation: JimSilverConver3</documentation>
         <condition>
-          <either>
-            <inactive flag="puzzle1" />
-            <inactive flag="puzzle2" />
-            <inactive flag="puzzle4" />
-            <less-than var="JackCopperConverDone" value="2" />
-            <less-than var="JimSilverConverDone" value="2" />
-            <less-than var="JohnGoldConverDone" value="2" />
-            <inactive flag="puzzle3" />
-          </either>
+          <global-state-ref id="ConversacionHermanos" value="false" />
         </condition>
         <effect>
           <trigger-conversation idTarget="JimSilverConver3" />
@@ -254,15 +235,7 @@
       <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
         <documentation>Created with target conversation: JackCopperConver3</documentation>
         <condition>
-          <either>
-            <inactive flag="puzzle1" />
-            <inactive flag="puzzle2" />
-            <inactive flag="puzzle4" />
-            <less-than var="JackCopperConverDone" value="2" />
-            <less-than var="JimSilverConverDone" value="2" />
-            <less-than var="JohnGoldConverDone" value="2" />
-            <inactive flag="puzzle3" />
-          </either>
+          <global-state-ref id="ConversacionHermanos" value="false" />
         </condition>
         <effect>
           <trigger-conversation idTarget="JackCopperConver3" />
@@ -312,7 +285,7 @@
       <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
         <documentation>Created with target conversation: ButtlerIronsConver1</documentation>
         <condition>
-          <inactive flag="ButtlerIronsConver1Done" />
+          <inactive flag="puzzle2" />
         </condition>
         <effect>
           <trigger-conversation idTarget="ButtlerIronsConver1" />
@@ -415,7 +388,7 @@
     </documentation>
     <resources name="MainScene">
       <asset type="background" uri="assets/background/mansion_outside.png" />
-      <asset type="bgmusic" uri="assets/audio/music.mp3" />
+      <asset type="bgmusic" uri="" />
     </resources>
     <name>
     </name>
@@ -430,7 +403,7 @@
       <object-ref idTarget="UpArrow" x="965" y="557" scale="0.1500883" layer="1" hasInfluenceArea="no" />
     </objects>
     <active-areas>
-      <active-area id="Fuente" rectangular="no" x="1298" y="198" width="364" height="636" hasInfluenceArea="yes" influenceX="0" influenceY="0" influenceWidth="404" influenceHeight="676" behaviour="normal">
+      <active-area id="Fuente" rectangular="no" x="1298" y="198" width="364" height="636" hasInfluenceArea="yes" influenceX="0" influenceY="0" influenceWidth="404" influenceHeight="676" behaviour="first-action">
         <description>
           <name>
           </name>
@@ -477,7 +450,9 @@
         </condition>
         <effect>
           <play-sound uri="assets/audio/enterDoor.mp3" />
-          <condition />
+          <condition>
+            <active flag="Sound" />
+          </condition>
           <consume-object idTarget="Key" />
           <condition />
           <speak-player>(Has usado la llave.)</speak-player>
@@ -542,30 +517,38 @@
         <exit-look text="" cursor-path="" sound-path="" />
         <condition>
           <active flag="JohnGoldConver1Done" />
+          <active flag="puzzle4" />
+          <active flag="puzzle3" />
         </condition>
         <not-effect>
           <speak-player>Primero debería de hablar con John.</speak-player>
-          <condition />
+          <condition>
+            <inactive flag="JohnGoldConver1Done" />
+          </condition>
+          <speak-player>Primero debería de revisar la primera planta.</speak-player>
+          <condition>
+            <inactive flag="puzzle1" />
+            <inactive flag="puzzle2" />
+            <active flag="JohnGoldConver1Done" />
+          </condition>
         </not-effect>
       </exit>
     </exits>
     <objects>
       <object-ref idTarget="UpArrow" x="955" y="500" scale="0.2217429" layer="0" hasInfluenceArea="no" />
-      <object-ref idTarget="LeftArrow" x="98" y="822" scale="0.2672" layer="2" hasInfluenceArea="no" />
+      <object-ref idTarget="LeftArrow" x="98" y="822" scale="0.2672" layer="3" hasInfluenceArea="no" />
       <object-ref idTarget="RightArrow" x="1809" y="801" scale="0.2698073" layer="1" hasInfluenceArea="no" />
+      <object-ref idTarget="Exclamation" x="1394" y="418" scale="0.3297637" layer="2" hasInfluenceArea="no">
+        <condition>
+          <global-state-ref id="PlantaBajaCompletada" value="true" />
+          <equals var="JohnGoldConverDone" value="0" />
+        </condition>
+      </object-ref>
     </objects>
     <characters>
-      <character-ref idTarget="JohnGold" x="1195" y="1148" scale="2.451553" orientation="2" layer="3" hasInfluenceArea="no">
+      <character-ref idTarget="JohnGold" x="1411" y="1199" scale="0.9205202" orientation="2" layer="4" hasInfluenceArea="no">
         <condition>
-          <either>
-            <inactive flag="puzzle1" />
-            <inactive flag="puzzle2" />
-            <inactive flag="puzzle4" />
-            <less-than var="JackCopperConverDone" value="2" />
-            <less-than var="JimSilverConverDone" value="2" />
-            <less-than var="JohnGoldConverDone" value="2" />
-            <inactive flag="puzzle3" />
-          </either>
+          <global-state-ref id="ConversacionHermanos" value="false" />
         </condition>
       </character-ref>
     </characters>
@@ -622,7 +605,7 @@
       <object-ref idTarget="UpArrow" x="1417" y="820" scale="0.107992" layer="1" hasInfluenceArea="no" />
     </objects>
   </scene>
-  <scene id="RoomDownRight" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
+  <scene id="RoomUpLeft" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
     <documentation>
     </documentation>
     <resources name="No name">
@@ -632,7 +615,7 @@
     </name>
     <default-initial-position x="400" y="450" />
     <exits>
-      <exit rectangular="yes" x="266" y="885" width="1317" height="210" hasInfluenceArea="no" idTarget="HallRight" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+      <exit rectangular="yes" x="266" y="885" width="1317" height="210" hasInfluenceArea="no" idTarget="UpLeft" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
         <exit-look text="" cursor-path="" sound-path="" />
       </exit>
       <exit rectangular="no" x="1080" y="149" width="300" height="309" hasInfluenceArea="no" idTarget="Minijuego1" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
@@ -644,34 +627,28 @@
         <condition>
           <inactive flag="puzzle1" />
           <active flag="JimSilverConver1Done" />
+          <less-than var="PUZZLE_1_DIFICULTY" value="3" />
         </condition>
       </exit>
     </exits>
     <objects>
       <object-ref idTarget="DownArrow" x="973" y="1070" scale="0.2622173" layer="2" hasInfluenceArea="no" />
-      <object-ref idTarget="ClueCode" x="717" y="543" scale="0.4378764" layer="1" hasInfluenceArea="no">
+      <object-ref idTarget="Exclamation" x="212" y="144" scale="0.2595346" layer="0" hasInfluenceArea="no">
         <condition>
-          <active flag="JackCopperConver1Done" />
+          <active flag="puzzle1" />
+          <equals var="JimSilverConverDone" value="0" />
         </condition>
       </object-ref>
     </objects>
     <characters>
-      <character-ref idTarget="JimSilver" x="208" y="813" scale="2.427523" orientation="2" layer="0" hasInfluenceArea="no">
+      <character-ref idTarget="JimSilver" x="221" y="822" scale="0.8092487" orientation="2" layer="1" hasInfluenceArea="no">
         <condition>
-          <either>
-            <inactive flag="puzzle1" />
-            <inactive flag="puzzle2" />
-            <inactive flag="puzzle4" />
-            <less-than var="JackCopperConverDone" value="2" />
-            <less-than var="JimSilverConverDone" value="2" />
-            <less-than var="JohnGoldConverDone" value="2" />
-            <inactive flag="puzzle3" />
-          </either>
+          <global-state-ref id="ConversacionHermanos" value="false" />
         </condition>
       </character-ref>
     </characters>
     <active-areas>
-      <active-area id="Mesa" rectangular="no" x="760" y="740" width="268" height="135" hasInfluenceArea="no" behaviour="normal">
+      <active-area id="Mesa" rectangular="no" x="760" y="740" width="268" height="135" hasInfluenceArea="no" behaviour="first-action">
         <description>
           <name>
           </name>
@@ -696,7 +673,7 @@
         <point x="834" y="875" />
         <point x="760" y="833" />
       </active-area>
-      <active-area id="Flores1" rectangular="no" x="1420" y="466" width="163" height="132" hasInfluenceArea="no" behaviour="normal">
+      <active-area id="Flores1" rectangular="no" x="1420" y="466" width="163" height="132" hasInfluenceArea="no" behaviour="first-action">
         <description>
           <name>
           </name>
@@ -724,7 +701,7 @@
       </active-area>
     </active-areas>
   </scene>
-  <scene id="RoomDownLeft" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
+  <scene id="RoomUpRight" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
     <documentation>
     </documentation>
     <resources name="No name">
@@ -734,7 +711,7 @@
     </name>
     <default-initial-position x="400" y="450" />
     <exits>
-      <exit rectangular="yes" x="333" y="889" width="1345" height="188" hasInfluenceArea="no" idTarget="HallLeft" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+      <exit rectangular="yes" x="333" y="889" width="1345" height="188" hasInfluenceArea="no" idTarget="UpRight" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
         <exit-look text="" cursor-path="" sound-path="" />
       </exit>
       <exit rectangular="no" x="779" y="591" width="806" height="127" hasInfluenceArea="no" idTarget="Minijuego2" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
@@ -746,6 +723,7 @@
         <condition>
           <inactive flag="puzzle2" />
           <active flag="ButtlerIronsConver1Done" />
+          <less-than var="PUZZLE_2_DIFICULTY" value="3" />
         </condition>
       </exit>
     </exits>
@@ -753,7 +731,7 @@
       <object-ref idTarget="DownArrow" x="1030" y="1060" scale="0.2145357" layer="1" hasInfluenceArea="no" />
     </objects>
     <characters>
-      <character-ref idTarget="ButtlerIrons" x="1633" y="872" scale="1.012184" orientation="2" layer="0" hasInfluenceArea="no" />
+      <character-ref idTarget="ButtlerIrons" x="1659" y="971" scale="0.7596771" orientation="2" layer="0" hasInfluenceArea="no" />
     </characters>
   </scene>
   <scene id="Up" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
@@ -801,9 +779,9 @@
         <exit-look text="" cursor-path="" sound-path="" />
         <condition>
           <inactive flag="metaPuzzle" />
-          <active flag="puzzle1" />
-          <active flag="puzzle2" />
-          <active flag="puzzle4" />
+          <less-than var="PUZZLE_3_DIFICULTY" value="3" />
+          <global-state-ref id="MetaPuzzleDesbloqueado" value="true" />
+          <global-state-ref id="AlgunEngranajeEncontrado" value="false" />
         </condition>
       </exit>
     </exits>
@@ -820,37 +798,19 @@
       <object-ref idTarget="MetaPuzzle" x="985" y="336" scale="0.188705" layer="4" hasInfluenceArea="no" />
     </objects>
     <characters>
-      <character-ref idTarget="JohnGold" x="898" y="890" scale="1.160037" orientation="2" layer="7" hasInfluenceArea="no">
+      <character-ref idTarget="JohnGold" x="802" y="907" scale="0.6244002" orientation="2" layer="7" hasInfluenceArea="no">
         <condition>
-          <active flag="puzzle1" />
-          <active flag="puzzle2" />
-          <active flag="puzzle4" />
-          <equals var="JackCopperConverDone" value="2" />
-          <equals var="JimSilverConverDone" value="2" />
-          <equals var="JohnGoldConverDone" value="2" />
-          <active flag="puzzle3" />
+          <global-state-ref id="ConversacionHermanos" value="true" />
         </condition>
       </character-ref>
-      <character-ref idTarget="JimSilver" x="1476" y="860" scale="1.218341" orientation="2" layer="6" hasInfluenceArea="no">
+      <character-ref idTarget="JimSilver" x="1508" y="933" scale="0.5932944" orientation="2" layer="6" hasInfluenceArea="no">
         <condition>
-          <active flag="puzzle1" />
-          <active flag="puzzle2" />
-          <active flag="puzzle4" />
-          <equals var="JackCopperConverDone" value="2" />
-          <equals var="JimSilverConverDone" value="2" />
-          <equals var="JohnGoldConverDone" value="2" />
-          <active flag="puzzle3" />
+          <global-state-ref id="ConversacionHermanos" value="true" />
         </condition>
       </character-ref>
-      <character-ref idTarget="JackCopper" x="722" y="834" scale="1.23456" orientation="2" layer="5" hasInfluenceArea="no">
+      <character-ref idTarget="JackCopper" x="446" y="1009" scale="0.6443821" orientation="2" layer="5" hasInfluenceArea="no">
         <condition>
-          <active flag="puzzle4" />
-          <active flag="puzzle1" />
-          <active flag="puzzle2" />
-          <equals var="JackCopperConverDone" value="2" />
-          <equals var="JohnGoldConverDone" value="2" />
-          <equals var="JimSilverConverDone" value="2" />
-          <active flag="puzzle3" />
+          <global-state-ref id="ConversacionHermanos" value="true" />
         </condition>
       </character-ref>
     </characters>
@@ -907,7 +867,7 @@
       <object-ref idTarget="UpArrow" x="1292" y="535" scale="0.09778879" layer="1" hasInfluenceArea="no" />
     </objects>
   </scene>
-  <scene id="RoomUpRight" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
+  <scene id="RoomDownLeft" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
     <documentation>
     </documentation>
     <resources name="No name">
@@ -917,24 +877,43 @@
     </name>
     <default-initial-position x="400" y="450" />
     <exits>
-      <exit rectangular="yes" x="381" y="898" width="1154" height="179" hasInfluenceArea="no" idTarget="UpRight" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+      <exit rectangular="yes" x="381" y="898" width="1154" height="179" hasInfluenceArea="no" idTarget="HallLeft" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
         <exit-look text="" cursor-path="" sound-path="" />
+        <effect>
+          <speak-player>Parece que ya he terminado todo lo que se podía hacer en la planta baja.</speak-player>
+          <condition>
+            <active flag="puzzle3" />
+            <active flag="puzzle4" />
+            <inactive flag="SecondFloorAble" />
+          </condition>
+          <activate flag="SecondFloorAble" />
+          <condition>
+            <active flag="puzzle3" />
+            <active flag="puzzle4" />
+          </condition>
+        </effect>
       </exit>
       <exit rectangular="yes" x="585" y="182" width="113" height="218" hasInfluenceArea="no" idTarget="Minijuego5" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
         <exit-look text="" cursor-path="" sound-path="" />
         <condition>
           <inactive flag="puzzle3" />
+          <less-than var="PUZZLE_5_DIFICULTY" value="3" />
         </condition>
       </exit>
     </exits>
     <objects>
-      <object-ref idTarget="DownArrow" x="967" y="1058" scale="0.2276947" layer="1" hasInfluenceArea="no" />
+      <object-ref idTarget="DownArrow" x="967" y="1058" scale="0.2276947" layer="2" hasInfluenceArea="no" />
+      <object-ref idTarget="ClueCode" x="425" y="752" scale="0.5490433" layer="0" hasInfluenceArea="no">
+        <condition>
+          <active flag="JackCopperConver1Done" />
+        </condition>
+      </object-ref>
     </objects>
     <characters>
-      <character-ref idTarget="LadyAdaMantine" x="1411" y="872" scale="0.8527148" orientation="2" layer="0" hasInfluenceArea="no" />
+      <character-ref idTarget="LadyAdaMantine" x="1371" y="872" scale="0.7015026" orientation="2" layer="1" hasInfluenceArea="no" />
     </characters>
     <active-areas>
-      <active-area id="Chimenea" rectangular="no" x="583" y="495" width="146" height="173" hasInfluenceArea="no" behaviour="normal">
+      <active-area id="Chimenea" rectangular="no" x="583" y="495" width="146" height="173" hasInfluenceArea="no" behaviour="first-action">
         <description>
           <name>
           </name>
@@ -964,7 +943,7 @@
       </active-area>
     </active-areas>
   </scene>
-  <scene id="RoomUpLeft" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
+  <scene id="RoomDownRight" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
     <documentation>
     </documentation>
     <resources name="No name">
@@ -974,10 +953,23 @@
     </name>
     <default-initial-position x="400" y="450" />
     <exits>
-      <exit rectangular="yes" x="372" y="912" width="1208" height="171" hasInfluenceArea="no" idTarget="UpLeft" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+      <exit rectangular="yes" x="372" y="912" width="1208" height="171" hasInfluenceArea="no" idTarget="HallRight" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
         <exit-look text="" cursor-path="" sound-path="" />
+        <effect>
+          <speak-player>Parece que ya he terminado todo lo que se podía hacer en la planta baja.</speak-player>
+          <condition>
+            <active flag="puzzle4" />
+            <active flag="puzzle3" />
+            <inactive flag="SecondFloorAble" />
+          </condition>
+          <activate flag="SecondFloorAble" />
+          <condition>
+            <active flag="puzzle3" />
+            <active flag="puzzle4" />
+          </condition>
+        </effect>
       </exit>
-      <exit rectangular="no" x="1248" y="396" width="148" height="226" hasInfluenceArea="no" idTarget="Minijuego4" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
+      <exit rectangular="no" x="1248" y="396" width="148" height="226" hasInfluenceArea="no" idTarget="Minijuego4" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="yes">
         <exit-look text="" cursor-path="" sound-path="" />
         <point x="1254" y="400" />
         <point x="1396" y="396" />
@@ -987,29 +979,43 @@
           <inactive flag="puzzle4" />
           <active flag="JackCopperConver1Done" />
           <active flag="puzzle4Clue" />
+          <less-than var="PUZZLE_4_DIFICULTY" value="3" />
+          <active flag="ClueExamined" />
         </condition>
+        <not-effect>
+          <speak-player>Debería leer la pista antes de resolver el puzzle.
+Creo que la guardé en la mochila</speak-player>
+          <condition>
+            <active flag="puzzle4Clue" />
+            <inactive flag="ClueExamined" />
+          </condition>
+          <speak-char idTarget="JackCopper">Junior, deberias buscar la pista antes de intentarlo.</speak-char>
+          <condition>
+            <inactive flag="puzzle4Clue" />
+            <active flag="JackCopperConver1Done" />
+          </condition>
+        </not-effect>
       </exit>
     </exits>
     <objects>
-      <object-ref idTarget="DownArrow" x="1001" y="1049" scale="0.1910357" layer="1" hasInfluenceArea="no" />
+      <object-ref idTarget="DownArrow" x="1001" y="1049" scale="0.1910357" layer="2" hasInfluenceArea="no" />
+      <object-ref idTarget="Exclamation" x="1515" y="268" scale="0.3099092" layer="0" hasInfluenceArea="no">
+        <condition>
+          <active flag="JackCopperConver1Done" />
+          <equals var="JackCopperConverDone" value="0" />
+          <inactive flag="puzzle4Clue" />
+        </condition>
+      </object-ref>
     </objects>
     <characters>
-      <character-ref idTarget="JackCopper" x="1583" y="936" scale="2.352464" orientation="2" layer="0" hasInfluenceArea="no">
+      <character-ref idTarget="JackCopper" x="1532" y="1014" scale="0.8880915" orientation="2" layer="1" hasInfluenceArea="no">
         <condition>
-          <either>
-            <inactive flag="puzzle1" />
-            <inactive flag="puzzle2" />
-            <inactive flag="puzzle4" />
-            <less-than var="JackCopperConverDone" value="2" />
-            <less-than var="JimSilverConverDone" value="2" />
-            <less-than var="JohnGoldConverDone" value="2" />
-            <inactive flag="puzzle3" />
-          </either>
+          <global-state-ref id="ConversacionHermanos" value="false" />
         </condition>
       </character-ref>
     </characters>
     <active-areas>
-      <active-area id="Libros1" rectangular="no" x="353" y="333" width="128" height="181" hasInfluenceArea="no" behaviour="normal">
+      <active-area id="Libros1" rectangular="no" x="353" y="333" width="128" height="181" hasInfluenceArea="no" behaviour="first-action">
         <description>
           <name>
           </name>
@@ -1065,7 +1071,7 @@
       <object-ref idTarget="UpArrow" x="507" y="519" scale="0.09856772" layer="1" hasInfluenceArea="no" />
     </objects>
     <active-areas>
-      <active-area id="MesaComedor" rectangular="no" x="636" y="542" width="791" height="319" hasInfluenceArea="no" behaviour="normal">
+      <active-area id="MesaComedor" rectangular="no" x="636" y="542" width="791" height="319" hasInfluenceArea="no" behaviour="first-action">
         <description>
           <name>
           </name>
@@ -1103,8 +1109,15 @@
     </name>
     <default-initial-position x="400" y="450" />
     <exits>
-      <exit rectangular="yes" x="379" y="895" width="1166" height="181" hasInfluenceArea="no" idTarget="RoomUp" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
+      <exit rectangular="yes" x="379" y="895" width="1166" height="181" hasInfluenceArea="no" idTarget="RoomUp" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="yes">
         <exit-look text="" cursor-path="" sound-path="" />
+        <condition>
+          <active flag="DiaryPicked" />
+        </condition>
+        <not-effect>
+          <speak-player>Debería explorar el despacho un poco más</speak-player>
+          <condition />
+        </not-effect>
       </exit>
     </exits>
     <objects>
@@ -1112,10 +1125,14 @@
       <object-ref idTarget="DiarioDeBaltaItem" x="260" y="887" scale="0.06818414" layer="0" hasInfluenceArea="no" />
     </objects>
     <characters>
-      <character-ref idTarget="TinMan" x="1684" y="960" scale="2.974025" orientation="2" layer="1" hasInfluenceArea="no" />
+      <character-ref idTarget="TinMan" x="764" y="957" scale="0.7442099" orientation="2" layer="1" hasInfluenceArea="no">
+        <condition>
+          <active flag="DiaryPicked" />
+        </condition>
+      </character-ref>
     </characters>
     <active-areas>
-      <active-area id="ActiveAreaId" rectangular="no" x="464" y="109" width="133" height="223" hasInfluenceArea="no" behaviour="normal">
+      <active-area id="ActiveAreaId" rectangular="no" x="464" y="109" width="133" height="223" hasInfluenceArea="no" behaviour="first-action">
         <description>
           <name>
           </name>
@@ -1131,7 +1148,7 @@
               <condition />
               <speak-player>La placa dorada está un poco oxidada, pero se puede leer:</speak-player>
               <condition />
-              <speak-player>"Balt.. Man... ..nandez"</speak-player>
+              <speak-player>"Balt.. ..nandez Man... "</speak-player>
               <condition />
             </effect>
           </examine>
@@ -1141,7 +1158,7 @@
         <point x="597" y="332" />
         <point x="468" y="323" />
       </active-area>
-      <active-area id="Jarrón" rectangular="no" x="1030" y="491" width="118" height="158" hasInfluenceArea="no" behaviour="normal">
+      <active-area id="Jarrón" rectangular="no" x="1030" y="491" width="118" height="158" hasInfluenceArea="no" behaviour="first-action">
         <description>
           <name>
           </name>
@@ -1174,7 +1191,7 @@
   <unity-scene id="Minijuego3" scene="Assets/Scenes/Puzzle3.unity" />
   <unity-scene id="Minijuego4" scene="Assets/Scenes/Puzzle4.unity" />
   <unity-scene id="Minijuego5" scene="Assets/Scenes/Puzzle5.unity" />
-  <object id="Key" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+  <object id="Key" returnsWhenDragged="yes" behaviour="first-action" resources-transition-time="0">
     <resources name="No name">
       <asset type="image" uri="assets/image/key.png" />
       <asset type="icon" uri="assets/special/EmptyIcon.png" />
@@ -1196,15 +1213,17 @@
           <condition />
           <activate flag="keyFound" />
           <condition />
-          <play-sound background="no" uri="assets/audio/itemFound.mp3" />
-          <condition />
           <speak-player>¡Ajá! Esta es la llave de la puerta principal</speak-player>
           <condition />
+          <play-sound background="no" uri="assets/audio/itemFound.mp3" />
+          <condition>
+            <active flag="Sound" />
+          </condition>
         </effect>
       </grab>
     </actions>
   </object>
-  <object id="ClueCode" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+  <object id="ClueCode" returnsWhenDragged="yes" behaviour="first-action" resources-transition-time="0">
     <resources name="No name">
       <asset type="image" uri="assets/image/pista.png" />
       <asset type="icon" uri="assets/icon/pista.png" />
@@ -1226,8 +1245,20 @@
           <condition />
           <activate flag="puzzle4Clue" />
           <condition />
+          <speak-player>Parece que esta es la pista que necesitamos para resolver el puzzle de Jack Copper.
+La guardaré en la mochila.</speak-player>
+          <condition />
         </effect>
       </grab>
+      <examine needsGoTo="no" keepDistance="0" not-effects="no">
+        <effect>
+          <speak-player>Pone: "El número de lados menos dos"
+¿Qué querrá decir?</speak-player>
+          <condition />
+          <activate flag="ClueExamined" />
+          <condition />
+        </effect>
+      </examine>
     </actions>
   </object>
   <object id="DownArrow" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
@@ -1286,7 +1317,7 @@
       </detailed>
     </description>
   </object>
-  <object id="Electricity" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+  <object id="Electricity" returnsWhenDragged="yes" behaviour="first-action" resources-transition-time="0">
     <resources name="No name">
       <asset type="image" uri="assets/image/electricity.png" />
       <asset type="icon" uri="assets/special/EmptyIcon.png" />
@@ -1300,7 +1331,7 @@
       </detailed>
     </description>
   </object>
-  <object id="DiarioDeBaltaItem" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+  <object id="DiarioDeBaltaItem" returnsWhenDragged="yes" behaviour="first-action" resources-transition-time="0">
     <resources name="No name">
       <asset type="image" uri="assets/image/bookItem.png" />
       <asset type="icon" uri="assets/special/EmptyIcon.png" />
@@ -1318,24 +1349,15 @@
         <effect>
           <trigger-book idTarget="DiarioDeBalta" />
           <condition />
+          <activate flag="DiaryPicked" />
+          <condition />
+          <speak-player>(De repente aparece una figura humanoide de debajo de la cama)</speak-player>
+          <condition />
         </effect>
       </examine>
     </actions>
   </object>
-  <object id="PuzzleClue" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
-    <resources name="PuzzleClue">
-      <asset type="image" uri="assets/image/puzzleObject.png" />
-      <asset type="icon" uri="assets/icon/puzzleObject.png" />
-    </resources>
-    <description>
-      <name>PuzzleClue</name>
-      <brief>
-      </brief>
-      <detailed>
-      </detailed>
-    </description>
-  </object>
-  <object id="MetaPuzzle" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+  <object id="MetaPuzzle" returnsWhenDragged="yes" behaviour="first-action" resources-transition-time="0">
     <resources name="No name">
       <asset type="image" uri="assets/image/1.jpg" />
       <asset type="icon" uri="assets/special/EmptyIcon.png" />
@@ -1352,16 +1374,164 @@
       <examine needsGoTo="no" keepDistance="0" not-effects="no">
         <condition>
           <either>
-            <inactive flag="puzzle1" />
-            <inactive flag="puzzle2" />
-            <inactive flag="puzzle3" />
-            <inactive flag="puzzle4" />
+            <global-state-ref id="MetaPuzzleDesbloqueado" value="false" />
+            <global-state-ref id="AlgunEngranajeEncontrado" value="true" />
           </either>
         </condition>
         <effect>
           <speak-player>Parece que el mecanismo esta relacionado con la electricidad pero esta bloqueado.</speak-player>
-          <condition />
+          <condition>
+            <global-state-ref id="AlgunEngranajeEncontrado" value="false" />
+          </condition>
           <speak-player>Debería mirar en las demas habitaciones.</speak-player>
+          <condition>
+            <global-state-ref id="AlgunEngranajeEncontrado" value="false" />
+          </condition>
+          <speak-player>Vaya! parece que las piezas que he encontrado encajan en el mecanismo</speak-player>
+          <condition>
+            <global-state-ref id="AlgunEngranajeEncontrado" value="true" />
+          </condition>
+          <consume-object idTarget="Engranaje1" />
+          <condition>
+            <global-state-ref id="Engranaje1Encontrado" value="true" />
+          </condition>
+          <consume-object idTarget="Engranaje2" />
+          <condition>
+            <global-state-ref id="Engranaje2Encontrado" value="true" />
+          </condition>
+          <consume-object idTarget="Engranaje3" />
+          <condition>
+            <global-state-ref id="Engranaje3Encontrado" value="true" />
+          </condition>
+          <consume-object idTarget="Engranaje4" />
+          <condition>
+            <global-state-ref id="Engranaje4Encontrado" value="true" />
+          </condition>
+          <activate flag="Engranaje1" />
+          <condition>
+            <global-state-ref id="Engranaje1Encontrado" value="true" />
+          </condition>
+          <activate flag="Engranaje2" />
+          <condition>
+            <global-state-ref id="Engranaje2Encontrado" value="true" />
+          </condition>
+          <activate flag="Engranaje3" />
+          <condition>
+            <global-state-ref id="Engranaje3Encontrado" value="true" />
+          </condition>
+          <activate flag="Engranaje4" />
+          <condition>
+            <global-state-ref id="Engranaje4Encontrado" value="true" />
+          </condition>
+          <speak-player>Parece que ya puedo resolver el ultimo problema y desactivar la electricifad</speak-player>
+          <condition>
+            <global-state-ref id="MetaPuzzleDesbloqueado" value="true" />
+          </condition>
+        </effect>
+      </examine>
+    </actions>
+  </object>
+  <object id="Exclamation" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/Exclamation_mark.png" />
+      <asset type="icon" uri="assets/special/EmptyIcon.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+  </object>
+  <object id="Engranaje1" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/Engranaje1.png" />
+      <asset type="icon" uri="assets/icon/Engranaje1.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+    <actions>
+      <examine needsGoTo="no" keepDistance="0" not-effects="no">
+        <effect>
+          <speak-player>Parece un engranaje de un mecanismo, 
+puede que sea útil para acceder al despacho</speak-player>
+          <condition />
+        </effect>
+      </examine>
+    </actions>
+  </object>
+  <object id="Engranaje2" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/Engranaje2.png" />
+      <asset type="icon" uri="assets/icon/Engranaje2.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+    <actions>
+      <examine needsGoTo="no" keepDistance="0" not-effects="no">
+        <effect>
+          <speak-player>Parece un engranaje de un mecanismo, 
+puede que sea util para acceder al despacho</speak-player>
+          <condition />
+        </effect>
+      </examine>
+    </actions>
+  </object>
+  <object id="Engranaje3" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/Engranaje3.png" />
+      <asset type="icon" uri="assets/icon/Engranaje3.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+    <actions>
+      <examine needsGoTo="no" keepDistance="0" not-effects="no">
+        <effect>
+          <speak-player>Parece un engranaje de un mecanismo, 
+puede que sea util para acceder al despacho</speak-player>
+          <condition />
+        </effect>
+      </examine>
+    </actions>
+  </object>
+  <object id="Engranaje4" returnsWhenDragged="yes" behaviour="normal" resources-transition-time="0">
+    <resources name="No name">
+      <asset type="image" uri="assets/image/Engranaje4.png" />
+      <asset type="icon" uri="assets/icon/Engranaje4.png" />
+    </resources>
+    <description>
+      <name>
+      </name>
+      <brief>
+      </brief>
+      <detailed>
+      </detailed>
+    </description>
+    <actions>
+      <examine needsGoTo="no" keepDistance="0" not-effects="no">
+        <effect>
+          <speak-player>Parece un engranaje de un mecanismo, 
+puede que sea util para acceder al despacho</speak-player>
           <condition />
         </effect>
       </examine>
@@ -1410,8 +1580,8 @@
       <condition />
       <child nodeindex="4" />
     </dialogue-node>
-    <option-node nodeindex="4" random="yes" keepShowing="yes" showUserOption="yes" preListening="yes" editor-x="1384" editor-y="45" x="1384" y="45">
-      <speak-player>
+    <option-node nodeindex="4" question="PreguntaMansion" random="yes" keepShowing="yes" showUserOption="yes" preListening="yes" editor-x="1384" editor-y="45" x="1384" y="45">
+      <speak-player correct="true">
         <text>La mansión Fernández Manjón.</text>
         <resources name="No name" />
       </speak-player>
@@ -1462,8 +1632,8 @@
       <condition />
       <child nodeindex="9" />
     </dialogue-node>
-    <option-node nodeindex="9" random="yes" keepShowing="yes" showUserOption="yes" preListening="yes" editor-x="2383" editor-y="21" x="2383" y="21">
-      <speak-player>
+    <option-node nodeindex="9" question="PasadoMansion" random="yes" keepShowing="yes" showUserOption="yes" preListening="yes" editor-x="2383" editor-y="21" x="2383" y="21">
+      <speak-player correct="true">
         <text>El dueño desapareció hace años y ahora ocurren sucesos paranormales en la mansión.</text>
         <resources name="No name" />
       </speak-player>
@@ -1524,8 +1694,8 @@
       <condition />
       <child nodeindex="14" />
     </dialogue-node>
-    <option-node nodeindex="14" random="yes" keepShowing="yes" showUserOption="yes" preListening="yes" editor-x="3865" editor-y="0" x="3865" y="0">
-      <speak-player>
+    <option-node nodeindex="14" question="ObjetivoJugador" random="yes" keepShowing="yes" showUserOption="yes" preListening="yes" editor-x="3865" editor-y="0" x="3865" y="0">
+      <speak-player correct="true">
         <text>Acceder al despacho del antiguo dueño, situado en la planta superior.</text>
         <resources name="No name" />
       </speak-player>
@@ -1628,8 +1798,8 @@
       <condition />
       <child nodeindex="1" />
     </dialogue-node>
-    <option-node nodeindex="1" showUserOption="yes" preListening="yes" editor-x="417" editor-y="58" x="417" y="58">
-      <speak-player>
+    <option-node nodeindex="1" question="PasadoJhonGold" showUserOption="yes" preListening="yes" editor-x="417" editor-y="58" x="417" y="58">
+      <speak-player correct="true">
         <text>¿Qué pasó exactamente con tu familia?</text>
         <resources name="No name" />
       </speak-player>
@@ -1641,7 +1811,7 @@
       </speak-player>
       <condition />
       <child nodeindex="3" />
-      <speak-player>
+      <speak-player correct="true">
         <text>....</text>
         <resources name="No name" />
       </speak-player>
@@ -1732,7 +1902,7 @@
       <condition />
       <child nodeindex="1" />
     </dialogue-node>
-    <option-node nodeindex="1" showUserOption="yes" preListening="yes" editor-x="668" editor-y="229" x="668" y="229">
+    <option-node nodeindex="1" question="ComentarioHermanoJim" showUserOption="yes" preListening="yes" editor-x="668" editor-y="229" x="668" y="229">
       <speak-player>
         <text>Así es, parece una buena persona.</text>
         <resources name="No name" />
@@ -1836,8 +2006,8 @@
       <condition />
       <child nodeindex="1" />
     </dialogue-node>
-    <option-node nodeindex="1" preListening="yes" editor-x="559" editor-y="42" x="559" y="42">
-      <speak-player>
+    <option-node nodeindex="1" question="PreguntaJimSilver" preListening="yes" editor-x="559" editor-y="42" x="559" y="42">
+      <speak-player correct="true">
         <text>Apareció un objeto, pero no entiendo su utilidad...</text>
         <resources name="No name" />
       </speak-player>
@@ -1909,7 +2079,7 @@
       <condition />
       <child nodeindex="1" />
     </dialogue-node>
-    <option-node nodeindex="1" showUserOption="yes" preListening="yes" editor-x="578" editor-y="11" x="578" y="11">
+    <option-node nodeindex="1" question="PreguntasMayordomo" showUserOption="yes" preListening="yes" editor-x="578" editor-y="11" x="578" y="11">
       <speak-player>
         <text>¿Qué pasó en esta mansión?</text>
         <resources name="No name" />
@@ -2081,6 +2251,11 @@
       <condition />
       <speak-char idTarget="JackCopper">
         <resources name="No name" />
+        <text>Puede que la pista este en otra habitación. Todavía no lo he comprobado</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
         <text>No te recomiendo intentar sacar la combinación a fuerza bruta. Parece demasiado complicado...</text>
       </speak-char>
       <condition />
@@ -2101,19 +2276,24 @@
       <condition />
       <speak-char idTarget="JackCopper">
         <resources name="No name" />
+        <text>Deberías buscar la pista en las demás habitaciones. Yo me encargo de esta.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="JackCopper">
+        <resources name="No name" />
         <text>Confío en ti, junior. Yo seguiré probando combinaciones, aunque cualquiera de mis hermanos resultaría más útil...</text>
       </speak-char>
       <condition />
       <child nodeindex="1" />
     </dialogue-node>
-    <option-node nodeindex="1" preListening="yes" editor-x="86" editor-y="243" x="86" y="243">
-      <speak-player>
+    <option-node nodeindex="1" question="PreguntaJackCopper" preListening="yes" editor-x="86" editor-y="243" x="86" y="243">
+      <speak-player correct="true">
         <text>¿Por qué dices eso?</text>
         <resources name="No name" />
       </speak-player>
       <condition />
       <child nodeindex="2" />
-      <speak-player>
+      <speak-player correct="true">
         <text>No lo creo, tus hermanos no son tan buenos detectives.</text>
         <resources name="No name" />
       </speak-player>
@@ -2267,7 +2447,7 @@
       <condition />
       <child nodeindex="1" />
     </dialogue-node>
-    <option-node nodeindex="1" preListening="yes" editor-x="981" editor-y="42" x="981" y="42">
+    <option-node nodeindex="1" question="PreguntasAdaMantine" preListening="yes" editor-x="981" editor-y="42" x="981" y="42">
       <speak-player>
         <text>¿Por qué nadie dice su nombre? ¿Cómo se llamaba?</text>
         <resources name="No name" />
@@ -2358,7 +2538,12 @@
         <text>A ti, joven. Suerte con el caso.</text>
       </speak-char>
       <condition />
-      <end-conversation />
+      <end-conversation>
+        <effect>
+          <activate flag="AdaMantineConverDone" />
+          <condition />
+        </effect>
+      </end-conversation>
     </dialogue-node>
   </graph-conversation>
   <graph-conversation id="TinManConversation">
@@ -2370,7 +2555,7 @@
       <condition />
       <child nodeindex="1" />
     </dialogue-node>
-    <option-node nodeindex="1" showUserOption="yes" preListening="yes" editor-x="463" editor-y="4" x="463" y="4">
+    <option-node nodeindex="1" question="PreguntasTinMan" showUserOption="yes" preListening="yes" editor-x="463" editor-y="4" x="463" y="4">
       <speak-player>
         <text>¿Quién o qué eres?</text>
         <resources name="No name" />
@@ -2440,12 +2625,7 @@
         <text>Huh.. Quien lo hubiese pensado.</text>
       </speak-player>
       <condition />
-      <end-conversation>
-        <effect>
-          <activate flag="fin" />
-          <condition />
-        </effect>
-      </end-conversation>
+      <end-conversation />
     </dialogue-node>
   </graph-conversation>
   <graph-conversation id="BrothersConversation">
@@ -2467,7 +2647,7 @@
       <condition />
       <child nodeindex="1" />
     </dialogue-node>
-    <option-node nodeindex="1" showUserOption="yes" preListening="yes" editor-x="524" editor-y="11" x="524" y="11">
+    <option-node nodeindex="1" question="Conversacion3Hermanos" showUserOption="yes" preListening="yes" editor-x="524" editor-y="11" x="524" y="11">
       <speak-player>
         <text>¿Qué vais a hacer ahora?</text>
         <resources name="No name" />
@@ -2540,7 +2720,7 @@
       <condition />
       <end-conversation />
     </dialogue-node>
-    <dialogue-node nodeindex="3" editor-x="609" editor-y="419">
+    <dialogue-node nodeindex="3" editor-x="769" editor-y="439">
       <speak-char idTarget="JohnGold">
         <resources name="No name" />
         <text>Tienes razón, pero para tí debería ser pan comido.</text>
@@ -2568,16 +2748,32 @@
       <asset type="arrowRightOver" uri="assets/special/DefaultLeftOverArrow.png" />
     </resources>
     <text>
-      <title>.                   Día 10/08/1915</title>.                                    Hoy comienzo con mi plan maestro...
-.                                    Debo construir los puzles, construir al robot, conectarlo todo, etc.
+      <title>.                   Día 10/08/1915</title>.                                    Hoy comienzo con mi plan maestro.
+.                                    Debo construir los puzles, construir al robot y conectarlo todo.
 .                                    Seguro que con todo esto podré terminar la investigación que llevo tanto tiempo 
-.                                   queriendo llevar a cabo.<title>.                   Día 24/11/1920</title>.                                    Hoy he terminado por fin de construir a mi "Hombre de hojalata". 
-.                                    Ha sido duro, pero al final todo da sus frutos, ¿no?
-.                                    Por suerte todos los acertijos ya están colocados y conectados.<img src="assets/image/balta.jpg" /></text>
+.                                   queriendo llevar a cabo.<title>.                   Día 31/12/1916</title>.                                    Hoy es el último día del año. He pasado unas buenas navidades con mi familia,
+.                                    pero aún tengo que trabajar mucho. Llevo más de un año con este proyecto y
+.                                   tengo que terminarlo como sea.<title>.                   Día 6/1/1917</title>.                                    ¡Al fin! Los reyes me han traido el circuito que necesitaba para montar el puzle
+.                                    de los algoritmos. Estoy muy contento con cómo están yendo las cosas<title>.                   Día 28/7/1918</title>.                                    He acabado el diseño del puzzle final,
+.                                    el último paso es construir al sujeto de pruebas para aumentar la dificultad.
+.                                    Si el experimento funciona, sere capaz de mejorar las capacidades de cualquier persona.
+.                                    Espero que todo salga segun lo planeado<title>.                   Día 13/9/1919</title>.                                    El hombre de hojalata está casi acabado, debreía introducir una forma de resolver los puzles
+.                                    en caso de que algo salga mal, pero no me queda tiempo,
+.                                    ademas las posibilidades de que haya cometido algun fallo son infimas. Todo saldrá bien.<title>.                   Día 24/11/1920</title>.                                   Hoy he terminado por fin de construir a mi "Hombre de hojalata". 
+.                                   Ha sido duro, pero al final todo da sus frutos, ¿no?
+.                                   Por suerte todos los acertijos ya están colocados y conectados.
+.                                  Para celebrarlo, he ido a hacerme una fotografía. Dejaré una copia en este diario.<img src="assets/image/balta.jpg" /></text>
   </book>
   <videoscene canSkip="no" id="InitialCutscene" start="yes" idTarget="Outside" destinyX="-2147483648" destinyY="2147483647" transitionTime="1000" transitionType="5" next="new-scene" class="accesible" type="cutscene">
     <documentation>
     </documentation>
+    <resources name="InitialCutsceneNoSound">
+      <condition>
+        <inactive flag="Sound" />
+      </condition>
+      <asset type="video" uri="assets/video/cutsceneStartNoSound.mp4" />
+      <asset type="slides" uri="assets/special/EmptyAnimation" />
+    </resources>
     <resources name="InitialCutscene">
       <asset type="video" uri="assets/video/cutsceneStart.mp4" />
       <asset type="slides" uri="assets/special/EmptyAnimation" />
@@ -2585,9 +2781,16 @@
     <name>
     </name>
   </videoscene>
-  <videoscene canSkip="no" id="EndCutscene" start="no" next="go-back" class="accesible" type="cutscene">
+  <videoscene canSkip="no" id="EndCutscene" start="no" next="end-chapter" class="accesible" type="cutscene">
     <documentation>
     </documentation>
+    <resources name="EndCutsceneNoSound">
+      <condition>
+        <inactive flag="Sound" />
+      </condition>
+      <asset type="video" uri="assets/video/cutsceneEndNoSound.mp4" />
+      <asset type="slides" uri="assets/special/EmptyAnimation" />
+    </resources>
     <resources name="EndCutscene">
       <asset type="video" uri="assets/video/cutsceneEnd.mp4" />
       <asset type="slides" uri="assets/special/EmptyAnimation" />
@@ -2595,4 +2798,190 @@
     <name>
     </name>
   </videoscene>
+  <completable id="Puzle1" repeatable="false" type="completable">
+    <start-milestone type="SCENE" targetId="Minijuego1" />
+    <end-milestone type="CONDITION">
+      <condition>
+        <active flag="puzzle1" />
+      </condition>
+    </end-milestone>
+    <progress type="SUM">
+      <milestone type="CONDITION">
+        <condition>
+          <equals var="PUZZLE_1_DIFICULTY" value="1" />
+        </condition>
+      </milestone>
+      <milestone type="CONDITION">
+        <condition>
+          <equals var="PUZZLE_1_DIFICULTY" value="2" />
+        </condition>
+      </milestone>
+      <milestone type="CONDITION">
+        <condition>
+          <equals var="PUZZLE_1_DIFICULTY" value="3" />
+        </condition>
+      </milestone>
+    </progress>
+    <score type="VARIABLE" method="SINGLE" id="PUZZLE_1_DIFICULTY" />
+  </completable>
+  <completable id="Puzle2" repeatable="false" type="completable">
+    <start-milestone type="SCENE" targetId="Minijuego2" />
+    <end-milestone type="CONDITION">
+      <condition>
+        <active flag="puzzle2" />
+      </condition>
+    </end-milestone>
+    <progress type="SUM">
+      <milestone type="CONDITION">
+        <condition>
+          <equals var="PUZZLE_2_DIFICULTY" value="1" />
+        </condition>
+      </milestone>
+      <milestone type="CONDITION">
+        <condition>
+          <equals var="PUZZLE_2_DIFICULTY" value="2" />
+        </condition>
+      </milestone>
+      <milestone type="CONDITION">
+        <condition>
+          <equals var="PUZZLE_2_DIFICULTY" value="3" />
+        </condition>
+      </milestone>
+    </progress>
+    <score type="VARIABLE" method="SINGLE" id="PUZZLE_2_DIFICULTY" />
+  </completable>
+  <completable id="MetaPuzle" repeatable="false" type="completable">
+    <start-milestone type="SCENE" targetId="Minijuego3" />
+    <end-milestone type="CONDITION">
+      <condition>
+        <active flag="metaPuzzle" />
+      </condition>
+    </end-milestone>
+    <progress type="SUM">
+      <milestone type="CONDITION">
+        <condition>
+          <equals var="PUZZLE_3_DIFICULTY" value="1" />
+        </condition>
+      </milestone>
+      <milestone type="CONDITION">
+        <condition>
+          <equals var="PUZZLE_3_DIFICULTY" value="2" />
+        </condition>
+      </milestone>
+      <milestone type="CONDITION">
+        <condition>
+          <equals var="PUZZLE_3_DIFICULTY" value="3" />
+        </condition>
+      </milestone>
+    </progress>
+    <score type="VARIABLE" method="SINGLE" id="PUZZLE_3_DIFICULTY" />
+  </completable>
+  <completable id="Puzle4" repeatable="false" type="completable">
+    <start-milestone type="SCENE" targetId="Minijuego4" />
+    <end-milestone type="CONDITION">
+      <condition>
+        <active flag="puzzle4" />
+      </condition>
+    </end-milestone>
+    <progress type="SUM">
+      <milestone type="CONDITION">
+        <condition>
+          <equals var="PUZZLE_4_DIFICULTY" value="1" />
+        </condition>
+      </milestone>
+      <milestone type="CONDITION">
+        <condition>
+          <equals var="PUZZLE_4_DIFICULTY" value="2" />
+        </condition>
+      </milestone>
+      <milestone type="CONDITION">
+        <condition>
+          <equals var="PUZZLE_4_DIFICULTY" value="3" />
+        </condition>
+      </milestone>
+    </progress>
+    <score type="VARIABLE" method="SINGLE" id="PUZZLE_4_DIFICULTY" />
+  </completable>
+  <completable id="Puzle5" repeatable="false" type="completable">
+    <start-milestone type="SCENE" targetId="Minijuego5" />
+    <end-milestone type="CONDITION">
+      <condition>
+        <active flag="puzzle3" />
+      </condition>
+    </end-milestone>
+    <progress type="SUM">
+      <milestone type="CONDITION">
+        <condition>
+          <equals var="PUZZLE_5_DIFICULTY" value="1" />
+        </condition>
+      </milestone>
+      <milestone type="CONDITION">
+        <condition>
+          <equals var="PUZZLE_5_DIFICULTY" value="2" />
+        </condition>
+      </milestone>
+      <milestone type="CONDITION">
+        <condition>
+          <equals var="PUZZLE_5_DIFICULTY" value="3" />
+        </condition>
+      </milestone>
+    </progress>
+    <score type="VARIABLE" method="SINGLE" id="PUZZLE_5_DIFICULTY" />
+  </completable>
+  <global-state id="PlantaBajaCompletada">
+    <documentation>
+    </documentation>
+    <active flag="puzzle4" />
+    <active flag="puzzle3" />
+  </global-state>
+  <global-state id="MetaPuzzleDesbloqueado">
+    <documentation>
+    </documentation>
+    <active flag="puzzle1" />
+    <active flag="puzzle2" />
+    <active flag="puzzle3" />
+    <active flag="puzzle4" />
+  </global-state>
+  <global-state id="ConversacionHermanos">
+    <documentation>
+    </documentation>
+    <global-state-ref id="MetaPuzzleDesbloqueado" value="true" />
+    <equals var="JackCopperConverDone" value="2" />
+    <equals var="JimSilverConverDone" value="2" />
+    <equals var="JohnGoldConverDone" value="2" />
+  </global-state>
+  <global-state id="Engranaje1Encontrado">
+    <documentation>
+    </documentation>
+    <inactive flag="Engranaje1" />
+    <active flag="puzzle1" />
+  </global-state>
+  <global-state id="Engranaje2Encontrado">
+    <documentation>
+    </documentation>
+    <inactive flag="Engranaje2" />
+    <active flag="puzzle2" />
+  </global-state>
+  <global-state id="Engranaje3Encontrado">
+    <documentation>
+    </documentation>
+    <inactive flag="Engranaje3" />
+    <active flag="puzzle3" />
+  </global-state>
+  <global-state id="Engranaje4Encontrado">
+    <documentation>
+    </documentation>
+    <inactive flag="Engranaje4" />
+    <active flag="puzzle4" />
+  </global-state>
+  <global-state id="AlgunEngranajeEncontrado">
+    <documentation>
+    </documentation>
+    <either>
+      <global-state-ref id="Engranaje1Encontrado" value="true" />
+      <global-state-ref id="Engranaje2Encontrado" value="true" />
+      <global-state-ref id="Engranaje3Encontrado" value="true" />
+      <global-state-ref id="Engranaje4Encontrado" value="true" />
+    </either>
+  </global-state>
 </eAdventure>

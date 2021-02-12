@@ -20,7 +20,7 @@ namespace uAdventure.Geo
             get { return memory.Get<bool>("using_debug_location"); }
             set
             {
-                if (Application.isEditor && Application.isPlaying)
+                if ((!Application.isMobilePlatform || PreviewManager.Instance.InPreviewMode) && Application.isPlaying)
                 {
                     memory.Set("using_debug_location", value);
                 }
@@ -53,7 +53,7 @@ namespace uAdventure.Geo
         void Awake()
         {
             instance = this;
-            StartCoroutine(Restart());
+            //StartCoroutine(Restart());
         }
 
         public void Start()
@@ -80,12 +80,6 @@ namespace uAdventure.Geo
 
         public override IEnumerator Restart()
         {
-            memory = new Memory();
-            memory.Set("using_debug_location", false);
-            memory.Set("debug_location", Vector2d.zero);
-            memory.Set("navigating", 0);
-            memory.Set("zone_control", false);
-            Game.Instance.GameState.SetMemory("geo_extension", memory);
             CreateNavigationAndZoneControl();
             yield return true;
         }
@@ -93,13 +87,22 @@ namespace uAdventure.Geo
         public override IEnumerator OnGameReady()
         {
             gameIsReady = true;
-            this.memory = Game.Instance.GameState.GetMemory("geo_extension") ?? memory;
             CreateNavigationAndZoneControl();
             yield return null;
         }
 
         public override IEnumerator OnBeforeGameSave() { yield return null; }
-        public override IEnumerator OnAfterGameLoad() { yield return null; }
+        public override IEnumerator OnAfterGameLoad()
+        {
+            memory = new Memory();
+            memory.Set("using_debug_location", false);
+            memory.Set("debug_location", Vector2d.zero);
+            memory.Set("navigating", 0);
+            memory.Set("zone_control", false);
+            this.memory = Game.Instance.GameState.GetMemory("geo_extension") ?? memory;
+            Game.Instance.GameState.SetMemory("geo_extension", memory);
+            yield return null; 
+        }
         public override IEnumerator OnGameFinished() { yield return true; }
 
         private void CreateNavigationAndZoneControl()
@@ -244,7 +247,7 @@ namespace uAdventure.Geo
                 GUI.DrawTexture(new Rect(Screen.width - iconWidth - 5, 5, iconWidth, iconHeight), paintSimbol);
             }
 
-            if (Application.isEditor)
+            if (Application.isEditor || PreviewManager.Instance.InPreviewMode)
             {
                 if (guiMap == null)
                 {
@@ -333,7 +336,7 @@ namespace uAdventure.Geo
             }
             set
             {
-                if (Application.isEditor && Application.isPlaying)
+                if ((!Application.isMobilePlatform || PreviewManager.Instance.InPreviewMode) && Application.isPlaying)
                 {
                     UsingDebugLocation = true;
                     memory.Set("debug_location", value);

@@ -2,7 +2,7 @@
 <animation id="JohnGoldIdle.eaa.xml" usetransitions="yes" slides="no">
   <documentation />
   <transition type="0" time="0" />
-  <frame uri="assets/animation/detective2.png" type="image" time="40" waitforclick="no" soundUri="" maxSoundTime="1000">
+  <frame uri="assets/animation/Detective11.png" type="image" time="40" waitforclick="no" soundUri="" maxSoundTime="1000">
     <documentation>
     </documentation>
   </frame>
