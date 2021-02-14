@@ -121,6 +121,56 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &274956022
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 274956024}
+  - component: {fileID: 274956023}
+  m_Layer: 0
+  m_Name: uAdventure.Runner.Game (Singleton)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &274956023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274956022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a1f0bd21bad3a4fad7fe2fa0dc8d3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useSystemIO: 1
+  forceScene: 0
+  editor_mode: 1
+  gamePath: 
+  gameName: 
+  scene_name: 
+  Blur_Prefab: {fileID: 0}
+--- !u!4 &274956024
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274956022}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &386726506
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,6 +545,12 @@ MonoBehaviour:
   solucionPrefab: {fileID: 8674284138757642645, guid: 015707d84783b57498edc40f218bb0cc,
     type: 3}
   container: {fileID: 837039895}
+  alternativeSprites:
+  - {fileID: 21300000, guid: 6bd1fa2b8ebb07e49a98cf4d95828ffa, type: 3}
+  - {fileID: 21300000, guid: c62fb7ea196580c4f8f3ba532213f0e3, type: 3}
+  - {fileID: 21300000, guid: d983212d81d640045a84cbd3183fda01, type: 3}
+  - {fileID: 21300000, guid: aa15cf62861788342a8b0a15ed464a4d, type: 3}
+  - {fileID: 21300000, guid: 2ce10ab7987b22a4792cec3755ecd215, type: 3}
   buttonPrefab: {fileID: 3361296851932067829, guid: 5e8b2d9a8e708a5488a995c2afe3c9da,
     type: 3}
   buttonContainer: {fileID: 1165781132}

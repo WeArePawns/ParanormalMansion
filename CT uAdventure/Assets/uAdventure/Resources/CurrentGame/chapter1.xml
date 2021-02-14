@@ -472,7 +472,9 @@
           <speak-player>Debe de haber alguna llave cerca.</speak-player>
           <condition />
           <play-sound background="no" uri="assets/audio/doorLocked.mp3" />
-          <condition />
+          <condition>
+            <active flag="Sound" />
+          </condition>
         </not-effect>
       </exit>
       <exit rectangular="yes" x="0" y="902" width="1923" height="180" hasInfluenceArea="no" idTarget="Outside" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="1000" not-effects="no">

@@ -1,0 +1,788 @@
+fileFormatVersion: 2
+guid: 78eb2367949c20144992712bee036750
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7529637093435338659
+    second: Abecedario_0
+  - first:
+      213: 3949760126080066729
+    second: Abecedario_1
+  - first:
+      213: 1494700529292094387
+    second: Abecedario_2
+  - first:
+      213: 1940053594919301988
+    second: Abecedario_3
+  - first:
+      213: 261367439404300888
+    second: Abecedario_4
+  - first:
+      213: -1890783380831043855
+    second: Abecedario_5
+  - first:
+      213: 6663771260328473047
+    second: Abecedario_6
+  - first:
+      213: 5987806475770830686
+    second: Abecedario_7
+  - first:
+      213: 4233797821009606551
+    second: Abecedario_8
+  - first:
+      213: -8149008727646135180
+    second: Abecedario_9
+  - first:
+      213: 8526943937549656867
+    second: Abecedario_10
+  - first:
+      213: 8281571424164206311
+    second: Abecedario_11
+  - first:
+      213: 9073652459553095057
+    second: Abecedario_12
+  - first:
+      213: -4598909230423399230
+    second: Abecedario_13
+  - first:
+      213: 3796155013211081043
+    second: Abecedario_14
+  - first:
+      213: -7582520146898720654
+    second: Abecedario_15
+  - first:
+      213: 7256310910087271659
+    second: Abecedario_16
+  - first:
+      213: -3357126095987835969
+    second: Abecedario_17
+  - first:
+      213: 35081934253454212
+    second: Abecedario_18
+  - first:
+      213: -5886740678690688680
+    second: Abecedario_19
+  - first:
+      213: -5508674496020692263
+    second: Abecedario_20
+  - first:
+      213: -3453734834044397412
+    second: Abecedario_21
+  - first:
+      213: -4183132247631450684
+    second: Abecedario_22
+  - first:
+      213: 6200357224442515881
+    second: Abecedario_23
+  - first:
+      213: -1168023847649920823
+    second: Abecedario_24
+  - first:
+      213: 4949273066086469651
+    second: Abecedario_25
+  - first:
+      213: -4112260660649468829
+    second: Abecedario_26
+  - first:
+      213: 8326079746281490634
+    second: Abecedario_27
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Abecedario_0
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 345
+        width: 105
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d509e2e05fa518790800000000000000
+      internalID: -7529637093435338659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_1
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 345
+        width: 85
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a4210f68ed50d630800000000000000
+      internalID: 3949760126080066729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_2
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 344
+        width: 92
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bb2b0e463e3eb410800000000000000
+      internalID: 1494700529292094387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_3
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 345
+        width: 92
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 463726a37747cea10800000000000000
+      internalID: 1940053594919301988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_4
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 345
+        width: 76
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85afb852d4090a300800000000000000
+      internalID: 261367439404300888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_5
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 345
+        width: 76
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fe7a5e688692c5e0800000000000000
+      internalID: -1890783380831043855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_6
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 344
+        width: 94
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d1f554b7a87a7c50800000000000000
+      internalID: 6663771260328473047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_7
+      rect:
+        serializedVersion: 2
+        x: 1058
+        y: 345
+        width: 84
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5f9a14d346f81350800000000000000
+      internalID: 5987806475770830686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_8
+      rect:
+        serializedVersion: 2
+        x: 1206
+        y: 345
+        width: 24
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 797b914cfa871ca30800000000000000
+      internalID: 4233797821009606551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_9
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 282
+        width: 59
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47c181dccb7e8ee80800000000000000
+      internalID: -8149008727646135180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_10
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 177
+        width: 69
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3236151655ac55670800000000000000
+      internalID: 8526943937549656867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_11
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 178
+        width: 91
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e65557255d0ee270800000000000000
+      internalID: 8281571424164206311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_12
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 178
+        width: 72
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19df20376d61ced70800000000000000
+      internalID: 9073652459553095057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_13
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 178
+        width: 99
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c42956cb646d20c0800000000000000
+      internalID: -4598909230423399230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_14
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 178
+        width: 88
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 359c3c22fd6aea430800000000000000
+      internalID: 3796155013211081043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_15
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 178
+        width: 89
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 278ebdda91a75c690800000000000000
+      internalID: -7582520146898720654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_16
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 177
+        width: 105
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be41b8fb35893b460800000000000000
+      internalID: 7256310910087271659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_17
+      rect:
+        serializedVersion: 2
+        x: 1033
+        y: 178
+        width: 79
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbb737e3a971961d0800000000000000
+      internalID: -3357126095987835969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_18
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 176
+        width: 107
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 483f53555d2ac7000800000000000000
+      internalID: 35081934253454212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_19
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 11
+        width: 86
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 851bcc1ca881e4ea0800000000000000
+      internalID: -5886740678690688680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_20
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 10
+        width: 79
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d2ce696bb14d83b0800000000000000
+      internalID: -5508674496020692263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_21
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 11
+        width: 83
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c981464977ed110d0800000000000000
+      internalID: -3453734834044397412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_22
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 10
+        width: 86
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cd227b426782f5c0800000000000000
+      internalID: -4183132247631450684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_23
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 10
+        width: 99
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a15c637b081c0650800000000000000
+      internalID: 6200357224442515881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_24
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 10
+        width: 149
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c834afbf785acfe0800000000000000
+      internalID: -1168023847649920823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_25
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 11
+        width: 95
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3101e7891a95fa440800000000000000
+      internalID: 4949273066086469651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_26
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 11
+        width: 98
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36cdc2287b05ee6c0800000000000000
+      internalID: -4112260660649468829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Abecedario_27
+      rect:
+        serializedVersion: 2
+        x: 1189
+        y: 11
+        width: 83
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac8cea07a6d2c8370800000000000000
+      internalID: 8326079746281490634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

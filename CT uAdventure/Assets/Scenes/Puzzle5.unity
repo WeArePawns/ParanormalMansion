@@ -8300,7 +8300,7 @@ MonoBehaviour:
   m_Text: "1. Empieza por la celda de color azul.\n2. Salta a la siguente celda coloreada
     en la misma fila \xF3 columna.\n3. Continua hasta que todas las celdas de color
     hayan sido visitadas una vez, creando un recorrido que lleve a la celda roja.
-    \n4. Inserta la secuencia de numeros (de 9 digitos)\n"
+    \n4. Inserta la secuencia de numeros resultante.\n"
 --- !u!222 &1935008455
 CanvasRenderer:
   m_ObjectHideFlags: 0
