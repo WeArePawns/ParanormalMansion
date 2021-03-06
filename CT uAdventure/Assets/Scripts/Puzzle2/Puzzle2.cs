@@ -39,6 +39,12 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
         createResult();
         createOptions();
 
+        string solIndex = "";
+        foreach (Card c in solutionCards)
+            solIndex += cards.IndexOf(c).ToString() + " ";
+
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("INITIAL STATE: " + solIndex, GameObjectTracker.TrackedGameObject.GameObject);
+
         holderPositions = new List<Vector2>();
         cardPositions = new List<Vector2>();
         placed = new List<Card>();
@@ -84,7 +90,7 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
         }
         PlaceCard(solutionCards[hintIndex]);
         hintsToUse--;
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("Puzzle2HintUsed", GameObjectTracker.TrackedGameObject.GameObject);
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("Puzzle 2 Hint Used: Card " + hintIndex.ToString() + " Placed", GameObjectTracker.TrackedGameObject.GameObject);
     }
 
     private void createSolution()
@@ -139,30 +145,6 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    private void Update()
-    {
-        if (!completed)
-        {
-            int i = 0;
-            List<int> objectiveValues = objective.GetValues();
-            if (objectiveValues.Count == 0) return;
-
-            List<int> resultValues = result.GetValues();
-
-            while (i < resultValues.Count && objectiveValues[i] == resultValues[i]) i++;
-
-            //Si i esta fuera de limite, ha llegado al final es una victoria
-            if (i >= resultValues.Count)
-            {
-                print("VICTORIA");
-                completed = true;
-                finishParticles.Play();
-                Invoke("changeScene", 3.0f);
-
-            }
-        }
-    }
-
     public void OnPointerClick(PointerEventData eventData)
     {
         print("Click hecho");
@@ -192,22 +174,42 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
         if (holder != null && clickedCard != null)
         {
             print("Descolocar");
-            DispatchCard(clickedCard);
-            string correct = solutionCards.Contains(clickedCard) ? "correct" : "incorrect";
-            AssetPackage.TrackerAsset.Instance.GameObject.Used(correct + " CardDispatched", GameObjectTracker.TrackedGameObject.GameObject);
+            DispatchCard(clickedCard, true);
         }
         else if (holder == null && clickedCard != null)
         {
             print("Colocar");
-            PlaceCard(clickedCard);
-            string correct = solutionCards.Contains(clickedCard) ? "correct" : "incorrect";
-            AssetPackage.TrackerAsset.Instance.GameObject.Used(correct + " CardPlaced", GameObjectTracker.TrackedGameObject.GameObject);
+            PlaceCard(clickedCard, true);
         }
         else
             print("Clickado fuera de objetos interactuables");
 
         // Actualizamos el resultado
         UpdateResult();
+    }
+
+    private void checkCompleted()
+    {
+        if (!completed)
+        {
+            int i = 0;
+            List<int> objectiveValues = objective.GetValues();
+            if (objectiveValues.Count == 0) return;
+
+            List<int> resultValues = result.GetValues();
+
+            while (i < resultValues.Count && objectiveValues[i] == resultValues[i]) i++;
+
+            //Si i esta fuera de limite, ha llegado al final es una victoria
+            if (i >= resultValues.Count)
+            {
+                print("VICTORIA");
+                completed = true;
+                finishParticles.Play();
+                Invoke("changeScene", 3.0f);
+
+            }
+        }
     }
 
     private void UpdateResult()
@@ -220,7 +222,7 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    private void PlaceCard(in Card card)
+    private void PlaceCard(in Card card, bool trace = false)
     {
         if (placed.Count >= holders.Length)
         {
@@ -235,9 +237,19 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
         // Actualizar resultado
         UpdateResult();
 
+        if (trace)
+        {
+            string correct = solutionCards.Contains(card) ? "Correct" : "Incorrect";
+            AssetPackage.TrackerAsset.Instance.GameObject.Used(correct + " Card " + cards.IndexOf(card).ToString() + " Placed", GameObjectTracker.TrackedGameObject.GameObject);
+        }
+
+        //Se comprueba si se ha llegado a la solucion
+        checkCompleted();
+        if (placed.Count >= holders.Length && !completed)
+            AssetPackage.TrackerAsset.Instance.GameObject.Used("Wrong Cards Submitted", GameObjectTracker.TrackedGameObject.GameObject);
     }
 
-    private void DispatchCard(in Card card)
+    private void DispatchCard(in Card card, bool trace = false)
     {
         // Encontrar el indice y devolverlo a la posicion
         int indexPlaced = placed.IndexOf(card);
@@ -253,6 +265,11 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
         card.GetComponent<RectTransform>().position = cardPositions[indexCard];
         placed.RemoveAt(indexPlaced);
 
+        if (trace)
+        {
+            string correct = solutionCards.Contains(card) ? "Correct" : "Incorrect";
+            AssetPackage.TrackerAsset.Instance.GameObject.Used(correct + " Card " + cards.IndexOf(card).ToString() + " Dispatched", GameObjectTracker.TrackedGameObject.GameObject);
+        }
         // Recolocar el resto (poco eficiente, descoloca y coloca todo otra vez)
         List<Card> auxCard = new List<Card>(placed);
         placed.Clear();

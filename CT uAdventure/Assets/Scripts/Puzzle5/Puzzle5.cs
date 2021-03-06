@@ -54,8 +54,8 @@ public class Puzzle5 : MonoBehaviour
         if (value >= 0)
         {
             if (dialedNumbers.Count >= numDigits) return;
-            string correct = sequence[dialedNumbers.Count] == value ? "correct" : "incorrect";
-            AssetPackage.TrackerAsset.Instance.GameObject.Used("Button" + value.ToString() + "Pressed " + correct, GameObjectTracker.TrackedGameObject.GameObject);
+            string correct = sequence[dialedNumbers.Count] == value ? "Correct" : "Incorrect";
+            AssetPackage.TrackerAsset.Instance.GameObject.Used("Button " + value.ToString() + " Pressed " + correct, GameObjectTracker.TrackedGameObject.GameObject);
 
             dialedNumbersText.text += value.ToString();
             dialedNumbers.Add(value);
@@ -65,17 +65,19 @@ public class Puzzle5 : MonoBehaviour
             if (value == -1)
             {
                 ResetCode();
-                AssetPackage.TrackerAsset.Instance.GameObject.Used("ResetPressed", GameObjectTracker.TrackedGameObject.GameObject);
+                AssetPackage.TrackerAsset.Instance.GameObject.Used("Reset Pressed", GameObjectTracker.TrackedGameObject.GameObject);
             }
             else if (value == -2)
             {
-                AssetPackage.TrackerAsset.Instance.GameObject.Used("EnterPressed", GameObjectTracker.TrackedGameObject.GameObject);
 
                 if (!CheckSolution())
+                {
                     ResetCode();
+                    AssetPackage.TrackerAsset.Instance.GameObject.Used("Enter Pressed Wrong Sequence", GameObjectTracker.TrackedGameObject.GameObject);
+                }
                 else
                 {
-                    print("VICTORY");
+                    AssetPackage.TrackerAsset.Instance.GameObject.Used("Enter Pressed Correct Sequence", GameObjectTracker.TrackedGameObject.GameObject);
                     finishParticles.Play();
                     Invoke("changeScene", 3.0f);
                 }
@@ -89,7 +91,7 @@ public class Puzzle5 : MonoBehaviour
 
         int pos = hints.Dequeue();
         gridNumberLayout.transform.GetChild(pos).GetComponent<Image>().color = gridPatternLayout.transform.GetChild(pos).GetComponent<Image>().color;
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("Puzzle5HintUsed", GameObjectTracker.TrackedGameObject.GameObject);
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("Puzzle 5 Hint Used", GameObjectTracker.TrackedGameObject.GameObject);
     }
 
     void ResetCode()
@@ -184,8 +186,8 @@ public class Puzzle5 : MonoBehaviour
             patternColor[y][x].GetComponent<Image>().color = (i != numDigits - 2) ? colorPatternGrid : Color.red;
             hints.Enqueue(cells * y + x);
         }
-        string combindedString = string.Join(",", sequence);
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("Puzzle5Sequence " + combindedString, GameObjectTracker.TrackedGameObject.GameObject);
+        string combindedString = string.Join(" ", sequence);
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("INITIAL STATE: Puzzle 5 Sequence " + combindedString, GameObjectTracker.TrackedGameObject.GameObject);
     }
 
     void InitializeNumberedGrid()

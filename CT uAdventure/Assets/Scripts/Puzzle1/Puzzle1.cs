@@ -54,11 +54,27 @@ public class Puzzle1 : MonoBehaviour
                 {
                     dir = Random.Range(0, 1) == 0 ? -1 : 1;
                     RotateLever(i, dir);
-                    leverTurns[i] -= dir;
+                    addTurnToHint(i, dir);
                 }
-                hints[i].text = "Gira la palanca " + (i + 1).ToString() + " " + leverTurns[i].ToString() + " veces";
+                updateHintText(i);
             }
         }
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("INITIAL STATE:" + getState(), GameObjectTracker.TrackedGameObject.GameObject); ;
+    }
+
+    private void addTurnToHint(int i, int dir)
+    {
+        leverTurns[i] -= dir;
+        leverTurns[i] = leverTurns[i] % 8;
+        leverTurns[i] = (Mathf.Abs(leverTurns[i]) < 8 - Mathf.Abs(leverTurns[i])) ? leverTurns[i] : leverTurns[i] - (8 * (int)Mathf.Sign(leverTurns[i]));
+        updateHintText(i);
+    }
+
+    private void updateHintText(int i)
+    {
+        string anilla = leverTurns[i] == 0 ? "" : (leverTurns[i] < 0 ? " a la izquierda" : " a la derecha");
+        string vez = Mathf.Abs(leverTurns[i]) == 1 ? "vez" : "veces";
+        hints[i].text = "Gira la anilla " + (i + 1).ToString() + " " + (Mathf.Abs(leverTurns[i])).ToString() + " " + vez + anilla;
     }
 
     private void initPuzzle()
@@ -108,8 +124,10 @@ public class Puzzle1 : MonoBehaviour
         if (coroutine != null) return;
 
         coroutine = StartCoroutine(Rotate(iniDisc, dir, checkFinish));
-        leverTurns[iniDisc] -= dir;
-        hints[iniDisc].text = "Gira la palanca " + (iniDisc + 1).ToString() + " " + leverTurns[iniDisc].ToString() + " veces";
+        addTurnToHint(iniDisc, dir);
+
+        string direction = dir == -1 ? "Left" : "Right";
+        AssetPackage.TrackerAsset.Instance.GameObject.Used(direction + " Lever " + iniDisc.ToString() + " Used", GameObjectTracker.TrackedGameObject.GameObject);
     }
 
     public void showHint()
@@ -118,7 +136,7 @@ public class Puzzle1 : MonoBehaviour
 
         hints[lastHint].gameObject.SetActive(true);
         lastHint++;
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("Puzzle1HintUsed", GameObjectTracker.TrackedGameObject.GameObject);
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("Puzzle 1 Hint Used", GameObjectTracker.TrackedGameObject.GameObject);
     }
 
     private void RotateLever(int discIndex, int direction)
@@ -127,8 +145,19 @@ public class Puzzle1 : MonoBehaviour
         Vector3 dAngle2 = discs[(discIndex + 1) % nDiscs].transform.eulerAngles;
         discs[discIndex].transform.eulerAngles = new Vector3(dAngle1.x, dAngle1.y, dAngle1.z + fixedAngle * -direction);
         discs[(discIndex + 1) % nDiscs].transform.eulerAngles = new Vector3(dAngle2.x, dAngle2.y, dAngle2.z + fixedAngle * -direction * 2.0f);
-        string dir = direction == -1 ? "Left" : "Right";
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("Lever" + discIndex.ToString() + dir +" Used", GameObjectTracker.TrackedGameObject.GameObject);
+    }
+
+    private string getState()
+    {
+        string state = "";
+
+        for (int i = 0; i < discs.Length; i++)
+        {
+            int rot = (int)discs[i].transform.eulerAngles.z;
+            state += "\nDisc " + (i + 1).ToString() + " rotated " + rot.ToString() + "º anti-clockwise";
+        }
+
+        return state;
     }
 
     private IEnumerator Rotate(int discIndex, int direction, bool checkFinish = true)

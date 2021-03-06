@@ -49,7 +49,7 @@ public class Puzzle3 : MonoBehaviour
             pointedBox.boxClicked();
             Vector2Int index = pointedBox.getIndex();
             string correct = pointedBox == boxesClicked.Peek() ? "correct" : "incorrect";
-            AssetPackage.TrackerAsset.Instance.GameObject.Used(correct + " GridBox " + index.x.ToString() + " " + index.y.ToString() + " checked", GameObjectTracker.TrackedGameObject.GameObject);
+            AssetPackage.TrackerAsset.Instance.GameObject.Used("GridBox " + index.x.ToString() + " " + index.y.ToString() + " checked", GameObjectTracker.TrackedGameObject.GameObject);
             if (correct == "incorrect")
                 boxesClicked.Push(pointedBox);
             else
@@ -82,7 +82,7 @@ public class Puzzle3 : MonoBehaviour
             finishParticles.Play();
             Invoke("changeScene", 3.0f);
         }
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("MetaPuzzleHintUsed", GameObjectTracker.TrackedGameObject.GameObject);
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("Meta Puzzle Hint Used", GameObjectTracker.TrackedGameObject.GameObject);
     }
 
 
@@ -135,6 +135,19 @@ public class Puzzle3 : MonoBehaviour
             grid[0, 0].boxClicked();
             initialState[0, 0] = true;
         }
+
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("INITIAL STATE: " + getState(), GameObjectTracker.TrackedGameObject.GameObject);
+    }
+
+    public string getState()
+    {
+        string state = "Cells Active (X Y): ";
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < columns; j++)
+                if (grid[i, j].isChecked())
+                    state += "(" + j.ToString() + " " + i.ToString()+") ";
+
+        return state;
     }
 
     public void reset()
@@ -149,6 +162,7 @@ public class Puzzle3 : MonoBehaviour
         }
 
         boxesClicked = new Stack<GridBox>(solBoxes);
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("Reset Button Pressed", GameObjectTracker.TrackedGameObject.GameObject);
     }
 
     public void createGrid()
@@ -162,7 +176,7 @@ public class Puzzle3 : MonoBehaviour
                 Vector3 offset = new Vector3((gridBoxPrefab.transform.localScale.x + gridOffset.x) * j, -(gridBoxPrefab.transform.localScale.y + gridOffset.y) * i, 0);
                 GameObject aux = Instantiate(gridBoxPrefab, transform.position + offset, Quaternion.identity, transform);
                 grid[i, j] = aux.GetComponent<GridBox>();
-                grid[i, j].setIndex(new Vector2Int(i, j));
+                grid[i, j].setIndex(new Vector2Int(j, i));
             }
         }
 

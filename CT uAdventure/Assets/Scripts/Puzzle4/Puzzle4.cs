@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
+using System;
 
 public enum Difficulty { Easy, Medium, Hard };
 public class Puzzle4 : MonoBehaviour
@@ -37,40 +39,43 @@ public class Puzzle4 : MonoBehaviour
     public GameObject hintsContainer;
 
     List<GameObject> gos;
+    List<Color> shapesColors;
 
     private void Start()
     {
         difficulty = (Difficulty)uAdventure.Runner.Game.Instance.GameState.GetVariable("PUZZLE_4_DIFICULTY");
 
-        Random.InitState(System.Environment.TickCount);
+        UnityEngine.Random.InitState(System.Environment.TickCount);
 
         correctOrder = new Stack<int>();
         gos = new List<GameObject>();
+        shapesColors = new List<Color>() { Color.red, Color.blue, Color.green, Color.cyan, Color.yellow };
+        shapesColors = shapesColors.OrderBy(x => Guid.NewGuid()).ToList();
 
         numSequence = nSequences[(int)difficulty];
         int numOptions = nOptions[(int)difficulty];
 
-        irregular = isIrregular[(int)difficulty];        
+        irregular = isIrregular[(int)difficulty];
         bool random = isRandom[(int)difficulty];
 
         string sol = "";
         for (int i = 0; i < numSequence; i++)
         {
-            int k = Random.Range(1, numOptions + 1);
+            int k = UnityEngine.Random.Range(1, numOptions + 1);
             correctOrder.Push(k);
-            sol = sol + k.ToString();
+            sol = sol + " " + k.ToString();
 
             GameObject go = Instantiate(solucionPrefab, solutionContainer.transform.position, Quaternion.identity, solutionContainer.transform);
             go.transform.GetChild(k - 1).gameObject.SetActive(true);
 
         }
-        AssetPackage.TrackerAsset.Instance.GameObject.Interacted("Puzzle4Code " + sol, GameObjectTracker.TrackedGameObject.GameObject);
+        AssetPackage.TrackerAsset.Instance.GameObject.Interacted("INITIAL STATE: Puzzle 4 Code " + sol, GameObjectTracker.TrackedGameObject.GameObject);
 
         uint bin = (uint)(1 << numOptions) - 1;
         int j = 0;
         while (bin != 0)
         {
-            if (random) j = Random.Range(0, numOptions);
+            if (random) j = UnityEngine.Random.Range(0, numOptions);
             uint iBin = (uint)1 << j;
             if ((iBin & bin) != iBin) continue;
 
@@ -79,6 +84,7 @@ public class Puzzle4 : MonoBehaviour
             if (irregular) useAlternativeSprites(button.transform.GetChild(0).gameObject);
             button.transform.GetChild(0).transform.GetChild(j).gameObject.SetActive(true);
             button.GetComponent<Button>().onClick.AddListener(() => PressButton(index));
+            button.transform.GetChild(0).transform.GetChild(j).GetComponent<Image>().color = shapesColors[j];
 
             bin = bin & (~iBin);
             if (!random) j++;
@@ -93,8 +99,10 @@ public class Puzzle4 : MonoBehaviour
 
         GameObject go = Instantiate(formaPrefab, hintsContainer.transform);
         if (irregular) useAlternativeSprites(go);
-        go.transform.GetChild(hintsOrder.Pop() - 1).gameObject.SetActive(true);
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("Puzzle4HintUsed", GameObjectTracker.TrackedGameObject.GameObject);
+        int index = hintsOrder.Pop() - 1;
+        go.transform.GetChild(index).GetComponent<Image>().color = shapesColors[index];
+        go.transform.GetChild(index).gameObject.SetActive(true);
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("Puzzle 4 Hint Used", GameObjectTracker.TrackedGameObject.GameObject);
     }
 
     private void useAlternativeSprites(GameObject forma)
@@ -129,6 +137,7 @@ public class Puzzle4 : MonoBehaviour
         GameObject go = Instantiate(formaPrefab, container.transform.position, Quaternion.identity, container.transform);
         if (irregular) useAlternativeSprites(go);
         go.transform.GetChild(i - 1).gameObject.SetActive(true);
+        go.transform.GetChild(i - 1).GetComponent<Image>().color = shapesColors[i - 1];
         gos.Add(go);
 
         if (order.Peek() == i)
@@ -136,13 +145,18 @@ public class Puzzle4 : MonoBehaviour
 
         if (checkIfSuccess())
             finish();
+
+        if (gos.Count >= numSequence)
+        {
+            reset();
+            AssetPackage.TrackerAsset.Instance.GameObject.Used("Wrong Sequence Submitted", GameObjectTracker.TrackedGameObject.GameObject);
+        }
     }
 
     public void resetButton()
     {
         reset();
-        print("error");
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("ResetButtonPressed", GameObjectTracker.TrackedGameObject.GameObject);
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("Reset Button Pressed", GameObjectTracker.TrackedGameObject.GameObject);
     }
 
     void reset()
