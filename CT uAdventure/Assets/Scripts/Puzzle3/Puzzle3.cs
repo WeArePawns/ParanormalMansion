@@ -15,15 +15,18 @@ public class Puzzle3 : MonoBehaviour
     GridBox pointedBox;
     Stack<GridBox> boxesClicked = new Stack<GridBox>(), solBoxes;
     bool[,] sol;
-    bool[,] initialState;
+    int[,] initialState;
 
-    int[] gridS = { 3, 4, 4 };
+    int[] gridS = { 3, 4, 3 };
     int[] solClicks = { 5, 7, 10 };
+    int[] maxValues = { 2, 2, 3 };
     int clicks;
 
     //Each sol is a sizeXsize grid
     int columns;
     int rows;
+    int maxValue;
+    int counter = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +38,7 @@ public class Puzzle3 : MonoBehaviour
         columns = gridS[(int)difficulty];
         rows = gridS[(int)difficulty];
         clicks = solClicks[(int)difficulty];
+        maxValue = maxValues[(int)difficulty];
 
         createGrid();
 
@@ -48,10 +52,12 @@ public class Puzzle3 : MonoBehaviour
         {
             pointedBox.boxClicked();
             Vector2Int index = pointedBox.getIndex();
+
             string correct = pointedBox == boxesClicked.Peek() ? "correct" : "incorrect";
             AssetPackage.TrackerAsset.Instance.GameObject.Used("GridBox " + index.x.ToString() + " " + index.y.ToString() + " checked", GameObjectTracker.TrackedGameObject.GameObject);
             if (correct == "incorrect")
-                boxesClicked.Push(pointedBox);
+                for (int l = 1; l < maxValue; l++)
+                    boxesClicked.Push(pointedBox);
             else
                 boxesClicked.Pop();
 
@@ -82,7 +88,7 @@ public class Puzzle3 : MonoBehaviour
             finishParticles.Play();
             Invoke("changeScene", 3.0f);
         }
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("Meta Puzzle Hint Used", GameObjectTracker.TrackedGameObject.GameObject);
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("Meta Puzzle Hint Used STATE: "+ getState(), GameObjectTracker.TrackedGameObject.GameObject);
     }
 
 
@@ -112,19 +118,20 @@ public class Puzzle3 : MonoBehaviour
             if (grid[i, j] != boxesClicked.Peek())
             {
                 grid[i, j].boxClicked();
-                boxesClicked.Push(grid[i, j]);
+                for (int l = 1; l < maxValue; l++)
+                    boxesClicked.Push(grid[i, j]);
             }
         }
         solBoxes = new Stack<GridBox>(boxesClicked);
 
         int sum = 0;
         sol = new bool[rows, columns];
-        initialState = new bool[rows, columns];
+        initialState = new int[rows, columns];
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
             {
-                initialState[i, j] = grid[i, j].isChecked();
+                initialState[i, j] = grid[i, j].getValue();
                 sol[i, j] = false;
                 sum += grid[i, j].isChecked() ? 1 : 0;
             }
@@ -133,7 +140,7 @@ public class Puzzle3 : MonoBehaviour
         if (sum == 0)
         {
             grid[0, 0].boxClicked();
-            initialState[0, 0] = true;
+            initialState[0, 0] = 1;
         }
 
         AssetPackage.TrackerAsset.Instance.GameObject.Used("INITIAL STATE: " + getState(), GameObjectTracker.TrackedGameObject.GameObject);
@@ -141,11 +148,11 @@ public class Puzzle3 : MonoBehaviour
 
     public string getState()
     {
-        string state = "Cells Active (X Y): ";
+        string state = "Cells Active -> |Value(X Y)|: ";
         for (int i = 0; i < rows; i++)
             for (int j = 0; j < columns; j++)
                 if (grid[i, j].isChecked())
-                    state += "(" + j.ToString() + " " + i.ToString()+") ";
+                    state += "|" + grid[i, j].getValue() + "(" + j.ToString() + " " + i.ToString() + ")| ";
 
         return state;
     }
@@ -156,7 +163,7 @@ public class Puzzle3 : MonoBehaviour
         {
             for (int j = 0; j < columns; j++)
             {
-                if (initialState[i, j] && !grid[i, j].isChecked() || !initialState[i, j] && grid[i, j].isChecked())
+                while (initialState[i, j] != grid[i, j].getValue())
                     grid[i, j].checkBox();
             }
         }
@@ -177,6 +184,7 @@ public class Puzzle3 : MonoBehaviour
                 GameObject aux = Instantiate(gridBoxPrefab, transform.position + offset, Quaternion.identity, transform);
                 grid[i, j] = aux.GetComponent<GridBox>();
                 grid[i, j].setIndex(new Vector2Int(j, i));
+                grid[i, j].setMaxValue(maxValue);
             }
         }
 
