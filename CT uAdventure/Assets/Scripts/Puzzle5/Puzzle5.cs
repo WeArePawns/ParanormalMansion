@@ -50,7 +50,9 @@ public class Puzzle5 : MonoBehaviour
     {
         // Valor -1 reservado para el reset
         // Valor -2 reservado para el enter
+        // Valor -3 reservado para el delete
 
+        dialedNumbersText.color = Color.black;
         if (value >= 0)
         {
             if (dialedNumbers.Count >= numDigits) return;
@@ -72,15 +74,29 @@ public class Puzzle5 : MonoBehaviour
 
                 if (!CheckSolution())
                 {
-                    ResetCode();
+                    dialedNumbersText.color = Color.red;
                     AssetPackage.TrackerAsset.Instance.GameObject.Used("Enter Pressed Wrong Sequence", GameObjectTracker.TrackedGameObject.GameObject);
                 }
                 else
                 {
                     AssetPackage.TrackerAsset.Instance.GameObject.Used("Enter Pressed Correct Sequence", GameObjectTracker.TrackedGameObject.GameObject);
+
+                    dialedNumbersText.color = Color.green;
                     finishParticles.Play();
                     Invoke("changeScene", 3.0f);
                 }
+            }
+            else if (value == -3)
+            {
+                if (dialedNumbers.Count > 0)
+                {
+                    dialedNumbers.RemoveAt(dialedNumbers.Count - 1);
+                    dialedNumbersText.text = "";
+                    foreach (int n in dialedNumbers)
+                        dialedNumbersText.text += n.ToString();
+                }
+                AssetPackage.TrackerAsset.Instance.GameObject.Used("Delete Pressed", GameObjectTracker.TrackedGameObject.GameObject);
+
             }
         }
     }
