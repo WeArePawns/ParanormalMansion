@@ -13,7 +13,7 @@ public class Puzzle3 : MonoBehaviour
 
     GridBox[,] grid;
     GridBox pointedBox;
-    Stack<GridBox> boxesClicked = new Stack<GridBox>(), solBoxes;
+    List<GridBox> boxesClicked = new List<GridBox>(), solBoxes;
     bool[,] sol;
     int[,] initialState;
 
@@ -39,8 +39,6 @@ public class Puzzle3 : MonoBehaviour
     {
         difficulty = (Difficulty)uAdventure.Runner.Game.Instance.GameState.GetVariable("PUZZLE_3_DIFICULTY");
 
-        boxesClicked.Push(null);
-
         columns = gridS[(int)difficulty];
         rows = gridS[(int)difficulty];
         clicks = solClicks[(int)difficulty];
@@ -59,16 +57,11 @@ public class Puzzle3 : MonoBehaviour
         {
             nPasos++;
 
-            pointedBox.boxClicked();
             Vector2Int index = pointedBox.getIndex();
+            bool correct = clickBox(pointedBox);
 
-            string correct = pointedBox == boxesClicked.Peek() ? "correct" : "incorrect";
+            AssetPackage.TrackerAsset.Instance.setVar("is_correct", correct);
             AssetPackage.TrackerAsset.Instance.GameObject.Used("grid_box_" + index.x.ToString() + "_" + index.y.ToString() + "_checked", GameObjectTracker.TrackedGameObject.GameObject);
-            if (correct == "incorrect")
-                for (int l = 1; l < maxValue; l++)
-                    boxesClicked.Push(pointedBox);
-            else
-                boxesClicked.Pop();
 
             if (boxesClicked.Count > clicksToHint[(int)difficulty]) hintButton.interactable = true;
 
@@ -76,7 +69,6 @@ public class Puzzle3 : MonoBehaviour
             if (solved())
             {
                 finishParticles.Play();
-                //Invoke("changeScene", 3.0f);
 
                 finished = true;
 
@@ -94,23 +86,34 @@ public class Puzzle3 : MonoBehaviour
         checkMouse();
     }
 
+    private bool clickBox(GridBox boxToClick)
+    {
+        boxToClick.boxClicked();
+        bool correct = boxesClicked.FindAll(box => box == boxToClick).Count > 0;
+        if (correct)//Si esta se elimina una vez
+            boxesClicked.Remove(boxToClick);
+        else//Si no esta se añade el numero de veces que clickar para volver al estado original
+            for (int l = 1; l < maxValue; l++)
+                boxesClicked.Add(boxToClick);
+        return correct;
+    }
+
     public void useHint()
     {
-        if (boxesClicked.Count < 3) return;
+        if (boxesClicked.Count <= 3) return;
 
         starsController.deactivateNoPistasStar();
 
-        while (boxesClicked.Count > 4)
+        while (boxesClicked.Count > 3)
         {
-            boxesClicked.Peek().boxClicked();
-            boxesClicked.Pop();
+            boxesClicked[boxesClicked.Count-1].boxClicked();
+            boxesClicked.RemoveAt(boxesClicked.Count - 1);
         }
 
         //Cuando se soluciona el puzzle
         if (solved())
         {
             finishParticles.Play();
-            //Invoke("changeScene", 3.0f);
 
             // estrella de pasos minimos
             if (nPasos > nPasosMinimos + 3)
@@ -153,14 +156,9 @@ public class Puzzle3 : MonoBehaviour
         {
             int i = Random.Range(0, rows);
             int j = Random.Range(0, columns);
-            if (grid[i, j] != boxesClicked.Peek())
-            {
-                grid[i, j].boxClicked();
-                for (int l = 1; l < maxValue; l++)
-                    boxesClicked.Push(grid[i, j]);
-            }
+            clickBox(grid[i, j]);
         }
-        solBoxes = new Stack<GridBox>(boxesClicked);
+        solBoxes = new List<GridBox>(boxesClicked);
 
         nPasosMinimos = clicks;
 
@@ -182,7 +180,7 @@ public class Puzzle3 : MonoBehaviour
         {
             nPasosMinimos = 2;
 
-            grid[0, 0].boxClicked();
+            clickBox(grid[0, 0]);
             initialState[0, 0] = 1;
         }
         AssetPackage.TrackerAsset.Instance.setVar("initial_state_", getState());
@@ -214,7 +212,7 @@ public class Puzzle3 : MonoBehaviour
             }
         }
 
-        boxesClicked = new Stack<GridBox>(solBoxes);
+        boxesClicked = new List<GridBox>(solBoxes);
         AssetPackage.TrackerAsset.Instance.GameObject.Used("reset_button", GameObjectTracker.TrackedGameObject.GameObject);
 
         hintButton.interactable = true;

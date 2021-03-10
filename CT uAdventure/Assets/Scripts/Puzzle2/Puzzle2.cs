@@ -253,7 +253,7 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
 
         if (trace)
         {
-            AssetPackage.TrackerAsset.Instance.setVar("correct", solutionCards.Contains(card));
+            AssetPackage.TrackerAsset.Instance.setVar("is_solution", solutionCards.Contains(card));
             AssetPackage.TrackerAsset.Instance.GameObject.Used("card_" + cards.IndexOf(card).ToString() + "_placed", GameObjectTracker.TrackedGameObject.GameObject);
         }
 
@@ -282,7 +282,7 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
 
         if (trace)
         {
-            AssetPackage.TrackerAsset.Instance.setVar("isSolution", solutionCards.Contains(card));
+            AssetPackage.TrackerAsset.Instance.setVar("is_solution", solutionCards.Contains(card));
             AssetPackage.TrackerAsset.Instance.GameObject.Used("card_" + cards.IndexOf(card).ToString() + "_dispatched", GameObjectTracker.TrackedGameObject.GameObject);
         }
         // Recolocar el resto (poco eficiente, descoloca y coloca todo otra vez)
