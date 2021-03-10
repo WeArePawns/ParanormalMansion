@@ -33,6 +33,12 @@ public class Puzzle1 : MonoBehaviour
 
     bool finished = false;
 
+    public Button hintButton;
+
+    public StarsController starsController;
+    private int nPasos;
+    private int nPasosMinimos;
+
     private void Start()
     {
         difficulty = (Difficulty)uAdventure.Runner.Game.Instance.GameState.GetVariable("PUZZLE_1_DIFICULTY");
@@ -45,6 +51,7 @@ public class Puzzle1 : MonoBehaviour
 
         while (checkIfSuccess())
         {
+            nPasosMinimos = 0;
             int nTurns, dir;
             for (int i = 0; i < nDiscs; i++)
             {
@@ -55,6 +62,7 @@ public class Puzzle1 : MonoBehaviour
                     dir = Random.Range(0, 1) == 0 ? -1 : 1;
                     RotateLever(i, dir);
                     addTurnToHint(i, dir);
+                    nPasosMinimos++;
                 }
                 updateHintText(i);
             }
@@ -134,9 +142,13 @@ public class Puzzle1 : MonoBehaviour
     {
         if (lastHint >= hints.Length - 1) return;
 
+        starsController.deactivateNoPistasStar();
+
         hints[lastHint].gameObject.SetActive(true);
         lastHint++;
         AssetPackage.TrackerAsset.Instance.GameObject.Used("Puzzle 1 Hint Used", GameObjectTracker.TrackedGameObject.GameObject);
+
+        if (lastHint >= hints.Length - 1) hintButton.interactable = false;
     }
 
     private void RotateLever(int discIndex, int direction)
@@ -181,6 +193,8 @@ public class Puzzle1 : MonoBehaviour
         discs[discIndex].transform.eulerAngles = new Vector3(dAngle1.x, dAngle1.y, dAngle1.z + fixedAngle * -direction);
         discs[(discIndex + 1) % nDiscs].transform.eulerAngles = new Vector3(dAngle2.x, dAngle2.y, dAngle2.z + fixedAngle * -direction * 2.0f);
 
+        nPasos++;
+
         if (checkIfSuccess() && checkFinish)
             finish();
 
@@ -195,11 +209,19 @@ public class Puzzle1 : MonoBehaviour
 
         finishParticles.Play();
         print("FINISH");
-        Invoke("changeScene", 3.0f);
+        //Invoke("changeScene", 3.0f);
 
+        // estrella de pasos minimos
+        if (nPasos > nPasosMinimos + 10)
+            starsController.deactivateMinimoStar();
+
+        starsController.gameObject.SetActive(true);
+
+        int nStars = uAdventure.Runner.Game.Instance.GameState.GetVariable("N_STARS");
+        uAdventure.Runner.Game.Instance.GameState.SetVariable("N_STARS", nStars + starsController.getStars());
     }
 
-    void changeScene()
+    public void changeScene()
     {
         int diff = uAdventure.Runner.Game.Instance.GameState.GetVariable("PUZZLE_1_DIFICULTY");
         uAdventure.Runner.Game.Instance.GameState.SetVariable("PUZZLE_1_DIFICULTY", ++diff);

@@ -106,5 +106,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c4a4687f3b0964c855081d8865c71c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnedOffColor: {r: 0.009433985, g: 0.009433985, b: 0.009433985, a: 1}
+  turnedOffColor: {r: 0.103773594, g: 0.103773594, b: 0.103773594, a: 1}
   turnedOnColor: {r: 1, g: 1, b: 0, a: 1}

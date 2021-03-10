@@ -20,15 +20,21 @@ public class Puzzle3 : MonoBehaviour
     int[] gridS = { 3, 4, 3 };
     int[] solClicks = { 5, 7, 10 };
     int[] maxValues = { 2, 2, 3 };
+    int[] clicksToHint = { 7, 10, 14 };
     int clicks;
 
     //Each sol is a sizeXsize grid
     int columns;
     int rows;
     int maxValue;
-    int counter = 0;
 
-    // Start is called before the first frame update
+    public Button hintButton;
+
+    public StarsController starsController;
+    private int nPasos;
+    private int nPasosMinimos;
+    private bool finished = false;
+
     void Start()
     {
         difficulty = (Difficulty)uAdventure.Runner.Game.Instance.GameState.GetVariable("PUZZLE_3_DIFICULTY");
@@ -45,11 +51,14 @@ public class Puzzle3 : MonoBehaviour
         Invoke("createSol", 0.1f);
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (finished) return;
+
         if (pointedBox != null && Input.GetMouseButtonDown(0))
         {
+            nPasos++;
+
             pointedBox.boxClicked();
             Vector2Int index = pointedBox.getIndex();
 
@@ -61,11 +70,24 @@ public class Puzzle3 : MonoBehaviour
             else
                 boxesClicked.Pop();
 
+            if (boxesClicked.Count > clicksToHint[(int)difficulty]) hintButton.interactable = true;
+
             //Cuando se soluciona el puzzle
             if (solved())
             {
                 finishParticles.Play();
-                Invoke("changeScene", 3.0f);
+                //Invoke("changeScene", 3.0f);
+
+                finished = true;
+
+                // estrella de pasos minimos
+                if (nPasos > nPasosMinimos + 10)
+                    starsController.deactivateMinimoStar();
+
+                starsController.gameObject.SetActive(true);
+
+                int nStars = uAdventure.Runner.Game.Instance.GameState.GetVariable("N_STARS");
+                uAdventure.Runner.Game.Instance.GameState.SetVariable("N_STARS", nStars + starsController.getStars());
             }
         }
 
@@ -75,6 +97,8 @@ public class Puzzle3 : MonoBehaviour
     public void useHint()
     {
         if (boxesClicked.Count < 3) return;
+
+        starsController.deactivateNoPistasStar();
 
         while (boxesClicked.Count > 4)
         {
@@ -86,14 +110,27 @@ public class Puzzle3 : MonoBehaviour
         if (solved())
         {
             finishParticles.Play();
-            Invoke("changeScene", 3.0f);
+            //Invoke("changeScene", 3.0f);
+
+            // estrella de pasos minimos
+            if (nPasos > nPasosMinimos + 3)
+                starsController.deactivateMinimoStar();
+
+            starsController.gameObject.SetActive(true);
+
+            int nStars = uAdventure.Runner.Game.Instance.GameState.GetVariable("N_STARS");
+            uAdventure.Runner.Game.Instance.GameState.SetVariable("N_STARS", nStars + starsController.getStars());
         }
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("Meta Puzzle Hint Used STATE: "+ getState(), GameObjectTracker.TrackedGameObject.GameObject);
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("Meta Puzzle Hint Used STATE: " + getState(), GameObjectTracker.TrackedGameObject.GameObject);
+
+        hintButton.interactable = false;
     }
 
 
     void checkMouse()
     {
+        if (finished) return;
+
         Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit cameraRayHit;
         // If the ray strikes an object...
@@ -124,6 +161,8 @@ public class Puzzle3 : MonoBehaviour
         }
         solBoxes = new Stack<GridBox>(boxesClicked);
 
+        nPasosMinimos = clicks;
+
         int sum = 0;
         sol = new bool[rows, columns];
         initialState = new int[rows, columns];
@@ -136,9 +175,12 @@ public class Puzzle3 : MonoBehaviour
                 sum += grid[i, j].isChecked() ? 1 : 0;
             }
         }
+
         //Al menos una casilla activa
         if (sum == 0)
         {
+            nPasosMinimos = 2;
+
             grid[0, 0].boxClicked();
             initialState[0, 0] = 1;
         }
@@ -170,6 +212,8 @@ public class Puzzle3 : MonoBehaviour
 
         boxesClicked = new Stack<GridBox>(solBoxes);
         AssetPackage.TrackerAsset.Instance.GameObject.Used("Reset Button Pressed", GameObjectTracker.TrackedGameObject.GameObject);
+
+        hintButton.interactable = true;
     }
 
     public void createGrid()
@@ -247,7 +291,7 @@ public class Puzzle3 : MonoBehaviour
         return solved;
     }
 
-    void changeScene()
+    public void changeScene()
     {
         int diff = uAdventure.Runner.Game.Instance.GameState.GetVariable("PUZZLE_3_DIFICULTY");
         uAdventure.Runner.Game.Instance.GameState.SetVariable("PUZZLE_3_DIFICULTY", ++diff);

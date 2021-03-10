@@ -27,6 +27,11 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
     private List<Card> solutionCards = new List<Card>();
 
     public ParticleSystem finishParticles;
+    public Button hintButton;
+
+    public StarsController starsController;
+    private int nPasos = 0;
+    private int nPasosMinimos = 3;
 
     private void Start()
     {
@@ -64,6 +69,8 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
     {
         if (hintsToUse == 0) return;
 
+        starsController.deactivateNoPistasStar();
+
         int hintIndex = 0;
         //Si hay cartas colocadas
         if (placed.Count > 0)
@@ -91,6 +98,8 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
         PlaceCard(solutionCards[hintIndex]);
         hintsToUse--;
         AssetPackage.TrackerAsset.Instance.GameObject.Used("Puzzle 2 Hint Used: Card " + hintIndex.ToString() + " Placed", GameObjectTracker.TrackedGameObject.GameObject);
+
+        if (hintsToUse == 0) hintButton.interactable = false;
     }
 
     private void createSolution()
@@ -206,8 +215,16 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
                 print("VICTORIA");
                 completed = true;
                 finishParticles.Play();
-                Invoke("changeScene", 3.0f);
+                //Invoke("changeScene", 3.0f);
 
+                // estrella de pasos minimos
+                if (nPasos > nPasosMinimos)
+                    starsController.deactivateMinimoStar();
+
+                starsController.gameObject.SetActive(true);
+
+                int nStars = uAdventure.Runner.Game.Instance.GameState.GetVariable("N_STARS");
+                uAdventure.Runner.Game.Instance.GameState.SetVariable("N_STARS", nStars + starsController.getStars());
             }
         }
     }
@@ -246,7 +263,10 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
         //Se comprueba si se ha llegado a la solucion
         checkCompleted();
         if (placed.Count >= holders.Length && !completed)
+        {
             AssetPackage.TrackerAsset.Instance.GameObject.Used("Wrong Cards Submitted", GameObjectTracker.TrackedGameObject.GameObject);
+            nPasos++;
+        }
     }
 
     private void DispatchCard(in Card card, bool trace = false)
@@ -279,7 +299,7 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    void changeScene()
+    public void changeScene()
     {
         int diff = uAdventure.Runner.Game.Instance.GameState.GetVariable("PUZZLE_2_DIFICULTY");
         uAdventure.Runner.Game.Instance.GameState.SetVariable("PUZZLE_2_DIFICULTY", ++diff);

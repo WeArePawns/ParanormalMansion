@@ -41,6 +41,12 @@ public class Puzzle4 : MonoBehaviour
     List<GameObject> gos;
     List<Color> shapesColors;
 
+    public Button hintButton;
+
+    public StarsController starsController;
+    private int nPasos;
+    private int nPasosMinimos = 2;
+
     private void Start()
     {
         difficulty = (Difficulty)uAdventure.Runner.Game.Instance.GameState.GetVariable("PUZZLE_4_DIFICULTY");
@@ -97,12 +103,16 @@ public class Puzzle4 : MonoBehaviour
     {
         if (hintsOrder.Count <= 2) return;
 
+        starsController.deactivateNoPistasStar();
+
         GameObject go = Instantiate(formaPrefab, hintsContainer.transform);
         if (irregular) useAlternativeSprites(go);
         int index = hintsOrder.Pop() - 1;
         go.transform.GetChild(index).GetComponent<Image>().color = shapesColors[index];
         go.transform.GetChild(index).gameObject.SetActive(true);
         AssetPackage.TrackerAsset.Instance.GameObject.Used("Puzzle 4 Hint Used", GameObjectTracker.TrackedGameObject.GameObject);
+
+        if (hintsOrder.Count <= 2) hintButton.interactable = false;
     }
 
     private void useAlternativeSprites(GameObject forma)
@@ -161,6 +171,7 @@ public class Puzzle4 : MonoBehaviour
 
     void reset()
     {
+        nPasos++;
         foreach (GameObject go in gos)
             Destroy(go);
         gos.Clear();
@@ -174,10 +185,19 @@ public class Puzzle4 : MonoBehaviour
 
         finishParticles.Play();
         print("FINISH");
-        Invoke("changeScene", 3.0f);
+        //Invoke("changeScene", 3.0f);
+
+        // estrella de pasos minimos
+        if (nPasos > nPasosMinimos)
+            starsController.deactivateMinimoStar();
+
+        starsController.gameObject.SetActive(true);
+
+        int nStars = uAdventure.Runner.Game.Instance.GameState.GetVariable("N_STARS");
+        uAdventure.Runner.Game.Instance.GameState.SetVariable("N_STARS", nStars + starsController.getStars());
     }
 
-    void changeScene()
+    public void changeScene()
     {
         int diff = uAdventure.Runner.Game.Instance.GameState.GetVariable("PUZZLE_4_DIFICULTY");
         uAdventure.Runner.Game.Instance.GameState.SetVariable("PUZZLE_4_DIFICULTY", ++diff);

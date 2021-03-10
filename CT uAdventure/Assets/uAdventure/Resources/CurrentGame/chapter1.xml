@@ -1193,6 +1193,7 @@ Creo que la guardé en la mochila</speak-player>
   <unity-scene id="Minijuego3" scene="Assets/Scenes/Puzzle3.unity" />
   <unity-scene id="Minijuego4" scene="Assets/Scenes/Puzzle4.unity" />
   <unity-scene id="Minijuego5" scene="Assets/Scenes/Puzzle5.unity" />
+  <unity-scene id="EndScene" scene="Assets/Scenes/EndScene.unity" />
   <object id="Key" returnsWhenDragged="yes" behaviour="first-action" resources-transition-time="0">
     <resources name="No name">
       <asset type="image" uri="assets/image/key.png" />
@@ -2769,6 +2770,10 @@ puede que sea util para acceder al despacho</speak-player>
   <videoscene canSkip="no" id="InitialCutscene" start="yes" idTarget="Outside" destinyX="-2147483648" destinyY="2147483647" transitionTime="1000" transitionType="5" next="new-scene" class="accesible" type="cutscene">
     <documentation>
     </documentation>
+    <effect>
+      <set-value var="N_STARS" value="0" />
+      <condition />
+    </effect>
     <resources name="InitialCutsceneNoSound">
       <condition>
         <inactive flag="Sound" />
@@ -2783,7 +2788,7 @@ puede que sea util para acceder al despacho</speak-player>
     <name>
     </name>
   </videoscene>
-  <videoscene canSkip="no" id="EndCutscene" start="no" next="end-chapter" class="accesible" type="cutscene">
+  <videoscene canSkip="no" id="EndCutscene" start="no" idTarget="EndScene" destinyX="-2147483648" destinyY="-2147483648" transitionTime="1000" transitionType="5" next="new-scene" class="accesible" type="cutscene">
     <documentation>
     </documentation>
     <resources name="EndCutsceneNoSound">

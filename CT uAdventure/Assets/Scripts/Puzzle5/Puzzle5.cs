@@ -33,6 +33,12 @@ public class Puzzle5 : MonoBehaviour
 
     public ParticleSystem finishParticles;
 
+    public Button hintButton;
+
+    public StarsController starsController;
+    private double nPasos = 0.0;
+    private int nPasosMinimos = 2;
+
     void Start()
     {
         difficulty = (Difficulty)uAdventure.Runner.Game.Instance.GameState.GetVariable("PUZZLE_5_DIFICULTY");
@@ -83,7 +89,16 @@ public class Puzzle5 : MonoBehaviour
 
                     dialedNumbersText.color = Color.green;
                     finishParticles.Play();
-                    Invoke("changeScene", 3.0f);
+                    //Invoke("changeScene", 3.0f);
+
+                    // estrella de pasos minimos
+                    if (nPasos > nPasosMinimos)
+                        starsController.deactivateMinimoStar();
+
+                    starsController.gameObject.SetActive(true);
+
+                    int nStars = uAdventure.Runner.Game.Instance.GameState.GetVariable("N_STARS");
+                    uAdventure.Runner.Game.Instance.GameState.SetVariable("N_STARS", nStars + starsController.getStars());
                 }
             }
             else if (value == -3)
@@ -94,6 +109,8 @@ public class Puzzle5 : MonoBehaviour
                     dialedNumbersText.text = "";
                     foreach (int n in dialedNumbers)
                         dialedNumbersText.text += n.ToString();
+
+                    nPasos += 1.0 / numDigits;
                 }
                 AssetPackage.TrackerAsset.Instance.GameObject.Used("Delete Pressed", GameObjectTracker.TrackedGameObject.GameObject);
 
@@ -105,13 +122,19 @@ public class Puzzle5 : MonoBehaviour
     {
         if (hints.Count <= 2) return;
 
+        starsController.deactivateNoPistasStar();
+
         int pos = hints.Dequeue();
         gridNumberLayout.transform.GetChild(pos).GetComponent<Image>().color = gridPatternLayout.transform.GetChild(pos).GetComponent<Image>().color;
         AssetPackage.TrackerAsset.Instance.GameObject.Used("Puzzle 5 Hint Used", GameObjectTracker.TrackedGameObject.GameObject);
+
+        if (hints.Count <= 2) hintButton.interactable = false;
     }
 
     void ResetCode()
     {
+        nPasos += (double)dialedNumbers.Count / numDigits;
+
         dialedNumbersText.text = string.Empty;
         dialedNumbers.Clear();
     }
@@ -235,7 +258,7 @@ public class Puzzle5 : MonoBehaviour
             }
         }
     }
-    void changeScene()
+    public void changeScene()
     {
         int diff = uAdventure.Runner.Game.Instance.GameState.GetVariable("PUZZLE_5_DIFICULTY");
         uAdventure.Runner.Game.Instance.GameState.SetVariable("PUZZLE_5_DIFICULTY", ++diff);
