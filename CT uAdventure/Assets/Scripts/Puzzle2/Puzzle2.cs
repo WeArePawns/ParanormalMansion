@@ -44,11 +44,8 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
         createResult();
         createOptions();
 
-        string solIndex = "";
-        foreach (Card c in solutionCards)
-            solIndex += cards.IndexOf(c).ToString() + " ";
-
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("INITIAL STATE: " + solIndex, GameObjectTracker.TrackedGameObject.GameObject);
+        AssetPackage.TrackerAsset.Instance.setVar("initial_state", GetState());
+        AssetPackage.TrackerAsset.Instance.Completable.Initialized("hacking_etico_" + (int)(difficulty + 1), CompletableTracker.Completable.Level);
 
         holderPositions = new List<Vector2>();
         cardPositions = new List<Vector2>();
@@ -64,6 +61,17 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
             cardPositions.Add(card.GetComponent<RectTransform>().position);
     }
 
+    public string GetState()
+    {
+        string state = "";
+        for (int i = 0; i < cards.Count; i++)
+        {
+            Card c = cards[i];
+            state += "\ncard_" + i.ToString()+"_" + c.GetState() + ((solutionCards.Contains(c)) ? "_correct" : "_incorrect");
+        }
+        state += "\nsolution_" + objective.GetState();
+        return state;
+    }
 
     public void useHint()
     {
@@ -92,12 +100,14 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
                     free = placed[j] != solutionCards[k++];
                 j++;
             }
-            if (free)
+            if (!free)
                 DispatchCard(placed[j - 1]);
         }
         PlaceCard(solutionCards[hintIndex]);
         hintsToUse--;
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("Puzzle 2 Hint Used: Card " + hintIndex.ToString() + " Placed", GameObjectTracker.TrackedGameObject.GameObject);
+
+        AssetPackage.TrackerAsset.Instance.setVar("card", hintIndex.ToString());
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("hint_button", GameObjectTracker.TrackedGameObject.GameObject);
 
         if (hintsToUse == 0) hintButton.interactable = false;
     }
@@ -156,7 +166,6 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        print("Click hecho");
         List<RaycastResult> resultList = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, resultList);
 
@@ -168,28 +177,18 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
         {
             if (raycastResult.gameObject.CompareTag("Card"))
             {
-                print("Card encontrado");
                 clickedCard = raycastResult.gameObject.GetComponent<Card>();
                 if (clickedCard == result || clickedCard == objective) clickedCard = null;
             }
 
             if (raycastResult.gameObject.CompareTag("CardHolder"))
-            {
-                print("Holder encontrado");
                 holder = raycastResult.gameObject.GetComponent<CardHolder>();
-            }
         }
 
         if (holder != null && clickedCard != null)
-        {
-            print("Descolocar");
             DispatchCard(clickedCard, true);
-        }
         else if (holder == null && clickedCard != null)
-        {
-            print("Colocar");
             PlaceCard(clickedCard, true);
-        }
         else
             print("Clickado fuera de objetos interactuables");
 
@@ -212,10 +211,8 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
             //Si i esta fuera de limite, ha llegado al final es una victoria
             if (i >= resultValues.Count)
             {
-                print("VICTORIA");
                 completed = true;
                 finishParticles.Play();
-                //Invoke("changeScene", 3.0f);
 
                 // estrella de pasos minimos
                 if (nPasos > nPasosMinimos)
@@ -256,15 +253,16 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
 
         if (trace)
         {
-            string correct = solutionCards.Contains(card) ? "Correct" : "Incorrect";
-            AssetPackage.TrackerAsset.Instance.GameObject.Used(correct + " Card " + cards.IndexOf(card).ToString() + " Placed", GameObjectTracker.TrackedGameObject.GameObject);
+            AssetPackage.TrackerAsset.Instance.setVar("correct", solutionCards.Contains(card));
+            AssetPackage.TrackerAsset.Instance.GameObject.Used("card_" + cards.IndexOf(card).ToString() + "_placed", GameObjectTracker.TrackedGameObject.GameObject);
         }
 
         //Se comprueba si se ha llegado a la solucion
         checkCompleted();
         if (placed.Count >= holders.Length && !completed)
         {
-            AssetPackage.TrackerAsset.Instance.GameObject.Used("Wrong Cards Submitted", GameObjectTracker.TrackedGameObject.GameObject);
+            AssetPackage.TrackerAsset.Instance.setSuccess(false);
+            AssetPackage.TrackerAsset.Instance.Completable.Progressed("hacking_etico_" + (int)(difficulty + 1), 0);
             nPasos++;
         }
     }
@@ -276,10 +274,7 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
         int indexCard = cards.IndexOf(card);
 
         if (indexPlaced >= cards.Count || indexPlaced < 0)
-        {
-            print("Ha habido un problema, indice fuera de limites");
             return;
-        }
 
         // Posicionamos la tarjeta
         card.GetComponent<RectTransform>().position = cardPositions[indexCard];
@@ -287,20 +282,21 @@ public class Puzzle2 : MonoBehaviour, IPointerClickHandler
 
         if (trace)
         {
-            string correct = solutionCards.Contains(card) ? "Correct" : "Incorrect";
-            AssetPackage.TrackerAsset.Instance.GameObject.Used(correct + " Card " + cards.IndexOf(card).ToString() + " Dispatched", GameObjectTracker.TrackedGameObject.GameObject);
+            AssetPackage.TrackerAsset.Instance.setVar("isSolution", solutionCards.Contains(card));
+            AssetPackage.TrackerAsset.Instance.GameObject.Used("card_" + cards.IndexOf(card).ToString() + "_dispatched", GameObjectTracker.TrackedGameObject.GameObject);
         }
         // Recolocar el resto (poco eficiente, descoloca y coloca todo otra vez)
         List<Card> auxCard = new List<Card>(placed);
         placed.Clear();
         for (int i = 0; i < auxCard.Count; i++)
-        {
             PlaceCard(auxCard[i]);
-        }
     }
 
     public void changeScene()
     {
+        AssetPackage.TrackerAsset.Instance.setScore(starsController.getStars());
+        AssetPackage.TrackerAsset.Instance.Completable.Completed("hacking_etico_" + (int)(difficulty + 1), CompletableTracker.Completable.Level);
+
         int diff = uAdventure.Runner.Game.Instance.GameState.GetVariable("PUZZLE_2_DIFICULTY");
         uAdventure.Runner.Game.Instance.GameState.SetVariable("PUZZLE_2_DIFICULTY", ++diff);
 

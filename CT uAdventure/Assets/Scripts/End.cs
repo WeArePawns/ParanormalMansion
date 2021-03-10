@@ -16,6 +16,6 @@ public class End : MonoBehaviour
 
     public void SalirJuego()
     {
-        //uAdventure.Runner.Game.
+        uAdventure.Runner.Game.Instance.Quit();
     }
 }

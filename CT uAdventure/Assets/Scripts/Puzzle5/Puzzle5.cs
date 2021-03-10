@@ -62,8 +62,9 @@ public class Puzzle5 : MonoBehaviour
         if (value >= 0)
         {
             if (dialedNumbers.Count >= numDigits) return;
-            string correct = sequence[dialedNumbers.Count] == value ? "Correct" : "Incorrect";
-            AssetPackage.TrackerAsset.Instance.GameObject.Used("Button " + value.ToString() + " Pressed " + correct, GameObjectTracker.TrackedGameObject.GameObject);
+
+            AssetPackage.TrackerAsset.Instance.setVar("correct", sequence[dialedNumbers.Count] == value);
+            AssetPackage.TrackerAsset.Instance.GameObject.Used("button_" + value.ToString(), GameObjectTracker.TrackedGameObject.GameObject);
 
             dialedNumbersText.text += value.ToString();
             dialedNumbers.Add(value);
@@ -73,7 +74,7 @@ public class Puzzle5 : MonoBehaviour
             if (value == -1)
             {
                 ResetCode();
-                AssetPackage.TrackerAsset.Instance.GameObject.Used("Reset Pressed", GameObjectTracker.TrackedGameObject.GameObject);
+                AssetPackage.TrackerAsset.Instance.GameObject.Used("reset_button", GameObjectTracker.TrackedGameObject.GameObject);
             }
             else if (value == -2)
             {
@@ -81,15 +82,13 @@ public class Puzzle5 : MonoBehaviour
                 if (!CheckSolution())
                 {
                     dialedNumbersText.color = Color.red;
-                    AssetPackage.TrackerAsset.Instance.GameObject.Used("Enter Pressed Wrong Sequence", GameObjectTracker.TrackedGameObject.GameObject);
+                    AssetPackage.TrackerAsset.Instance.setSuccess(false);
+                    AssetPackage.TrackerAsset.Instance.Completable.Progressed("laberinto_numeros_" + (int)(difficulty + 1), 0);
                 }
                 else
-                {
-                    AssetPackage.TrackerAsset.Instance.GameObject.Used("Enter Pressed Correct Sequence", GameObjectTracker.TrackedGameObject.GameObject);
-
+                {                  
                     dialedNumbersText.color = Color.green;
                     finishParticles.Play();
-                    //Invoke("changeScene", 3.0f);
 
                     // estrella de pasos minimos
                     if (nPasos > nPasosMinimos)
@@ -111,8 +110,8 @@ public class Puzzle5 : MonoBehaviour
                         dialedNumbersText.text += n.ToString();
 
                     nPasos += 1.0 / numDigits;
+                    AssetPackage.TrackerAsset.Instance.GameObject.Used("delete_button", GameObjectTracker.TrackedGameObject.GameObject);
                 }
-                AssetPackage.TrackerAsset.Instance.GameObject.Used("Delete Pressed", GameObjectTracker.TrackedGameObject.GameObject);
 
             }
         }
@@ -126,7 +125,7 @@ public class Puzzle5 : MonoBehaviour
 
         int pos = hints.Dequeue();
         gridNumberLayout.transform.GetChild(pos).GetComponent<Image>().color = gridPatternLayout.transform.GetChild(pos).GetComponent<Image>().color;
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("Puzzle 5 Hint Used", GameObjectTracker.TrackedGameObject.GameObject);
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("hint_button", GameObjectTracker.TrackedGameObject.GameObject);
 
         if (hints.Count <= 2) hintButton.interactable = false;
     }
@@ -225,9 +224,27 @@ public class Puzzle5 : MonoBehaviour
             patternColor[y][x].GetComponent<Image>().color = (i != numDigits - 2) ? colorPatternGrid : Color.red;
             hints.Enqueue(cells * y + x);
         }
-        string combindedString = string.Join(" ", sequence);
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("INITIAL STATE: Puzzle 5 Sequence " + combindedString, GameObjectTracker.TrackedGameObject.GameObject);
+
+        AssetPackage.TrackerAsset.Instance.setVar("initial_state", GetState());
+        AssetPackage.TrackerAsset.Instance.Completable.Initialized("laberinto_numeros_" + (int)(difficulty + 1), CompletableTracker.Completable.Level);
     }
+
+    string GetState()
+    {
+        string state = "";
+        for (int j = 0; j < cells; j++)
+        {
+            state += "\n|";
+            for (int i = 0; i < cells; i++)
+            {
+                Color color = patternColor[j][i].GetComponent<Image>().color;
+                string c = (color == Color.red) ? "r" : ((color == colorPatternGrid) ? "g" : ((color == Color.blue) ? "b" : "w"));
+                state += cellsValues[j][i].ToString() + c + "|";
+            }
+        }
+        return state;
+    }
+
 
     void InitializeNumberedGrid()
     {
@@ -260,6 +277,9 @@ public class Puzzle5 : MonoBehaviour
     }
     public void changeScene()
     {
+        AssetPackage.TrackerAsset.Instance.setScore(starsController.getStars());
+        AssetPackage.TrackerAsset.Instance.Completable.Completed("laberinto_numeros_" + (int)(difficulty + 1), CompletableTracker.Completable.Level);
+
         int diff = uAdventure.Runner.Game.Instance.GameState.GetVariable("PUZZLE_5_DIFICULTY");
         uAdventure.Runner.Game.Instance.GameState.SetVariable("PUZZLE_5_DIFICULTY", ++diff);
 

@@ -70,6 +70,15 @@ public class Card : MonoBehaviour
         }
     }
 
+    public string GetState()
+    {
+        string state = "[";
+        for (int i = 0; i < values.Count; i++)
+            state += values[i].ToString() + ((i == values.Count - 1) ? "" : " ");
+        state += "]";
+        return state;
+    }
+
     private void CheckLines()
     {
         if (frame == null) frame = GetComponent<Image>();

@@ -2805,7 +2805,7 @@ puede que sea util para acceder al despacho</speak-player>
     <name>
     </name>
   </videoscene>
-  <completable id="Puzle1" repeatable="false" type="completable">
+  <completable id="anillas_locas" repeatable="false" type="completable">
     <start-milestone type="SCENE" targetId="Minijuego1" />
     <end-milestone type="CONDITION">
       <condition>
@@ -2831,7 +2831,7 @@ puede que sea util para acceder al despacho</speak-player>
     </progress>
     <score type="VARIABLE" method="SINGLE" id="PUZZLE_1_DIFICULTY" />
   </completable>
-  <completable id="Puzle2" repeatable="false" type="completable">
+  <completable id="hacking_etico" repeatable="false" type="completable">
     <start-milestone type="SCENE" targetId="Minijuego2" />
     <end-milestone type="CONDITION">
       <condition>
@@ -2857,7 +2857,7 @@ puede que sea util para acceder al despacho</speak-player>
     </progress>
     <score type="VARIABLE" method="SINGLE" id="PUZZLE_2_DIFICULTY" />
   </completable>
-  <completable id="MetaPuzle" repeatable="false" type="completable">
+  <completable id="electricista" repeatable="false" type="completable">
     <start-milestone type="SCENE" targetId="Minijuego3" />
     <end-milestone type="CONDITION">
       <condition>
@@ -2883,7 +2883,7 @@ puede que sea util para acceder al despacho</speak-player>
     </progress>
     <score type="VARIABLE" method="SINGLE" id="PUZZLE_3_DIFICULTY" />
   </completable>
-  <completable id="Puzle4" repeatable="false" type="completable">
+  <completable id="formas_colores" repeatable="false" type="completable">
     <start-milestone type="SCENE" targetId="Minijuego4" />
     <end-milestone type="CONDITION">
       <condition>
@@ -2909,7 +2909,7 @@ puede que sea util para acceder al despacho</speak-player>
     </progress>
     <score type="VARIABLE" method="SINGLE" id="PUZZLE_4_DIFICULTY" />
   </completable>
-  <completable id="Puzle5" repeatable="false" type="completable">
+  <completable id="laberinto_numeros" repeatable="false" type="completable">
     <start-milestone type="SCENE" targetId="Minijuego5" />
     <end-milestone type="CONDITION">
       <condition>

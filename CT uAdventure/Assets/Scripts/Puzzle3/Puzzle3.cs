@@ -18,7 +18,7 @@ public class Puzzle3 : MonoBehaviour
     int[,] initialState;
 
     int[] gridS = { 3, 4, 3 };
-    int[] solClicks = { 5, 7, 10 };
+    int[] solClicks = { 5, 7, 7 };
     int[] maxValues = { 2, 2, 3 };
     int[] clicksToHint = { 7, 10, 14 };
     int clicks;
@@ -63,7 +63,7 @@ public class Puzzle3 : MonoBehaviour
             Vector2Int index = pointedBox.getIndex();
 
             string correct = pointedBox == boxesClicked.Peek() ? "correct" : "incorrect";
-            AssetPackage.TrackerAsset.Instance.GameObject.Used("GridBox " + index.x.ToString() + " " + index.y.ToString() + " checked", GameObjectTracker.TrackedGameObject.GameObject);
+            AssetPackage.TrackerAsset.Instance.GameObject.Used("grid_box_" + index.x.ToString() + "_" + index.y.ToString() + "_checked", GameObjectTracker.TrackedGameObject.GameObject);
             if (correct == "incorrect")
                 for (int l = 1; l < maxValue; l++)
                     boxesClicked.Push(pointedBox);
@@ -121,7 +121,8 @@ public class Puzzle3 : MonoBehaviour
             int nStars = uAdventure.Runner.Game.Instance.GameState.GetVariable("N_STARS");
             uAdventure.Runner.Game.Instance.GameState.SetVariable("N_STARS", nStars + starsController.getStars());
         }
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("Meta Puzzle Hint Used STATE: " + getState(), GameObjectTracker.TrackedGameObject.GameObject);
+        AssetPackage.TrackerAsset.Instance.setVar("state", getState());
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("hint_button", GameObjectTracker.TrackedGameObject.GameObject);
 
         hintButton.interactable = false;
     }
@@ -184,13 +185,16 @@ public class Puzzle3 : MonoBehaviour
             grid[0, 0].boxClicked();
             initialState[0, 0] = 1;
         }
+        AssetPackage.TrackerAsset.Instance.setVar("initial_state_", getState());
+        AssetPackage.TrackerAsset.Instance.Completable.Initialized("electricista_" + (int)(difficulty + 1), CompletableTracker.Completable.Level);
+        //AssetPackage.TrackerAsset.Instance.setSuccess(false);
+        //AssetPackage.TrackerAsset.Instance.Completable.Progressed("Electricista_" + (int)difficulty , CompletableTracker.Completable.Level);
 
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("INITIAL STATE: " + getState(), GameObjectTracker.TrackedGameObject.GameObject);
     }
 
     public string getState()
     {
-        string state = "Cells Active -> |Value(X Y)|: ";
+        string state = "cells_active -> |Value(X Y)|: ";
         for (int i = 0; i < rows; i++)
             for (int j = 0; j < columns; j++)
                 if (grid[i, j].isChecked())
@@ -211,7 +215,7 @@ public class Puzzle3 : MonoBehaviour
         }
 
         boxesClicked = new Stack<GridBox>(solBoxes);
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("Reset Button Pressed", GameObjectTracker.TrackedGameObject.GameObject);
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("reset_button", GameObjectTracker.TrackedGameObject.GameObject);
 
         hintButton.interactable = true;
     }
@@ -293,6 +297,9 @@ public class Puzzle3 : MonoBehaviour
 
     public void changeScene()
     {
+        AssetPackage.TrackerAsset.Instance.setScore(starsController.getStars());
+        AssetPackage.TrackerAsset.Instance.Completable.Completed("electricista_" + (int)(difficulty + 1), CompletableTracker.Completable.Level);
+
         int diff = uAdventure.Runner.Game.Instance.GameState.GetVariable("PUZZLE_3_DIFICULTY");
         uAdventure.Runner.Game.Instance.GameState.SetVariable("PUZZLE_3_DIFICULTY", ++diff);
 

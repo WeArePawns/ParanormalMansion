@@ -67,7 +67,8 @@ public class Puzzle1 : MonoBehaviour
                 updateHintText(i);
             }
         }
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("INITIAL STATE:" + getState(), GameObjectTracker.TrackedGameObject.GameObject); ;
+        AssetPackage.TrackerAsset.Instance.setVar("initial_state_", getState());
+        AssetPackage.TrackerAsset.Instance.Completable.Initialized("anillas_locas_" + (int)(difficulty+1), CompletableTracker.Completable.Level); ;
     }
 
     private void addTurnToHint(int i, int dir)
@@ -134,8 +135,8 @@ public class Puzzle1 : MonoBehaviour
         coroutine = StartCoroutine(Rotate(iniDisc, dir, checkFinish));
         addTurnToHint(iniDisc, dir);
 
-        string direction = dir == -1 ? "Left" : "Right";
-        AssetPackage.TrackerAsset.Instance.GameObject.Used(direction + " Lever " + iniDisc.ToString() + " Used", GameObjectTracker.TrackedGameObject.GameObject);
+        string direction = dir == -1 ? "left" : "right";
+        AssetPackage.TrackerAsset.Instance.GameObject.Used(direction + "_lever_" + iniDisc.ToString(), GameObjectTracker.TrackedGameObject.GameObject);
     }
 
     public void showHint()
@@ -146,7 +147,7 @@ public class Puzzle1 : MonoBehaviour
 
         hints[lastHint].gameObject.SetActive(true);
         lastHint++;
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("Puzzle 1 Hint Used", GameObjectTracker.TrackedGameObject.GameObject);
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("hint_button", GameObjectTracker.TrackedGameObject.GameObject);
 
         if (lastHint >= hints.Length - 1) hintButton.interactable = false;
     }
@@ -166,7 +167,7 @@ public class Puzzle1 : MonoBehaviour
         for (int i = 0; i < discs.Length; i++)
         {
             int rot = (int)discs[i].transform.eulerAngles.z;
-            state += "\nDisc " + (i + 1).ToString() + " rotated " + rot.ToString() + "º anti-clockwise";
+            state += "\ndisc_" + (i + 1).ToString() + "_"+ rot.ToString() + "º_anti-clockwise";
         }
 
         return state;
@@ -223,6 +224,9 @@ public class Puzzle1 : MonoBehaviour
 
     public void changeScene()
     {
+        AssetPackage.TrackerAsset.Instance.setScore(starsController.getStars());
+        AssetPackage.TrackerAsset.Instance.Completable.Completed("anillas_locas_" + (int)(difficulty + 1), CompletableTracker.Completable.Level);
+
         int diff = uAdventure.Runner.Game.Instance.GameState.GetVariable("PUZZLE_1_DIFICULTY");
         uAdventure.Runner.Game.Instance.GameState.SetVariable("PUZZLE_1_DIFICULTY", ++diff);
 

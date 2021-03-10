@@ -69,13 +69,14 @@ public class Puzzle4 : MonoBehaviour
         {
             int k = UnityEngine.Random.Range(1, numOptions + 1);
             correctOrder.Push(k);
-            sol = sol + " " + k.ToString();
+            sol += k.ToString() + ((i == numSequence - 1) ? "" : " ");
 
             GameObject go = Instantiate(solucionPrefab, solutionContainer.transform.position, Quaternion.identity, solutionContainer.transform);
             go.transform.GetChild(k - 1).gameObject.SetActive(true);
 
         }
-        AssetPackage.TrackerAsset.Instance.GameObject.Interacted("INITIAL STATE: Puzzle 4 Code " + sol, GameObjectTracker.TrackedGameObject.GameObject);
+        AssetPackage.TrackerAsset.Instance.setVar("initial_state", sol);
+        AssetPackage.TrackerAsset.Instance.Completable.Initialized("formas_colores_" + (int)(difficulty + 1), CompletableTracker.Completable.Level);
 
         uint bin = (uint)(1 << numOptions) - 1;
         int j = 0;
@@ -110,7 +111,8 @@ public class Puzzle4 : MonoBehaviour
         int index = hintsOrder.Pop() - 1;
         go.transform.GetChild(index).GetComponent<Image>().color = shapesColors[index];
         go.transform.GetChild(index).gameObject.SetActive(true);
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("Puzzle 4 Hint Used", GameObjectTracker.TrackedGameObject.GameObject);
+
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("hint_button", GameObjectTracker.TrackedGameObject.GameObject);
 
         if (hintsOrder.Count <= 2) hintButton.interactable = false;
     }
@@ -143,7 +145,7 @@ public class Puzzle4 : MonoBehaviour
     {
         if (finished || gos.Count >= numSequence) return;
 
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("Button " + i.ToString() + " Pressed", GameObjectTracker.TrackedGameObject.GameObject);
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("button_" + i.ToString(), GameObjectTracker.TrackedGameObject.GameObject);
         GameObject go = Instantiate(formaPrefab, container.transform.position, Quaternion.identity, container.transform);
         if (irregular) useAlternativeSprites(go);
         go.transform.GetChild(i - 1).gameObject.SetActive(true);
@@ -155,18 +157,18 @@ public class Puzzle4 : MonoBehaviour
 
         if (checkIfSuccess())
             finish();
-
-        if (gos.Count >= numSequence)
+        else if (gos.Count >= numSequence)
         {
             reset();
-            AssetPackage.TrackerAsset.Instance.GameObject.Used("Wrong Sequence Submitted", GameObjectTracker.TrackedGameObject.GameObject);
+            AssetPackage.TrackerAsset.Instance.setSuccess(false);
+            AssetPackage.TrackerAsset.Instance.Completable.Progressed("formas_colores_" + (int)(difficulty + 1), 0);
         }
     }
 
     public void resetButton()
     {
         reset();
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("Reset Button Pressed", GameObjectTracker.TrackedGameObject.GameObject);
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("reset_button", GameObjectTracker.TrackedGameObject.GameObject);
     }
 
     void reset()
@@ -182,10 +184,7 @@ public class Puzzle4 : MonoBehaviour
     void finish()
     {
         finished = true;
-
         finishParticles.Play();
-        print("FINISH");
-        //Invoke("changeScene", 3.0f);
 
         // estrella de pasos minimos
         if (nPasos > nPasosMinimos)
@@ -199,6 +198,9 @@ public class Puzzle4 : MonoBehaviour
 
     public void changeScene()
     {
+        AssetPackage.TrackerAsset.Instance.setScore(starsController.getStars());
+        AssetPackage.TrackerAsset.Instance.Completable.Completed("formas_colores_" + (int)(difficulty + 1), CompletableTracker.Completable.Level);
+
         int diff = uAdventure.Runner.Game.Instance.GameState.GetVariable("PUZZLE_4_DIFICULTY");
         uAdventure.Runner.Game.Instance.GameState.SetVariable("PUZZLE_4_DIFICULTY", ++diff);
 
