@@ -459,7 +459,7 @@
           <condition />
         </effect>
         <post-effect>
-          <speak-player>Vaya... ¡esta mansión es enorme!</speak-player>
+          <speak-player>Vaya... ¡Esta mansión es enorme!</speak-player>
           <condition />
           <speak-player>Oh, ahí está John. Debería hablar con él.</speak-player>
           <condition />
@@ -985,7 +985,7 @@
           <active flag="ClueExamined" />
         </condition>
         <not-effect>
-          <speak-player>Debería leer la pista antes de resolver el puzzle.
+          <speak-player>Debería leer la pista antes de resolver el puzle.
 Creo que la guardé en la mochila</speak-player>
           <condition>
             <active flag="puzzle4Clue" />
@@ -1031,7 +1031,7 @@ Creo que la guardé en la mochila</speak-player>
             <effect>
               <speak-player>Las estanterias estan llenas de libros.</speak-player>
               <condition />
-              <speak-player>Son todos sobre cosas de infrormática, lógica, matemáticas, etc.</speak-player>
+              <speak-player>Son todos sobre cosas de informática, lógica, matemáticas, etc.</speak-player>
               <condition />
               <speak-player>Oh, aquí hay uno que pone "Pensamiento Computacional, el futuro de la enseñanza".</speak-player>
               <condition />
@@ -1117,7 +1117,7 @@ Creo que la guardé en la mochila</speak-player>
           <active flag="DiaryPicked" />
         </condition>
         <not-effect>
-          <speak-player>Debería explorar el despacho un poco más</speak-player>
+          <speak-player>Debería explorar el despacho un poco más.</speak-player>
           <condition />
         </not-effect>
       </exit>
@@ -1146,7 +1146,7 @@ Creo que la guardé en la mochila</speak-player>
         <actions>
           <examine needsGoTo="no" keepDistance="0" not-effects="no">
             <effect>
-              <speak-player>Hmm.. parece un retrato del dueño de la mansión.</speak-player>
+              <speak-player>Hmm... Parece un retrato del dueño de la mansión.</speak-player>
               <condition />
               <speak-player>La placa dorada está un poco oxidada, pero se puede leer:</speak-player>
               <condition />
@@ -1216,7 +1216,7 @@ Creo que la guardé en la mochila</speak-player>
           <condition />
           <activate flag="keyFound" />
           <condition />
-          <speak-player>¡Ajá! Esta es la llave de la puerta principal</speak-player>
+          <speak-player>¡Ajá! Esta es la llave de la puerta principal.</speak-player>
           <condition />
           <play-sound background="no" uri="assets/audio/itemFound.mp3" />
           <condition>
@@ -1248,14 +1248,14 @@ Creo que la guardé en la mochila</speak-player>
           <condition />
           <activate flag="puzzle4Clue" />
           <condition />
-          <speak-player>Parece que esta es la pista que necesitamos para resolver el puzzle de Jack Copper.
+          <speak-player>Parece que esta es la pista que necesitamos para resolver el puzle de Jack Copper.
 La guardaré en la mochila.</speak-player>
           <condition />
         </effect>
       </grab>
       <examine needsGoTo="no" keepDistance="0" not-effects="no">
         <effect>
-          <speak-player>Pone: "El número de lados menos dos"
+          <speak-player>Pone: "El número de lados menos dos".
 ¿Qué querrá decir?</speak-player>
           <condition />
           <activate flag="ClueExamined" />
@@ -1382,15 +1382,15 @@ La guardaré en la mochila.</speak-player>
           </either>
         </condition>
         <effect>
-          <speak-player>Parece que el mecanismo esta relacionado con la electricidad pero esta bloqueado.</speak-player>
+          <speak-player>Parece que el mecanismo está relacionado con la electricidad, pero está bloqueado.</speak-player>
           <condition>
             <global-state-ref id="AlgunEngranajeEncontrado" value="false" />
           </condition>
-          <speak-player>Debería mirar en las demas habitaciones.</speak-player>
+          <speak-player>Debería mirar en las demás habitaciones.</speak-player>
           <condition>
             <global-state-ref id="AlgunEngranajeEncontrado" value="false" />
           </condition>
-          <speak-player>Vaya! parece que las piezas que he encontrado encajan en el mecanismo</speak-player>
+          <speak-player>¡Vaya! Parece que las piezas que he encontrado encajan en el mecanismo.</speak-player>
           <condition>
             <global-state-ref id="AlgunEngranajeEncontrado" value="true" />
           </condition>
@@ -1426,7 +1426,7 @@ La guardaré en la mochila.</speak-player>
           <condition>
             <global-state-ref id="Engranaje4Encontrado" value="true" />
           </condition>
-          <speak-player>Parece que ya puedo resolver el ultimo problema y desactivar la electricifad</speak-player>
+          <speak-player>Parece que ya puedo resolver el último puzle y desactivar la electricidad.</speak-player>
           <condition>
             <global-state-ref id="MetaPuzzleDesbloqueado" value="true" />
           </condition>
@@ -1464,8 +1464,8 @@ La guardaré en la mochila.</speak-player>
     <actions>
       <examine needsGoTo="no" keepDistance="0" not-effects="no">
         <effect>
-          <speak-player>Parece un engranaje de un mecanismo, 
-puede que sea útil para acceder al despacho</speak-player>
+          <speak-player>Parece el engranaje de un mecanismo, 
+puede que sea útil para acceder al despacho.</speak-player>
           <condition />
         </effect>
       </examine>
@@ -1487,8 +1487,8 @@ puede que sea útil para acceder al despacho</speak-player>
     <actions>
       <examine needsGoTo="no" keepDistance="0" not-effects="no">
         <effect>
-          <speak-player>Parece un engranaje de un mecanismo, 
-puede que sea util para acceder al despacho</speak-player>
+          <speak-player>Parece el engranaje de un mecanismo, 
+puede que sea útil para acceder al despacho.</speak-player>
           <condition />
         </effect>
       </examine>
@@ -1510,8 +1510,8 @@ puede que sea util para acceder al despacho</speak-player>
     <actions>
       <examine needsGoTo="no" keepDistance="0" not-effects="no">
         <effect>
-          <speak-player>Parece un engranaje de un mecanismo, 
-puede que sea util para acceder al despacho</speak-player>
+          <speak-player>Parece el engranaje de un mecanismo, 
+puede que sea útil para acceder al despacho.</speak-player>
           <condition />
         </effect>
       </examine>
@@ -1533,8 +1533,8 @@ puede que sea util para acceder al despacho</speak-player>
     <actions>
       <examine needsGoTo="no" keepDistance="0" not-effects="no">
         <effect>
-          <speak-player>Parece un engranaje de un mecanismo, 
-puede que sea util para acceder al despacho</speak-player>
+          <speak-player>Parece el engranaje de un mecanismo, 
+puede que sea útil para acceder al despacho.</speak-player>
           <condition />
         </effect>
       </examine>
@@ -1557,7 +1557,7 @@ puede que sea util para acceder al despacho</speak-player>
     <dialogue-node nodeindex="1" editor-x="438" editor-y="52">
       <speak-char idTarget="JohnGold">
         <resources name="No name" />
-        <text>Hmm.. todo parece estar en orden.</text>
+        <text>Hmm... Todo parece estar en orden.</text>
       </speak-char>
       <condition />
       <speak-char idTarget="JohnGold">
@@ -1606,7 +1606,7 @@ puede que sea util para acceder al despacho</speak-player>
     <dialogue-node nodeindex="5" editor-x="1715" editor-y="11">
       <speak-char idTarget="JohnGold">
         <resources name="No name" />
-        <text>Hm. Siguiente pregunta.</text>
+        <text>Hm... Siguiente pregunta.</text>
       </speak-char>
       <condition />
       <child nodeindex="8" />
@@ -1622,7 +1622,7 @@ puede que sea util para acceder al despacho</speak-player>
     <dialogue-node nodeindex="7" editor-x="1373" editor-y="527">
       <speak-char idTarget="JohnGold">
         <resources name="No name" />
-        <text>Ehm.. creo que has visto muchas películas de mansiones.</text>
+        <text>Ehm... Creo que has visto muchas películas de mansiones.</text>
       </speak-char>
       <condition />
       <child nodeindex="4" />
@@ -1692,7 +1692,7 @@ puede que sea util para acceder al despacho</speak-player>
     <dialogue-node nodeindex="13" editor-x="3437" editor-y="0">
       <speak-char idTarget="JohnGold">
         <resources name="No name" />
-        <text>¿Cual es nuestro objetivo?</text>
+        <text>¿Cuál es nuestro objetivo?</text>
       </speak-char>
       <condition />
       <child nodeindex="14" />
@@ -1791,7 +1791,7 @@ puede que sea util para acceder al despacho</speak-player>
     <dialogue-node nodeindex="0" editor-x="50" editor-y="50">
       <speak-char idTarget="JohnGold">
         <resources name="No name" />
-        <text>Hmmm.. has conseguido descubrir todas las pistas del primer piso, tienes talento chaval.</text>
+        <text>Hmm... Has conseguido descubrir todas las pistas del primer piso, tienes talento chaval.</text>
       </speak-char>
       <condition />
       <speak-char idTarget="JohnGold">
@@ -1944,12 +1944,12 @@ puede que sea util para acceder al despacho</speak-player>
     <dialogue-node nodeindex="4" editor-x="1586" editor-y="160">
       <speak-char idTarget="JimSilver">
         <resources name="No name" />
-        <text>Volviendo al enigma, en el armario hay una caja fuerte con una pista dentro.</text>
+        <text>Volviendo al enigma, en el armario hay una caja fuerte con algo dentro.</text>
       </speak-char>
       <condition />
       <speak-char idTarget="JimSilver">
         <resources name="No name" />
-        <text>Puedes intentar abrirla si quieres pero ni siquiera yo he sido capaz de resolverlo.</text>
+        <text>Puedes intentar abrirla si quieres, pero ni siquiera yo he sido capaz de resolverlo.</text>
       </speak-char>
       <condition />
       <speak-char idTarget="JimSilver">
@@ -1984,7 +1984,7 @@ puede que sea util para acceder al despacho</speak-player>
       <condition />
       <speak-char idTarget="JimSilver">
         <resources name="No name" />
-        <text>Si quieres un consejo, creo que la clave está en encontrar el PATRON de la rotación.</text>
+        <text>Si quieres un consejo, creo que la clave está en encontrar el PATRÓN de la rotación.</text>
       </speak-char>
       <condition />
       <end-conversation />
@@ -1994,7 +1994,7 @@ puede que sea util para acceder al despacho</speak-player>
     <dialogue-node nodeindex="0" editor-x="50" editor-y="50">
       <speak-char idTarget="JimSilver">
         <resources name="No name" />
-        <text>#! ¡¿Cómo?! ¡Has conseguido resolver un desafío que para mi era imposible!</text>
+        <text>#! ¡¿Cómo?! ¡Has conseguido resolver un acertijo que para mi era imposible!</text>
       </speak-char>
       <condition />
       <speak-char idTarget="JimSilver">
@@ -2004,7 +2004,7 @@ puede que sea util para acceder al despacho</speak-player>
       <condition />
       <speak-char idTarget="JimSilver">
         <resources name="No name" />
-        <text>Dime, ¿qué ha pasado al completar el desafío?</text>
+        <text>Dime, ¿qué ha pasado al completar el acertijo?</text>
       </speak-char>
       <condition />
       <child nodeindex="1" />
@@ -2032,7 +2032,7 @@ puede que sea util para acceder al despacho</speak-player>
     <dialogue-node nodeindex="2" editor-x="1180" editor-y="0">
       <speak-char idTarget="JimSilver">
         <resources name="No name" />
-        <text>Interesante... puede que sea de utilidad, teniendo en cuenta que la mansión está llena de acertijos.</text>
+        <text>Interesante... Puede que sea de utilidad, teniendo en cuenta que la mansión está llena de acertijos.</text>
       </speak-char>
       <condition />
       <speak-char idTarget="JimSilver">
@@ -2050,7 +2050,7 @@ puede que sea util para acceder al despacho</speak-player>
     <dialogue-node nodeindex="3" editor-x="1164" editor-y="308">
       <speak-char idTarget="JimSilver">
         <resources name="No name" />
-        <text>Está bien, guárdate tus secretos... en realidad no me importa tanto.</text>
+        <text>Está bien, guárdate tus secretos... En realidad no me importa tanto.</text>
       </speak-char>
       <condition />
       <end-conversation>
@@ -2217,14 +2217,14 @@ puede que sea util para acceder al despacho</speak-player>
       </condition>
       <speak-char idTarget="ButtlerIrons">
         <resources name="No name" />
-        <text>Mmm... aún quedan pistas por resolver en este piso, me lo dice mi instinto.</text>
+        <text>Mmm... Aún quedan pistas por resolver en este piso, me lo dice mi instinto.</text>
       </speak-char>
       <condition>
         <inactive flag="puzzle1" />
       </condition>
       <speak-char idTarget="ButtlerIrons">
         <resources name="No name" />
-        <text>¡Sigue asi joven!</text>
+        <text>¡Sigue así joven!</text>
       </speak-char>
       <condition />
       <end-conversation />
@@ -2244,7 +2244,7 @@ puede que sea util para acceder al despacho</speak-player>
       <condition />
       <speak-char idTarget="JackCopper">
         <resources name="No name" />
-        <text>En ese armario hay una pista para acceder al despacho pero esta bloqueado por una contraseña de símbolos.</text>
+        <text>En ese armario hay una pista para acceder al despacho, pero está bloqueado por una contraseña de símbolos.</text>
       </speak-char>
       <condition />
       <speak-char idTarget="JackCopper">
@@ -2254,7 +2254,7 @@ puede que sea util para acceder al despacho</speak-player>
       <condition />
       <speak-char idTarget="JackCopper">
         <resources name="No name" />
-        <text>Puede que la pista este en otra habitación. Todavía no lo he comprobado</text>
+        <text>Puede que la pista esté en otra habitación. Todavía no lo he comprobado.</text>
       </speak-char>
       <condition />
       <speak-char idTarget="JackCopper">
@@ -2317,7 +2317,7 @@ puede que sea util para acceder al despacho</speak-player>
       <condition />
       <speak-char idTarget="JackCopper">
         <resources name="No name" />
-        <text>La verdad es... que a mí no me gusta ser detective, pero es la tradición familiar...</text>
+        <text>La verdad es que a mí no me gusta ser detective, pero es la tradición familiar...</text>
       </speak-char>
       <condition />
       <speak-char idTarget="JackCopper">
@@ -2339,7 +2339,7 @@ puede que sea util para acceder al despacho</speak-player>
       <condition />
       <speak-char idTarget="JackCopper">
         <resources name="No name" />
-        <text>Aunque Jonh se centre mucho en honrar a nuestros antepasados y Jim sea un poco creido,</text>
+        <text>Aunque Jonh se centre mucho en honrar a nuestros antepasados y Jim sea un poco creído,</text>
       </speak-char>
       <condition />
       <speak-char idTarget="JackCopper">
@@ -2366,7 +2366,7 @@ puede que sea util para acceder al despacho</speak-player>
     <dialogue-node nodeindex="5" editor-x="1374" editor-y="218">
       <speak-char idTarget="JackCopper">
         <resources name="No name" />
-        <text>Deberíamos seguir trabajando... no me gustaría enfadar a mis hermanos, la verdad.</text>
+        <text>Deberíamos seguir trabajando... No me gustaría enfadar a mis hermanos, la verdad.</text>
       </speak-char>
       <condition />
       <end-conversation />
@@ -2376,17 +2376,17 @@ puede que sea util para acceder al despacho</speak-player>
     <dialogue-node nodeindex="0" editor-x="50" editor-y="50">
       <speak-char idTarget="JackCopper">
         <resources name="No name" />
-        <text>#! ¡Ohhh!, has conseguido encontrar la pista que necesitábamos para resolver el puzzle.</text>
+        <text>#! ¡Ohhh! Has conseguido encontrar la pista que necesitábamos para resolver el puzle.</text>
       </speak-char>
       <condition />
       <speak-char idTarget="JackCopper">
         <resources name="No name" />
-        <text>Ahora resolver el cifrado deberia ser posible.</text>
+        <text>Ahora resolver el cifrado debería ser posible.</text>
       </speak-char>
       <condition />
       <speak-char idTarget="JackCopper">
         <resources name="No name" />
-        <text>Adelante, junior, inténtalo.</text>
+        <text>Adelante, junior. Inténtalo.</text>
       </speak-char>
       <condition />
       <end-conversation />
@@ -2406,7 +2406,7 @@ puede que sea util para acceder al despacho</speak-player>
       <condition />
       <speak-char idTarget="JackCopper">
         <resources name="No name" />
-        <text>Puede que deba replantearme mi profesion jeje...</text>
+        <text>Puede que deba replantearme mi profesión jeje...</text>
       </speak-char>
       <condition />
       <end-conversation />
@@ -2421,7 +2421,7 @@ puede que sea util para acceder al despacho</speak-player>
       <condition />
       <speak-player>
         <resources name="No name" />
-        <text>Así es. Vengo a resolver el misterio de la mansion ¿Me puedes decir quien eres tu?</text>
+        <text>Así es. Vengo a resolver el misterio de la mansión ¿Me puedes decir quién eres tú?</text>
       </speak-player>
       <condition>
         <inactive flag="ButtlerIronsConver1Done" />
@@ -2464,7 +2464,7 @@ puede que sea util para acceder al despacho</speak-player>
       <condition />
       <child nodeindex="3" />
       <speak-player>
-        <text>¿Has visto algo misterioso por aqui?</text>
+        <text>¿Has visto algo misterioso por aquí?</text>
         <resources name="No name" />
       </speak-player>
       <condition />
@@ -2512,7 +2512,7 @@ puede que sea util para acceder al despacho</speak-player>
       <condition />
       <speak-char idTarget="LadyAdaMantine">
         <resources name="No name" />
-        <text>Fue por ese motivo que nos distanciamos. No le volvi a ver hasta el momento en el que heredó la mansión y quiso invitar a todos sus conocidos.</text>
+        <text>Fue por ese motivo que nos distanciamos. No le volví a ver hasta el momento en el que heredó la mansión y quiso invitar a todos sus conocidos.</text>
       </speak-char>
       <condition />
       <speak-char idTarget="LadyAdaMantine">
@@ -2590,7 +2590,7 @@ puede que sea util para acceder al despacho</speak-player>
       <condition />
       <speak-char idTarget="TinMan">
         <resources name="No name" />
-        <text>El maestro pretendía mejorar sus habilidades resolviendo problemas, hasta el punto de superar a las maquinas.</text>
+        <text>El maestro pretendía mejorar sus habilidades resolviendo problemas, hasta el punto de superar a las máquinas.</text>
       </speak-char>
       <condition />
       <speak-char idTarget="TinMan">
@@ -2600,7 +2600,7 @@ puede que sea util para acceder al despacho</speak-player>
       <condition />
       <speak-char idTarget="TinMan">
         <resources name="No name" />
-        <text>Pero en uno de los ensayos... el último puzle era demasiado complicado... y me quedé encerrado en esta habitación.</text>
+        <text>Pero en uno de los ensayos... El último puzle era demasiado complicado... Me quedé encerrado en esta habitación.</text>
       </speak-char>
       <condition />
       <speak-char idTarget="TinMan">
@@ -2610,12 +2610,12 @@ puede que sea util para acceder al despacho</speak-player>
       <condition />
       <speak-char idTarget="TinMan">
         <resources name="No name" />
-        <text>Pero.. si tú has conseguido solucionar el acertijo del maestro... eso quiere decir que... ¡su investigacion fue un completo éxito!</text>
+        <text>Pero..., si tú has conseguido solucionar el acertijo del maestro..., eso quiere decir que..., ¡su investigacion fue un completo éxito!</text>
       </speak-char>
       <condition />
       <speak-char idTarget="TinMan">
         <resources name="No name" />
-        <text>Has logrado resolver el puzzle que ni siquiera yo pude. Enhorabuena</text>
+        <text>Has logrado resolver el puzle que ni siquiera yo pude. Enhorabuena.</text>
       </speak-char>
       <condition />
       <speak-player>
@@ -2625,7 +2625,7 @@ puede que sea util para acceder al despacho</speak-player>
       <condition />
       <speak-player>
         <resources name="No name" />
-        <text>Huh.. Quien lo hubiese pensado.</text>
+        <text>Huh... Quién lo hubiese pensado.</text>
       </speak-player>
       <condition />
       <end-conversation />
@@ -2640,12 +2640,12 @@ puede que sea util para acceder al despacho</speak-player>
       <condition />
       <speak-char idTarget="JimSilver">
         <resources name="No name" />
-        <text>Eso parece... este detective junior no se anda con tonterías</text>
+        <text>Eso parece... Este detective junior no se anda con tonterías.</text>
       </speak-char>
       <condition />
       <speak-char idTarget="JackCopper">
         <resources name="No name" />
-        <text>La verdad es que no nos deja en muy buena posición... pero me alegro de que los puzles hayan sido resueltos.</text>
+        <text>La verdad es que no nos deja en muy buena posición, pero me alegro de que los puzles hayan sido resueltos.</text>
       </speak-char>
       <condition />
       <child nodeindex="1" />
@@ -2673,7 +2673,7 @@ puede que sea util para acceder al despacho</speak-player>
     <dialogue-node nodeindex="2" editor-x="1304" editor-y="34">
       <speak-char idTarget="JackCopper">
         <resources name="No name" />
-        <text>Yo... tengo que confesaros algo... creo que voy a dejar de ser detective.</text>
+        <text>Yo... tengo que confesaros algo... Creo que voy a dejar de ser detective.</text>
       </speak-char>
       <condition />
       <speak-char idTarget="JohnGold">
@@ -2693,7 +2693,7 @@ puede que sea util para acceder al despacho</speak-player>
       <condition />
       <speak-char idTarget="JohnGold">
         <resources name="No name" />
-        <text>Mmm... supongo que tienes razón. El junior me ha hecho ver que la tradición no es tan importante como yo creía. Siento haber sido tan duro con vosotros...</text>
+        <text>Mmm... Supongo que tienes razón. El junior me ha hecho ver que la tradición no es tan importante como yo creía. Siento haber sido tan duro con vosotros...</text>
       </speak-char>
       <condition />
       <speak-char idTarget="JimSilver">
@@ -2708,17 +2708,17 @@ puede que sea util para acceder al despacho</speak-player>
       <condition />
       <speak-char idTarget="JohnGold">
         <resources name="No name" />
-        <text>Bueno, bueno... después de esta reflexión, ha llegado la hora de... ¡terminar con el misterio de la mansión Fernández Manjón!</text>
+        <text>Bueno, bueno... Después de esta reflexión, ha llegado la hora de... ¡Terminar con el misterio de la mansión Fernández Manjón!</text>
       </speak-char>
       <condition />
       <speak-char idTarget="JimSilver">
         <resources name="No name" />
-        <text>Adelante junior, el ultimo puzzle te espera.</text>
+        <text>Adelante junior, el último puzle te espera.</text>
       </speak-char>
       <condition />
       <speak-char idTarget="JackCopper">
         <resources name="No name" />
-        <text>Buena suerte, aunque no la necesitas</text>
+        <text>Buena suerte, aunque no la necesitas.</text>
       </speak-char>
       <condition />
       <end-conversation />
@@ -2757,15 +2757,15 @@ puede que sea util para acceder al despacho</speak-player>
 .                                   queriendo llevar a cabo.<title>.                   Día 31/12/1916</title>.                                    Hoy es el último día del año. He pasado unas buenas navidades con mi familia,
 .                                    pero aún tengo que trabajar mucho. Llevo más de un año con este proyecto y
 .                                   tengo que terminarlo como sea.<title>.                   Día 6/1/1917</title>.                                    ¡Al fin! Los reyes me han traido el circuito que necesitaba para montar el puzle
-.                                    de los algoritmos. Estoy muy contento con cómo están yendo las cosas<title>.                   Día 28/7/1918</title>.                                    He acabado el diseño del puzzle final,
+.                                    de los algoritmos. Estoy muy contento con cómo están yendo las cosas<title>.                   Día 28/7/1918</title>.                                    He acabado el diseño del puzle final,
 .                                    el último paso es construir al sujeto de pruebas para aumentar la dificultad.
-.                                    Si el experimento funciona, sere capaz de mejorar las capacidades de cualquier persona.
-.                                    Espero que todo salga segun lo planeado<title>.                   Día 13/9/1919</title>.                                    El hombre de hojalata está casi acabado, debreía introducir una forma de resolver los puzles
+.                                    Si el experimento funciona, seré capaz de mejorar las capacidades de cualquier persona.
+.                                    Espero que todo salga según lo planeado.<title>.                   Día 13/9/1919</title>.                                    El hombre de hojalata está casi acabado, debería introducir una forma de resolver los puzles
 .                                    en caso de que algo salga mal, pero no me queda tiempo,
-.                                    ademas las posibilidades de que haya cometido algun fallo son infimas. Todo saldrá bien.<title>.                   Día 24/11/1920</title>.                                   Hoy he terminado por fin de construir a mi "Hombre de hojalata". 
+.                                    además las posibilidades de que haya cometido algun fallo son ínfimas. Todo saldrá bien.<title>.                   Día 24/11/1920</title>.                                   Hoy he terminado por fin de construir a mi "Hombre de hojalata". 
 .                                   Ha sido duro, pero al final todo da sus frutos, ¿no?
 .                                   Por suerte todos los acertijos ya están colocados y conectados.
-.                                  Para celebrarlo, he ido a hacerme una fotografía. Dejaré una copia en este diario.<img src="assets/image/balta.jpg" /></text>
+.                                   Para celebrarlo, he ido a hacerme una fotografía. Dejaré una copia en este diario.<img src="assets/image/balta.jpg" /></text>
   </book>
   <videoscene canSkip="no" id="InitialCutscene" start="yes" idTarget="Outside" destinyX="-2147483648" destinyY="2147483647" transitionTime="1000" transitionType="5" next="new-scene" class="accesible" type="cutscene">
     <documentation>
