@@ -130,6 +130,7 @@ public class Puzzle3 : MonoBehaviour
         if (Solved())
         {
             finishParticles.Play();
+            finished = true;
 
             // estrella de pasos minimos
             if (nPasos > nPasosMinimos + 3)

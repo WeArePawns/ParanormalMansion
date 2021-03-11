@@ -383,7 +383,7 @@
       </talk-to>
     </actions>
   </character>
-  <scene id="Outside" hideInventory="no" start="yes" playerLayer="-1" playerScale="1" class="accesible" type="area">
+  <scene id="Outside" hideInventory="no" start="no" playerLayer="-1" playerScale="1" class="accesible" type="area">
     <documentation>
     </documentation>
     <resources name="MainScene">
@@ -395,9 +395,6 @@
     <default-initial-position x="400" y="450" />
     <exits>
       <exit rectangular="yes" x="786" y="431" width="348" height="150" hasInfluenceArea="no" idTarget="Door" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="1000" not-effects="no">
-        <exit-look text="" cursor-path="" sound-path="" />
-      </exit>
-      <exit rectangular="yes" x="814" y="188" width="100" height="100" hasInfluenceArea="no" idTarget="Minijuego3" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="0" transitionTime="0" not-effects="no">
         <exit-look text="" cursor-path="" sound-path="" />
       </exit>
     </exits>
@@ -2770,7 +2767,7 @@ puede que sea util para acceder al despacho</speak-player>
 .                                   Por suerte todos los acertijos ya están colocados y conectados.
 .                                  Para celebrarlo, he ido a hacerme una fotografía. Dejaré una copia en este diario.<img src="assets/image/balta.jpg" /></text>
   </book>
-  <videoscene canSkip="no" id="InitialCutscene" start="no" idTarget="Outside" destinyX="-2147483648" destinyY="2147483647" transitionTime="1000" transitionType="5" next="new-scene" class="accesible" type="cutscene">
+  <videoscene canSkip="no" id="InitialCutscene" start="yes" idTarget="Outside" destinyX="-2147483648" destinyY="2147483647" transitionTime="1000" transitionType="5" next="new-scene" class="accesible" type="cutscene">
     <documentation>
     </documentation>
     <effect>
