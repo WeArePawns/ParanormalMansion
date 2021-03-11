@@ -24,7 +24,6 @@ public class Puzzle1 : MonoBehaviour
 
     Text[] hints;
     int[] leverTurns;
-    int lastHint = 0;
 
     float fixedAngle = 45.0f;
 
@@ -39,6 +38,10 @@ public class Puzzle1 : MonoBehaviour
     private int nPasos;
     private int nPasosMinimos;
 
+    private int usedHints = 0;
+    private Color[] colors = { Color.red, Color.green, Color.blue, Color.grey };
+    private List<Lever> levers;
+
     private void Start()
     {
         difficulty = (Difficulty)uAdventure.Runner.Game.Instance.GameState.GetVariable("PUZZLE_1_DIFICULTY");
@@ -47,6 +50,7 @@ public class Puzzle1 : MonoBehaviour
         discs = new GameObject[nDiscs];
         hints = new Text[nDiscs];
         leverTurns = new int[nDiscs];
+        levers = new List<Lever>();
         initPuzzle();
 
         while (checkIfSuccess())
@@ -68,7 +72,7 @@ public class Puzzle1 : MonoBehaviour
             }
         }
         AssetPackage.TrackerAsset.Instance.setVar("initial_state_", getState());
-        AssetPackage.TrackerAsset.Instance.Completable.Initialized("anillas_locas_" + (int)(difficulty+1), CompletableTracker.Completable.Level); ;
+        AssetPackage.TrackerAsset.Instance.Completable.Initialized("anillas_locas_" + (int)(difficulty + 1), CompletableTracker.Completable.Level); ;
     }
 
     private void addTurnToHint(int i, int dir)
@@ -94,16 +98,22 @@ public class Puzzle1 : MonoBehaviour
             discs[i] = Instantiate(discPrefab, discContainer.transform);
             discs[i].transform.localScale = discs[i].transform.localScale + new Vector3(0.5f * i, 0.5f * i, 0);
             discs[i].transform.position = discs[i].transform.position + new Vector3(0, 0, i);
-            discs[i].transform.GetChild(i).gameObject.SetActive(true);
+
+            discs[i].transform.GetChild(0).gameObject.SetActive(true);
+            discs[i].transform.GetChild(0).GetComponent<MeshRenderer>().material.color = colors[i];
 
             //Palancas
             int index = i;
             GameObject leverUp = Instantiate(leverPrefab, UpLeverContainer.transform);
             leverUp.GetComponent<Button>().onClick.AddListener(() => triggerLever(index, 1));
+            levers.Add(leverUp.GetComponent<Lever>());
+            levers[levers.Count - 1].SetLever(colors[i], colors[(i + 1) % nDiscs], 1);
 
             GameObject leverDown = Instantiate(leverPrefab, DownLeverContainer.transform);
             leverDown.GetComponent<Button>().onClick.AddListener(() => triggerLever(index, -1));
             leverDown.transform.GetChild(0).Rotate(new Vector3(0, 180, 0), Space.Self);
+            levers.Add(leverDown.GetComponent<Lever>());
+            levers[levers.Count - 1].SetLever(colors[i], colors[(i + 1) % nDiscs], -1);
 
             //Pistas
             hints[i] = Instantiate(hintPrefab, hintContainer.transform).GetComponent<Text>();
@@ -141,15 +151,24 @@ public class Puzzle1 : MonoBehaviour
 
     public void showHint()
     {
-        if (lastHint >= hints.Length - 1) return;
+        if (usedHints >= 3) return;
 
         starsController.deactivateNoPistasStar();
 
-        hints[lastHint].gameObject.SetActive(true);
-        lastHint++;
+        if (usedHints == 0)
+            foreach (Lever l in levers)
+                l.ActivateLabels();
+        else if (usedHints == 1)
+            foreach (Lever l in levers)
+                l.ActivateTexts();
+        else
+            for (int i = 0; i < hints.Length - 1; i++)
+                hints[i].gameObject.SetActive(true);
+
+        usedHints++;
         AssetPackage.TrackerAsset.Instance.GameObject.Used("hint_button", GameObjectTracker.TrackedGameObject.GameObject);
 
-        if (lastHint >= hints.Length - 1) hintButton.interactable = false;
+        if (usedHints >= 3) hintButton.interactable = false;
     }
 
     private void RotateLever(int discIndex, int direction)
@@ -167,7 +186,7 @@ public class Puzzle1 : MonoBehaviour
         for (int i = 0; i < discs.Length; i++)
         {
             int rot = (int)discs[i].transform.eulerAngles.z;
-            state += "\ndisc_" + (i + 1).ToString() + "_"+ rot.ToString() + "º_anti-clockwise";
+            state += "\ndisc_" + (i + 1).ToString() + "_" + rot.ToString() + "º_anti-clockwise";
         }
 
         return state;
@@ -206,11 +225,8 @@ public class Puzzle1 : MonoBehaviour
     {
         finished = true;
 
-        //AudioManager.instance.Play("Success");
-
         finishParticles.Play();
         print("FINISH");
-        //Invoke("changeScene", 3.0f);
 
         // estrella de pasos minimos
         if (nPasos > nPasosMinimos + 10)

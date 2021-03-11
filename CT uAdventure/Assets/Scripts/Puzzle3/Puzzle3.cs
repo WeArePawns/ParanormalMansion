@@ -11,7 +11,8 @@ public class Puzzle3 : MonoBehaviour
 
     public ParticleSystem finishParticles;
 
-    public Text hintText;
+    public Text bestSolution;
+    public Text currentMoves;
 
     GridBox[,] grid;
     GridBox pointedBox;
@@ -22,7 +23,7 @@ public class Puzzle3 : MonoBehaviour
     int[] gridS = { 3, 4, 3 };
     int[] solClicks = { 5, 7, 5 };
     int[] maxValues = { 2, 2, 3 };
-    int[] clicksToHint = { 4, 7, 4 };
+    int[] clicksToHint = { 4, 7, 7 };
     int clicks;
 
     //Each sol is a sizeXsize grid
@@ -39,6 +40,7 @@ public class Puzzle3 : MonoBehaviour
 
     private int nHintsClicks = 0;
     private bool addIndicators = false;
+    private int nMoves = 0;
 
     void Start()
     {
@@ -61,6 +63,8 @@ public class Puzzle3 : MonoBehaviour
         if (pointedBox != null && Input.GetMouseButtonDown(0))
         {
             nPasos++;
+            nMoves++;
+            currentMoves.text = "Actual: " + nMoves.ToString();
 
             Vector2Int index = pointedBox.GetIndex();
             bool correct = ClickBox(pointedBox);
@@ -73,10 +77,6 @@ public class Puzzle3 : MonoBehaviour
             //Cuando se soluciona el puzzle
             CheckSolved();
         }
-
-        if (hintText.enabled && hintText.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("appear")
-            && hintText.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
-            hintText.gameObject.SetActive(false);
 
         CheckMouse();
     }
@@ -116,11 +116,12 @@ public class Puzzle3 : MonoBehaviour
         //Cuando se soluciona el puzzle
         CheckSolved();
 
-        hintText.gameObject.SetActive(true);
-        hintText.GetComponent<Animator>().Play("appear");
-
         AssetPackage.TrackerAsset.Instance.setVar("state", GetState());
         AssetPackage.TrackerAsset.Instance.GameObject.Used("hint_button", GameObjectTracker.TrackedGameObject.GameObject);
+
+        nMoves = 0;
+        bestSolution.text = "Movimientos mínimos: " + boxesClicked.Count.ToString();
+        currentMoves.text = "Actual: " + nMoves.ToString();
 
         hintButton.interactable = false;
     }
@@ -133,7 +134,7 @@ public class Puzzle3 : MonoBehaviour
             finished = true;
 
             // estrella de pasos minimos
-            if (nPasos > nPasosMinimos + 3)
+            if (nPasos > 2 * nPasosMinimos)
                 starsController.deactivateMinimoStar();
 
             starsController.gameObject.SetActive(true);
@@ -199,6 +200,9 @@ public class Puzzle3 : MonoBehaviour
         AssetPackage.TrackerAsset.Instance.setVar("initial_state_", GetState());
         AssetPackage.TrackerAsset.Instance.Completable.Initialized("electricista_" + (int)(difficulty + 1), CompletableTracker.Completable.Level);
 
+        bestSolution.text = "Movimientos mínimos: " + boxesClicked.Count.ToString();
+        currentMoves.text = "Actual: " + nMoves.ToString();
+
         if (boxesClicked.Count <= 3) hintButton.interactable = false;
     }
 
@@ -231,6 +235,10 @@ public class Puzzle3 : MonoBehaviour
         if (addIndicators)
             foreach (GridBox box in boxesClicked)
                 box.AddIndicator();
+
+        nMoves = 0;
+        bestSolution.text = "Movimientos mínimos: " + boxesClicked.Count.ToString();
+        currentMoves.text = "Actual: " + nMoves.ToString();
 
         hintButton.interactable = boxesClicked.Count > 3;
     }
