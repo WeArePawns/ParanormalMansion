@@ -11,65 +11,102 @@ public class GridBox : MonoBehaviour
 
     public Color turnedOffColor = Color.black;
     public Color turnedOnColor = Color.yellow;
+    public GameObject indicator;
+
+    int indicatorsActive = 0;
 
     Gradient gradient;
     GradientColorKey[] colorKey;
     GradientAlphaKey[] alphaKey;
 
-
     public void Start()
     {
         value = 0;
-        initColors();
-        GetComponent<MeshRenderer>().material.color = gradient.Evaluate(value / (float)(maxValue-1));
+        InitColors();
+        GetComponent<MeshRenderer>().material.color = gradient.Evaluate(value / (float)(maxValue - 1));
     }
 
-    public void addConection(GridBox box)
+    public void AddConection(GridBox box)
     {
         if (adjacent.Count >= 4) return;
         adjacent.Add(box);
     }
 
-    public void setMaxValue(int mValue)
+    public void SetMaxValue(int mValue)
     {
         if (mValue < 2) return;
         maxValue = mValue;
     }
 
-    public int getValue()
+    public int GetValue()
     {
         return value;
     }
 
-    public void boxClicked()
+    public void BoxClicked()
     {
-        checkBox();
+        CheckBox();
         if (adjacent.Count >= 0)
             foreach (GridBox box in adjacent)
-                box.checkBox();
+                box.CheckBox();
     }
 
-    public void checkBox()
+    public void AddIndicator()
+    {
+        indicatorsActive++;
+        GameObject ind = (transform.childCount < indicatorsActive) ? Instantiate(indicator, transform) : transform.GetChild(indicatorsActive - 1).gameObject;
+        ind.SetActive(true);
+        ind.transform.localPosition = new Vector3(0, (transform.localScale.y / 2.0f - ind.transform.localScale.y / 2.0f), -1);
+        SortIndicators();
+    }
+
+    public void RemoveAllIndicators()
+    {
+        indicatorsActive = 0;
+        for (int i = 0; i < transform.childCount; i++)
+            transform.GetChild(i).gameObject.SetActive(false);
+    }
+
+    public void RemoveIndicator()
+    {
+        if (indicatorsActive <= 0) return;
+        indicatorsActive--;
+        SortIndicators();
+    }
+
+    public void SortIndicators()
+    {
+        float indSize = 0.2f;
+        float initialX = -(indicatorsActive / 2.0f) * (indSize / 2);
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            GameObject ind = transform.GetChild(i).gameObject;
+            ind.transform.localPosition = new Vector3(initialX + (i * indSize), ind.transform.localPosition.y, ind.transform.localPosition.z);
+            ind.SetActive(i < indicatorsActive);
+        }
+    }
+
+    public void CheckBox()
     {
         value = (value + 1) % maxValue;
-        GetComponent<MeshRenderer>().material.color = gradient.Evaluate(value / (float)(maxValue-1));
+        GetComponent<MeshRenderer>().material.color = gradient.Evaluate(value / (float)(maxValue - 1));
     }
 
-    public bool isChecked()
+    public bool IsChecked()
     {
         return value > 0;
     }
 
-    public void setIndex(Vector2Int ind)
+    public void SetIndex(Vector2Int ind)
     {
         index = ind;
     }
 
-    public Vector2Int getIndex()
+    public Vector2Int GetIndex()
     {
         return index;
     }
-    void initColors()
+    void InitColors()
     {
         gradient = new Gradient();
 

@@ -11,6 +11,8 @@ public class Puzzle3 : MonoBehaviour
 
     public ParticleSystem finishParticles;
 
+    public Text hintText;
+
     GridBox[,] grid;
     GridBox pointedBox;
     List<GridBox> boxesClicked = new List<GridBox>(), solBoxes;
@@ -18,9 +20,9 @@ public class Puzzle3 : MonoBehaviour
     int[,] initialState;
 
     int[] gridS = { 3, 4, 3 };
-    int[] solClicks = { 5, 7, 7 };
+    int[] solClicks = { 5, 7, 5 };
     int[] maxValues = { 2, 2, 3 };
-    int[] clicksToHint = { 7, 10, 14 };
+    int[] clicksToHint = { 4, 7, 4 };
     int clicks;
 
     //Each sol is a sizeXsize grid
@@ -35,6 +37,9 @@ public class Puzzle3 : MonoBehaviour
     private int nPasosMinimos;
     private bool finished = false;
 
+    private int nHintsClicks = 0;
+    private bool addIndicators = false;
+
     void Start()
     {
         difficulty = (Difficulty)uAdventure.Runner.Game.Instance.GameState.GetVariable("PUZZLE_3_DIFICULTY");
@@ -44,9 +49,9 @@ public class Puzzle3 : MonoBehaviour
         clicks = solClicks[(int)difficulty];
         maxValue = maxValues[(int)difficulty];
 
-        createGrid();
+        CreateGrid();
 
-        Invoke("createSol", 0.1f);
+        Invoke("CreateSol", 0.1f);
     }
 
     void Update()
@@ -57,8 +62,8 @@ public class Puzzle3 : MonoBehaviour
         {
             nPasos++;
 
-            Vector2Int index = pointedBox.getIndex();
-            bool correct = clickBox(pointedBox);
+            Vector2Int index = pointedBox.GetIndex();
+            bool correct = ClickBox(pointedBox);
 
             AssetPackage.TrackerAsset.Instance.setVar("is_correct", correct);
             AssetPackage.TrackerAsset.Instance.GameObject.Used("grid_box_" + index.x.ToString() + "_" + index.y.ToString() + "_checked", GameObjectTracker.TrackedGameObject.GameObject);
@@ -66,52 +71,63 @@ public class Puzzle3 : MonoBehaviour
             if (boxesClicked.Count > clicksToHint[(int)difficulty]) hintButton.interactable = true;
 
             //Cuando se soluciona el puzzle
-            if (solved())
-            {
-                finishParticles.Play();
-
-                finished = true;
-
-                // estrella de pasos minimos
-                if (nPasos > nPasosMinimos + 10)
-                    starsController.deactivateMinimoStar();
-
-                starsController.gameObject.SetActive(true);
-
-                int nStars = uAdventure.Runner.Game.Instance.GameState.GetVariable("N_STARS");
-                uAdventure.Runner.Game.Instance.GameState.SetVariable("N_STARS", nStars + starsController.getStars());
-            }
+            CheckSolved();
         }
 
-        checkMouse();
+        if (hintText.enabled && hintText.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("appear")
+            && hintText.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+            hintText.gameObject.SetActive(false);
+
+        CheckMouse();
     }
 
-    private bool clickBox(GridBox boxToClick)
+    private bool ClickBox(GridBox boxToClick)
     {
-        boxToClick.boxClicked();
+        boxToClick.BoxClicked();
         bool correct = boxesClicked.FindAll(box => box == boxToClick).Count > 0;
         if (correct)//Si esta se elimina una vez
+        {
             boxesClicked.Remove(boxToClick);
+            if (addIndicators) boxToClick.RemoveIndicator();
+        }
         else//Si no esta se añade el numero de veces que clickar para volver al estado original
             for (int l = 1; l < maxValue; l++)
+            {
                 boxesClicked.Add(boxToClick);
+                if (addIndicators) boxToClick.AddIndicator();
+            }
         return correct;
     }
 
-    public void useHint()
+    public void UseHint()
     {
         if (boxesClicked.Count <= 3) return;
 
         starsController.deactivateNoPistasStar();
 
         while (boxesClicked.Count > 3)
-        {
-            boxesClicked[boxesClicked.Count-1].boxClicked();
-            boxesClicked.RemoveAt(boxesClicked.Count - 1);
-        }
+            ClickBox(boxesClicked[boxesClicked.Count - 1]);
+
+        addIndicators = ++nHintsClicks >= 3;
+        if (nHintsClicks == 3)
+            foreach (GridBox box in boxesClicked)
+                box.AddIndicator();
 
         //Cuando se soluciona el puzzle
-        if (solved())
+        CheckSolved();
+
+        hintText.gameObject.SetActive(true);
+        hintText.GetComponent<Animator>().Play("appear");
+
+        AssetPackage.TrackerAsset.Instance.setVar("state", GetState());
+        AssetPackage.TrackerAsset.Instance.GameObject.Used("hint_button", GameObjectTracker.TrackedGameObject.GameObject);
+
+        hintButton.interactable = false;
+    }
+
+    void CheckSolved()
+    {
+        if (Solved())
         {
             finishParticles.Play();
 
@@ -124,14 +140,10 @@ public class Puzzle3 : MonoBehaviour
             int nStars = uAdventure.Runner.Game.Instance.GameState.GetVariable("N_STARS");
             uAdventure.Runner.Game.Instance.GameState.SetVariable("N_STARS", nStars + starsController.getStars());
         }
-        AssetPackage.TrackerAsset.Instance.setVar("state", getState());
-        AssetPackage.TrackerAsset.Instance.GameObject.Used("hint_button", GameObjectTracker.TrackedGameObject.GameObject);
-
-        hintButton.interactable = false;
     }
 
 
-    void checkMouse()
+    void CheckMouse()
     {
         if (finished) return;
 
@@ -150,13 +162,13 @@ public class Puzzle3 : MonoBehaviour
         pointedBox = null;
     }
 
-    void createSol()
+    void CreateSol()
     {
         for (int k = 0; k < clicks; k++)
         {
             int i = Random.Range(0, rows);
             int j = Random.Range(0, columns);
-            clickBox(grid[i, j]);
+            ClickBox(grid[i, j]);
         }
         solBoxes = new List<GridBox>(boxesClicked);
 
@@ -169,9 +181,9 @@ public class Puzzle3 : MonoBehaviour
         {
             for (int j = 0; j < columns; j++)
             {
-                initialState[i, j] = grid[i, j].getValue();
+                initialState[i, j] = grid[i, j].GetValue();
                 sol[i, j] = false;
-                sum += grid[i, j].isChecked() ? 1 : 0;
+                sum += grid[i, j].IsChecked() ? 1 : 0;
             }
         }
 
@@ -180,45 +192,49 @@ public class Puzzle3 : MonoBehaviour
         {
             nPasosMinimos = 2;
 
-            clickBox(grid[0, 0]);
+            ClickBox(grid[0, 0]);
             initialState[0, 0] = 1;
         }
-        AssetPackage.TrackerAsset.Instance.setVar("initial_state_", getState());
+        AssetPackage.TrackerAsset.Instance.setVar("initial_state_", GetState());
         AssetPackage.TrackerAsset.Instance.Completable.Initialized("electricista_" + (int)(difficulty + 1), CompletableTracker.Completable.Level);
-        //AssetPackage.TrackerAsset.Instance.setSuccess(false);
-        //AssetPackage.TrackerAsset.Instance.Completable.Progressed("Electricista_" + (int)difficulty , CompletableTracker.Completable.Level);
 
+        if (boxesClicked.Count <= 3) hintButton.interactable = false;
     }
 
-    public string getState()
+    public string GetState()
     {
         string state = "cells_active -> |Value(X Y)|: ";
         for (int i = 0; i < rows; i++)
             for (int j = 0; j < columns; j++)
-                if (grid[i, j].isChecked())
-                    state += "|" + grid[i, j].getValue() + "(" + j.ToString() + " " + i.ToString() + ")| ";
+                if (grid[i, j].IsChecked())
+                    state += "|" + grid[i, j].GetValue() + "(" + j.ToString() + " " + i.ToString() + ")| ";
 
         return state;
     }
 
-    public void reset()
+    public void Reset()
     {
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
             {
-                while (initialState[i, j] != grid[i, j].getValue())
-                    grid[i, j].checkBox();
+                if (addIndicators) grid[i, j].RemoveAllIndicators();
+                while (initialState[i, j] != grid[i, j].GetValue())
+                    grid[i, j].CheckBox();
             }
         }
 
         boxesClicked = new List<GridBox>(solBoxes);
         AssetPackage.TrackerAsset.Instance.GameObject.Used("reset_button", GameObjectTracker.TrackedGameObject.GameObject);
 
-        hintButton.interactable = true;
+        if (addIndicators)
+            foreach (GridBox box in boxesClicked)
+                box.AddIndicator();
+
+        hintButton.interactable = boxesClicked.Count > 3;
     }
 
-    public void createGrid()
+    public void CreateGrid()
     {
         grid = new GridBox[rows, columns];
         Vector2 gridSize = new Vector2((gridBoxPrefab.transform.localScale.x + gridOffset.x) * columns, (gridBoxPrefab.transform.localScale.y + gridOffset.y) * rows);
@@ -229,16 +245,16 @@ public class Puzzle3 : MonoBehaviour
                 Vector3 offset = new Vector3((gridBoxPrefab.transform.localScale.x + gridOffset.x) * j, -(gridBoxPrefab.transform.localScale.y + gridOffset.y) * i, 0);
                 GameObject aux = Instantiate(gridBoxPrefab, transform.position + offset, Quaternion.identity, transform);
                 grid[i, j] = aux.GetComponent<GridBox>();
-                grid[i, j].setIndex(new Vector2Int(j, i));
-                grid[i, j].setMaxValue(maxValue);
+                grid[i, j].SetIndex(new Vector2Int(j, i));
+                grid[i, j].SetMaxValue(maxValue);
             }
         }
 
-        createConnections();
-        fitGrid(gridSize);
+        CreateConnections();
+        FitGrid(gridSize);
     }
 
-    public void createConnections()
+    public void CreateConnections()
     {
         Vector2Int[] indexes = new Vector2Int[] { Vector2Int.up, Vector2Int.right };
 
@@ -252,15 +268,15 @@ public class Puzzle3 : MonoBehaviour
                     Vector2Int newPos = index + pos;
                     if (newPos.x < rows && newPos.y < columns)
                     {
-                        grid[i, j].addConection(grid[newPos.x, newPos.y]);
-                        grid[newPos.x, newPos.y].addConection(grid[i, j]);
+                        grid[i, j].AddConection(grid[newPos.x, newPos.y]);
+                        grid[newPos.x, newPos.y].AddConection(grid[i, j]);
                     }
                 }
             }
         }
     }
 
-    public void fitGrid(Vector2 gridSize)
+    public void FitGrid(Vector2 gridSize)
     {
         float height = Camera.main.orthographicSize * 2.0f;
         float width = height * Screen.width / Screen.height;
@@ -273,7 +289,7 @@ public class Puzzle3 : MonoBehaviour
         transform.position = new Vector3(-width / 2 + (gridBoxPrefab.transform.localScale.x / 2 + 0.2f) * ratio, height / 2 - (gridBoxPrefab.transform.localScale.y / 2 + 0.2f) * ratio, 0);
     }
 
-    public bool solved()
+    public bool Solved()
     {
         if (sol.Length == 0) return false;
 
@@ -284,7 +300,7 @@ public class Puzzle3 : MonoBehaviour
             int j = 0;
             while (solved && j < columns)
             {
-                solved = grid[i, j].isChecked() == sol[i, j];
+                solved = grid[i, j].IsChecked() == sol[i, j];
                 j++;
             }
             i++;
@@ -293,7 +309,7 @@ public class Puzzle3 : MonoBehaviour
         return solved;
     }
 
-    public void changeScene()
+    public void ChangeScene()
     {
         AssetPackage.TrackerAsset.Instance.setScore(starsController.getStars());
         AssetPackage.TrackerAsset.Instance.Completable.Completed("electricista_" + (int)(difficulty + 1), CompletableTracker.Completable.Level);

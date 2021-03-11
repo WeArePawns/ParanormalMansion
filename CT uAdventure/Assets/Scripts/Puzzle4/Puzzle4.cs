@@ -47,6 +47,8 @@ public class Puzzle4 : MonoBehaviour
     private int nPasos;
     private int nPasosMinimos = 2;
 
+    private double hintReveal = 0.5;
+
     private void Start()
     {
         difficulty = (Difficulty)uAdventure.Runner.Game.Instance.GameState.GetVariable("PUZZLE_4_DIFICULTY");
@@ -100,21 +102,23 @@ public class Puzzle4 : MonoBehaviour
         fillOrder();
     }
 
+    //Revela el hintReveal% de la sequencia 1 solo uso
     public void useHint()
     {
-        if (hintsOrder.Count <= 2) return;
+        if (hintsOrder.Count <= numSequence * hintReveal) return;
+
+        while (hintsOrder.Count > numSequence * hintReveal)
+        {
+            GameObject go = Instantiate(formaPrefab, hintsContainer.transform);
+            if (irregular) useAlternativeSprites(go);
+            int index = hintsOrder.Pop() - 1;
+            go.transform.GetChild(index).GetComponent<Image>().color = shapesColors[index];
+            go.transform.GetChild(index).gameObject.SetActive(true);
+        }
 
         starsController.deactivateNoPistasStar();
-
-        GameObject go = Instantiate(formaPrefab, hintsContainer.transform);
-        if (irregular) useAlternativeSprites(go);
-        int index = hintsOrder.Pop() - 1;
-        go.transform.GetChild(index).GetComponent<Image>().color = shapesColors[index];
-        go.transform.GetChild(index).gameObject.SetActive(true);
-
         AssetPackage.TrackerAsset.Instance.GameObject.Used("hint_button", GameObjectTracker.TrackedGameObject.GameObject);
-
-        if (hintsOrder.Count <= 2) hintButton.interactable = false;
+        hintButton.interactable = false;
     }
 
     private void useAlternativeSprites(GameObject forma)
@@ -135,10 +139,7 @@ public class Puzzle4 : MonoBehaviour
 
     private bool checkIfSuccess()
     {
-        if (order.Count == 0)
-            return true;
-
-        return false;
+        return order.Count == 0;
     }
 
     public void PressButton(int i)
