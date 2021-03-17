@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<eAdventure version="2">
+<eAdventure version="3">
   <player>
     <resources name="No name">
       <asset type="standup" uri="assets/special/EmptyAnimation" />
@@ -68,7 +68,7 @@
           <inactive flag="JohnGoldConver1Done" />
         </condition>
         <effect>
-          <trigger-conversation idTarget="JohnGoldConver1" />
+          <trigger-conversation idTarget="JohnGoldConver1" guid="a04d35fe-543f-488e-bb88-98a45913350c" />
           <condition />
         </effect>
       </talk-to>
@@ -78,7 +78,7 @@
           <global-state-ref id="PlantaBajaCompletada" value="false" />
         </condition>
         <effect>
-          <trigger-conversation idTarget="JohnGoldConver2" />
+          <trigger-conversation idTarget="JohnGoldConver2" guid="526b751b-c58e-47f2-9c9c-364545f6f8e3" />
           <condition />
         </effect>
       </talk-to>
@@ -88,14 +88,14 @@
           <global-state-ref id="ConversacionHermanos" value="false" />
         </condition>
         <effect>
-          <trigger-conversation idTarget="JhonGoldConver3" />
+          <trigger-conversation idTarget="JhonGoldConver3" guid="7c2acf6a-a121-49b7-94c9-21db0f656af8" />
           <condition />
         </effect>
       </talk-to>
       <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
         <documentation>Created with target conversation: Brothers</documentation>
         <effect>
-          <trigger-conversation idTarget="BrothersConversation" />
+          <trigger-conversation idTarget="BrothersConversation" guid="38d5101b-6a49-476e-8de3-ef4f18128d6b" />
           <condition />
         </effect>
       </talk-to>
@@ -138,7 +138,7 @@
           <inactive flag="JimSilverConver1Done" />
         </condition>
         <effect>
-          <trigger-conversation idTarget="JimSilverConver1" />
+          <trigger-conversation idTarget="JimSilverConver1" guid="18448a8f-accf-4d4b-8473-39eae3b95824" />
           <condition />
         </effect>
       </talk-to>
@@ -148,7 +148,7 @@
           <inactive flag="puzzle1" />
         </condition>
         <effect>
-          <trigger-conversation idTarget="JimSilverConver2" />
+          <trigger-conversation idTarget="JimSilverConver2" guid="525cfd8f-62bd-493c-8a6c-e50c49bb501c" />
           <condition />
         </effect>
       </talk-to>
@@ -158,14 +158,14 @@
           <global-state-ref id="ConversacionHermanos" value="false" />
         </condition>
         <effect>
-          <trigger-conversation idTarget="JimSilverConver3" />
+          <trigger-conversation idTarget="JimSilverConver3" guid="8d1f6edc-c98e-459c-87e8-3fefd8ed259f" />
           <condition />
         </effect>
       </talk-to>
       <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
         <documentation>Created with target conversation: Brothers</documentation>
         <effect>
-          <trigger-conversation idTarget="BrothersConversation" />
+          <trigger-conversation idTarget="BrothersConversation" guid="7f5c22e9-a236-4d71-8bf3-4e57e49d8865" />
           <condition />
         </effect>
       </talk-to>
@@ -208,7 +208,7 @@
           <inactive flag="JackCopperConver1Done" />
         </condition>
         <effect>
-          <trigger-conversation idTarget="JackCopperConver1" />
+          <trigger-conversation idTarget="JackCopperConver1" guid="7dd59e6c-76ae-449e-8d3c-4cdda33fcd70" />
           <condition />
         </effect>
       </talk-to>
@@ -218,7 +218,7 @@
           <inactive flag="puzzle4Clue" />
         </condition>
         <effect>
-          <trigger-conversation idTarget="JackCopperConver2" />
+          <trigger-conversation idTarget="JackCopperConver2" guid="7f0b422e-7b0f-4fd3-b293-b949bfab8a1a" />
           <condition />
         </effect>
       </talk-to>
@@ -228,7 +228,7 @@
           <inactive flag="puzzle4" />
         </condition>
         <effect>
-          <trigger-conversation idTarget="JackCopperConver2.5" />
+          <trigger-conversation idTarget="JackCopperConver2.5" guid="ccb31361-5a39-4327-9d93-b5e4a5730a03" />
           <condition />
         </effect>
       </talk-to>
@@ -238,14 +238,14 @@
           <global-state-ref id="ConversacionHermanos" value="false" />
         </condition>
         <effect>
-          <trigger-conversation idTarget="JackCopperConver3" />
+          <trigger-conversation idTarget="JackCopperConver3" guid="a98c9ffc-97f2-4e03-b25f-c726a2de003c" />
           <condition />
         </effect>
       </talk-to>
       <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
         <documentation>Created with target conversation: Brothers</documentation>
         <effect>
-          <trigger-conversation idTarget="BrothersConversation" />
+          <trigger-conversation idTarget="BrothersConversation" guid="faf7f342-d0c4-482a-b1b9-ec834f16232b" />
           <condition />
         </effect>
       </talk-to>
@@ -288,14 +288,14 @@
           <inactive flag="puzzle2" />
         </condition>
         <effect>
-          <trigger-conversation idTarget="ButtlerIronsConver1" />
+          <trigger-conversation idTarget="ButtlerIronsConver1" guid="de395dac-bdd2-4ba6-ad02-88d82fe488ff" />
           <condition />
         </effect>
       </talk-to>
       <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
         <documentation>Created with target conversation: ButtlerIronsConver2</documentation>
         <effect>
-          <trigger-conversation idTarget="ButtlerIronsConver2" />
+          <trigger-conversation idTarget="ButtlerIronsConver2" guid="4495e9ef-234e-4020-8979-0e14f7300350" />
           <condition />
         </effect>
       </talk-to>
@@ -335,7 +335,7 @@
       <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
         <documentation>Created with target conversation: LAdyAdaMantineConver1</documentation>
         <effect>
-          <trigger-conversation idTarget="LadyAdaMantineConver1" />
+          <trigger-conversation idTarget="LadyAdaMantineConver1" guid="ab856c6c-faba-4f2a-b33e-70660481f884" />
           <condition />
         </effect>
       </talk-to>
@@ -375,9 +375,9 @@
       <talk-to needsGoTo="yes" keepDistance="35" not-effects="no">
         <documentation>Created with target conversation: TinManConversation</documentation>
         <effect>
-          <trigger-conversation idTarget="TinManConversation" />
+          <trigger-conversation idTarget="TinManConversation" guid="f2a51269-e4a9-43b0-ad10-0a30272f9777" />
           <condition />
-          <trigger-cutscene idTarget="EndCutscene" />
+          <trigger-cutscene idTarget="EndCutscene" guid="0676462f-cef9-429d-b9e0-4f65e8fa66c3" />
           <condition />
         </effect>
       </talk-to>
@@ -415,9 +415,9 @@
         <actions>
           <examine needsGoTo="no" keepDistance="0" not-effects="no">
             <effect>
-              <speak-player>¡Vaya! Esta fuente sigue funcionando perfectamente.</speak-player>
+              <speak-player guid="3835e8f4-191c-4c45-8a3e-aa579e3fe3c6">¡Vaya! Esta fuente sigue funcionando perfectamente.</speak-player>
               <condition />
-              <speak-player>Qué curioso...</speak-player>
+              <speak-player guid="165908f7-5039-4d61-ac86-89fe93af7f7f">Qué curioso...</speak-player>
               <condition />
             </effect>
           </examine>
@@ -449,29 +449,29 @@
           <active flag="keyFound" />
         </condition>
         <effect>
-          <play-sound uri="assets/audio/enterDoor.mp3" />
+          <play-sound uri="assets/audio/enterDoor.mp3" guid="1a21e016-4023-4339-919b-6f0d5262062d" />
           <condition>
             <active flag="Sound" />
           </condition>
-          <consume-object idTarget="Key" />
+          <consume-object idTarget="Key" guid="0afd0380-7244-407f-a4d4-8e8fbf1ddb70" />
           <condition />
-          <speak-player>(Has usado la llave.)</speak-player>
+          <speak-player guid="a199e810-9a30-46ca-9722-815a75a73e84">(Has usado la llave.)</speak-player>
           <condition />
         </effect>
         <post-effect>
-          <speak-player>Vaya... ¡Esta mansión es enorme!</speak-player>
+          <speak-player guid="df24c2b4-050f-43e6-943f-c4d857478c4f">Vaya... ¡Esta mansión es enorme!</speak-player>
           <condition />
-          <speak-player>Oh, ahí está John. Debería hablar con él.</speak-player>
+          <speak-player guid="98733869-c09b-42b3-a8e0-58e0f093af97">Oh, ahí está John. Debería hablar con él.</speak-player>
           <condition />
-          <speak-player>(La puerta se cierra detrás de ti.)</speak-player>
+          <speak-player guid="7e87df3d-0576-4a43-85ec-68d407bee212">(La puerta se cierra detrás de ti.)</speak-player>
           <condition />
         </post-effect>
         <not-effect>
-          <speak-player>Está cerrada con llave...</speak-player>
+          <speak-player guid="a4126381-6eb9-4d97-869d-8a5a95dd7afa">Está cerrada con llave...</speak-player>
           <condition />
-          <speak-player>Debe de haber alguna llave cerca.</speak-player>
+          <speak-player guid="41ac5e7b-d4b6-4eb1-b920-892cf3caeeb2">Debe de haber alguna llave cerca.</speak-player>
           <condition />
-          <play-sound background="no" uri="assets/audio/doorLocked.mp3" />
+          <play-sound background="no" uri="assets/audio/doorLocked.mp3" guid="180fe6f7-a287-4e49-9d9a-906cc632cb94" />
           <condition>
             <active flag="Sound" />
           </condition>
@@ -501,7 +501,7 @@
           <active flag="JohnGoldConver1Done" />
         </condition>
         <not-effect>
-          <speak-player>Primero debería de hablar con John.</speak-player>
+          <speak-player guid="18917f8c-baa6-4ae6-bce9-e890dfe0e7da">Primero debería de hablar con John.</speak-player>
           <condition />
         </not-effect>
       </exit>
@@ -511,7 +511,7 @@
           <active flag="JohnGoldConver1Done" />
         </condition>
         <not-effect>
-          <speak-player>Primero debería de hablar con John.</speak-player>
+          <speak-player guid="4b1e829d-1334-42b3-a1a5-fbe1b877e67d">Primero debería de hablar con John.</speak-player>
           <condition />
         </not-effect>
       </exit>
@@ -523,11 +523,11 @@
           <active flag="puzzle3" />
         </condition>
         <not-effect>
-          <speak-player>Primero debería de hablar con John.</speak-player>
+          <speak-player guid="dbca761c-8cb6-47cd-8b15-ab8cda96b9f3">Primero debería de hablar con John.</speak-player>
           <condition>
             <inactive flag="JohnGoldConver1Done" />
           </condition>
-          <speak-player>Primero debería de revisar la primera planta.</speak-player>
+          <speak-player guid="91584d04-3904-4521-b2f2-28a318b07fea">Primero debería de revisar la primera planta.</speak-player>
           <condition>
             <inactive flag="puzzle1" />
             <inactive flag="puzzle2" />
@@ -662,7 +662,7 @@
         <actions>
           <examine needsGoTo="no" keepDistance="0" not-effects="no">
             <effect>
-              <speak-player>Parece que la gente se divertía bastante aquí...</speak-player>
+              <speak-player guid="ff90f0a6-f95f-4f8e-b68a-7027b4a4fdfa">Parece que la gente se divertía bastante aquí...</speak-player>
               <condition />
             </effect>
           </examine>
@@ -687,7 +687,7 @@
         <actions>
           <examine needsGoTo="no" keepDistance="0" not-effects="no">
             <effect>
-              <speak-player>Unas bonitas flores decoradas con velas.</speak-player>
+              <speak-player guid="36ba7402-04e2-4aa9-9737-4a3f3ae82359">Unas bonitas flores decoradas con velas.</speak-player>
               <condition />
             </effect>
           </examine>
@@ -752,7 +752,7 @@
       <exit rectangular="yes" x="1692" y="172" width="228" height="683" hasInfluenceArea="no" idTarget="UpRight" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="yes">
         <exit-look text="" cursor-path="" sound-path="" />
         <not-effect>
-          <speak-player>Está bloqueada. Necesito completar los puzles antes.</speak-player>
+          <speak-player guid="3fde2a15-fad1-4bf3-93fe-6a042f40c2ac">Está bloqueada. Necesito completar los puzles antes.</speak-player>
           <condition />
         </not-effect>
       </exit>
@@ -769,11 +769,11 @@
           <active flag="metaPuzzle" />
         </condition>
         <not-effect>
-          <play-sound background="no" uri="" />
+          <play-sound background="no" uri="" guid="1984c4ce-46b0-408e-90fb-fd664e30ed32" />
           <condition />
-          <speak-player>¡Ah! La puerta está electrificada.</speak-player>
+          <speak-player guid="f138a706-f47f-48a3-bc2f-83fffeed3b81">¡Ah! La puerta está electrificada.</speak-player>
           <condition />
-          <speak-player>Parece que está asociado a un mecanismo que conecta con otras habitaciones.</speak-player>
+          <speak-player guid="acf9193f-19a6-4c6f-bf4d-95f479f97802">Parece que está asociado a un mecanismo que conecta con otras habitaciones.</speak-player>
           <condition />
         </not-effect>
       </exit>
@@ -882,13 +882,13 @@
       <exit rectangular="yes" x="381" y="898" width="1154" height="179" hasInfluenceArea="no" idTarget="HallLeft" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
         <exit-look text="" cursor-path="" sound-path="" />
         <effect>
-          <speak-player>Parece que ya he terminado todo lo que se podía hacer en la planta baja.</speak-player>
+          <speak-player guid="4cbbe007-7d17-4833-a1d1-237f5e52aeb7">Parece que ya he terminado todo lo que se podía hacer en la planta baja.</speak-player>
           <condition>
             <active flag="puzzle3" />
             <active flag="puzzle4" />
             <inactive flag="SecondFloorAble" />
           </condition>
-          <activate flag="SecondFloorAble" />
+          <activate flag="SecondFloorAble" guid="005e57a0-9881-48ed-bdc4-8a7e13a75445" />
           <condition>
             <active flag="puzzle3" />
             <active flag="puzzle4" />
@@ -927,13 +927,13 @@
         <actions>
           <examine needsGoTo="no" keepDistance="0" not-effects="no">
             <effect>
-              <speak-player>Esta chimenea desprende mucho calor...</speak-player>
+              <speak-player guid="99a6085e-b70c-4d46-ac89-d18aa9200b6f">Esta chimenea desprende mucho calor...</speak-player>
               <condition />
-              <speak-player>Me encantaría quedarme un rato aquí, pero aún me queda mucho por hacer.</speak-player>
+              <speak-player guid="a58fe1a3-a3e6-4fb0-b8b6-5977af373584">Me encantaría quedarme un rato aquí, pero aún me queda mucho por hacer.</speak-player>
               <condition />
-              <speak-char idTarget="LadyAdaMantine">¿Te sirvo una copa?</speak-char>
+              <speak-char idTarget="LadyAdaMantine" guid="2059c338-21bf-4bf9-9462-7a1fdba2d41b">¿Te sirvo una copa?</speak-char>
               <condition />
-              <speak-player>No, gracias.</speak-player>
+              <speak-player guid="54640896-28b7-4e48-9f26-030212ab2f7c">No, gracias.</speak-player>
               <condition />
             </effect>
           </examine>
@@ -958,13 +958,13 @@
       <exit rectangular="yes" x="372" y="912" width="1208" height="171" hasInfluenceArea="no" idTarget="HallRight" destinyY="-2147483648" destinyX="-2147483648" destinyScale="1" transitionType="5" transitionTime="500" not-effects="no">
         <exit-look text="" cursor-path="" sound-path="" />
         <effect>
-          <speak-player>Parece que ya he terminado todo lo que se podía hacer en la planta baja.</speak-player>
+          <speak-player guid="3db89705-0fcf-432d-97f9-623c45e2380e">Parece que ya he terminado todo lo que se podía hacer en la planta baja.</speak-player>
           <condition>
             <active flag="puzzle4" />
             <active flag="puzzle3" />
             <inactive flag="SecondFloorAble" />
           </condition>
-          <activate flag="SecondFloorAble" />
+          <activate flag="SecondFloorAble" guid="c260b8e7-143e-48ff-b8c9-57f68c04ea7d" />
           <condition>
             <active flag="puzzle3" />
             <active flag="puzzle4" />
@@ -985,13 +985,13 @@
           <active flag="ClueExamined" />
         </condition>
         <not-effect>
-          <speak-player>Debería leer la pista antes de resolver el puzle.
+          <speak-player guid="ca365dd3-3632-45dd-a02a-7e3bca1b7259">Debería leer la pista antes de resolver el puzle.
 Creo que la guardé en la mochila</speak-player>
           <condition>
             <active flag="puzzle4Clue" />
             <inactive flag="ClueExamined" />
           </condition>
-          <speak-char idTarget="JackCopper">Junior, deberias buscar la pista antes de intentarlo.</speak-char>
+          <speak-char idTarget="JackCopper" guid="305ddd52-b087-47a5-bafd-86e3ddcb7e2b">Junior, deberias buscar la pista antes de intentarlo.</speak-char>
           <condition>
             <inactive flag="puzzle4Clue" />
             <active flag="JackCopperConver1Done" />
@@ -1029,11 +1029,11 @@ Creo que la guardé en la mochila</speak-player>
         <actions>
           <examine needsGoTo="no" keepDistance="0" not-effects="no">
             <effect>
-              <speak-player>Las estanterias estan llenas de libros.</speak-player>
+              <speak-player guid="a2556c24-faa3-483f-be6b-9390b6df774d">Las estanterias estan llenas de libros.</speak-player>
               <condition />
-              <speak-player>Son todos sobre cosas de informática, lógica, matemáticas, etc.</speak-player>
+              <speak-player guid="7ee5c878-13fd-4dac-9f08-ba29f3aa6f96">Son todos sobre cosas de informática, lógica, matemáticas, etc.</speak-player>
               <condition />
-              <speak-player>Oh, aquí hay uno que pone "Pensamiento Computacional, el futuro de la enseñanza".</speak-player>
+              <speak-player guid="cd027201-a8a6-4943-af02-bb38fcdaa73f">Oh, aquí hay uno que pone "Pensamiento Computacional, el futuro de la enseñanza".</speak-player>
               <condition />
             </effect>
           </examine>
@@ -1085,9 +1085,9 @@ Creo que la guardé en la mochila</speak-player>
         <actions>
           <examine needsGoTo="no" keepDistance="0" not-effects="no">
             <effect>
-              <speak-player>El dueño debía de organizar fiestas increíbles.</speak-player>
+              <speak-player guid="52d980a5-43e1-4f52-b7d9-9a3698f15556">El dueño debía de organizar fiestas increíbles.</speak-player>
               <condition />
-              <speak-player>Es una pena que se haya ido...</speak-player>
+              <speak-player guid="187502d9-105e-4b75-b32e-0d5f2c762c67">Es una pena que se haya ido...</speak-player>
               <condition />
             </effect>
           </examine>
@@ -1117,7 +1117,7 @@ Creo que la guardé en la mochila</speak-player>
           <active flag="DiaryPicked" />
         </condition>
         <not-effect>
-          <speak-player>Debería explorar el despacho un poco más.</speak-player>
+          <speak-player guid="943bd807-efaf-40a1-98e7-596fc69d39c3">Debería explorar el despacho un poco más.</speak-player>
           <condition />
         </not-effect>
       </exit>
@@ -1146,11 +1146,11 @@ Creo que la guardé en la mochila</speak-player>
         <actions>
           <examine needsGoTo="no" keepDistance="0" not-effects="no">
             <effect>
-              <speak-player>Hmm... Parece un retrato del dueño de la mansión.</speak-player>
+              <speak-player guid="b7a8764c-b5e6-4eae-93d7-33455bb4c68a">Hmm... Parece un retrato del dueño de la mansión.</speak-player>
               <condition />
-              <speak-player>La placa dorada está un poco oxidada, pero se puede leer:</speak-player>
+              <speak-player guid="1c72975e-11fc-42e6-9177-78104e4fb3bf">La placa dorada está un poco oxidada, pero se puede leer:</speak-player>
               <condition />
-              <speak-player>"Balt.. ..nandez Man... "</speak-player>
+              <speak-player guid="795642cf-2c3f-489a-8cb8-acfeefbd6b35">"Balt.. ..nandez Man... "</speak-player>
               <condition />
             </effect>
           </examine>
@@ -1172,9 +1172,9 @@ Creo que la guardé en la mochila</speak-player>
         <actions>
           <examine needsGoTo="no" keepDistance="0" not-effects="no">
             <effect>
-              <speak-player>Es uno de esos jarrones carísimos que subastan en el mercado.</speak-player>
+              <speak-player guid="7241420b-100f-4709-9818-a1e3c361dcfc">Es uno de esos jarrones carísimos que subastan en el mercado.</speak-player>
               <condition />
-              <speak-player>Me pregunto qué valor tiene este...</speak-player>
+              <speak-player guid="7dd8e23c-0b5c-497f-ae59-4c5b653e297c">Me pregunto qué valor tiene este...</speak-player>
               <condition />
             </effect>
           </examine>
@@ -1210,15 +1210,15 @@ Creo que la guardé en la mochila</speak-player>
     <actions>
       <grab needsGoTo="yes" keepDistance="35" not-effects="no">
         <effect>
-          <remove-element idTarget="Key" />
+          <remove-element idTarget="Key" guid="bfd71b21-40e6-4286-b0d3-37741aab830d" />
           <condition />
-          <generate-object idTarget="Key" />
+          <generate-object idTarget="Key" guid="b4218be5-343b-4b40-a912-7a27071975ab" />
           <condition />
-          <activate flag="keyFound" />
+          <activate flag="keyFound" guid="66630ed6-d6f1-4424-a8fb-270aff0eef5c" />
           <condition />
-          <speak-player>¡Ajá! Esta es la llave de la puerta principal.</speak-player>
+          <speak-player guid="9e767729-efa1-4abf-878f-d83ae7494be7">¡Ajá! Esta es la llave de la puerta principal.</speak-player>
           <condition />
-          <play-sound background="no" uri="assets/audio/itemFound.mp3" />
+          <play-sound background="no" uri="assets/audio/itemFound.mp3" guid="61ca1c23-0d02-4ffd-b0e2-110fc9191fc3" />
           <condition>
             <active flag="Sound" />
           </condition>
@@ -1242,23 +1242,23 @@ Creo que la guardé en la mochila</speak-player>
     <actions>
       <grab needsGoTo="yes" keepDistance="35" not-effects="no">
         <effect>
-          <remove-element idTarget="ClueCode" />
+          <remove-element idTarget="ClueCode" guid="b606a13b-838e-4bd5-8365-c6d2a7edd330" />
           <condition />
-          <generate-object idTarget="ClueCode" />
+          <generate-object idTarget="ClueCode" guid="f5522a7f-ce90-4af2-9777-28e9798c451f" />
           <condition />
-          <activate flag="puzzle4Clue" />
+          <activate flag="puzzle4Clue" guid="4745b8d9-614a-49ff-af8a-9ede06dae714" />
           <condition />
-          <speak-player>Parece que esta es la pista que necesitamos para resolver el puzle de Jack Copper.
+          <speak-player guid="58fcb4aa-d878-45ff-993c-778a09ddc300">Parece que esta es la pista que necesitamos para resolver el puzle de Jack Copper.
 La guardaré en la mochila.</speak-player>
           <condition />
         </effect>
       </grab>
       <examine needsGoTo="no" keepDistance="0" not-effects="no">
         <effect>
-          <speak-player>Pone: "El número de lados menos dos".
+          <speak-player guid="cb33772f-1606-4798-86dc-475e1de6a8ac">Pone: "El número de lados menos dos".
 ¿Qué querrá decir?</speak-player>
           <condition />
-          <activate flag="ClueExamined" />
+          <activate flag="ClueExamined" guid="5d281522-bc8a-4940-9c41-5293f5835f90" />
           <condition />
         </effect>
       </examine>
@@ -1350,11 +1350,11 @@ La guardaré en la mochila.</speak-player>
     <actions>
       <examine needsGoTo="no" keepDistance="0" not-effects="no">
         <effect>
-          <trigger-book idTarget="DiarioDeBalta" />
+          <trigger-book idTarget="DiarioDeBalta" guid="d4018f71-5e85-46c1-9be7-e3ee320e8fbb" />
           <condition />
-          <activate flag="DiaryPicked" />
+          <activate flag="DiaryPicked" guid="944462c3-a3df-426f-904b-f5902ca261ee" />
           <condition />
-          <speak-player>(De repente aparece una figura humanoide de debajo de la cama)</speak-player>
+          <speak-player guid="38f2dec1-771c-4450-b53f-1e40ae78d243">(De repente aparece una figura humanoide de debajo de la cama)</speak-player>
           <condition />
         </effect>
       </examine>
@@ -1382,51 +1382,51 @@ La guardaré en la mochila.</speak-player>
           </either>
         </condition>
         <effect>
-          <speak-player>Parece que el mecanismo está relacionado con la electricidad, pero está bloqueado.</speak-player>
+          <speak-player guid="c7e504c1-d094-4e46-894b-43fe279567ad">Parece que el mecanismo está relacionado con la electricidad, pero está bloqueado.</speak-player>
           <condition>
             <global-state-ref id="AlgunEngranajeEncontrado" value="false" />
           </condition>
-          <speak-player>Debería mirar en las demás habitaciones.</speak-player>
+          <speak-player guid="18db84a5-a211-44ff-a1d0-3b1ab5763f79">Debería mirar en las demás habitaciones.</speak-player>
           <condition>
             <global-state-ref id="AlgunEngranajeEncontrado" value="false" />
           </condition>
-          <speak-player>¡Vaya! Parece que las piezas que he encontrado encajan en el mecanismo.</speak-player>
+          <speak-player guid="161821b9-085d-4008-ae66-ac40bf28080a">¡Vaya! Parece que las piezas que he encontrado encajan en el mecanismo.</speak-player>
           <condition>
             <global-state-ref id="AlgunEngranajeEncontrado" value="true" />
           </condition>
-          <consume-object idTarget="Engranaje1" />
+          <consume-object idTarget="Engranaje1" guid="a2189d9b-3a24-44f9-af47-3d94da108be0" />
           <condition>
             <global-state-ref id="Engranaje1Encontrado" value="true" />
           </condition>
-          <consume-object idTarget="Engranaje2" />
+          <consume-object idTarget="Engranaje2" guid="e494e10e-ed4e-4136-9d2d-2ae10000612c" />
           <condition>
             <global-state-ref id="Engranaje2Encontrado" value="true" />
           </condition>
-          <consume-object idTarget="Engranaje3" />
+          <consume-object idTarget="Engranaje3" guid="ea7075e5-0744-4ae9-ad93-c58df160d9d0" />
           <condition>
             <global-state-ref id="Engranaje3Encontrado" value="true" />
           </condition>
-          <consume-object idTarget="Engranaje4" />
+          <consume-object idTarget="Engranaje4" guid="aac8d02b-2fd3-4a02-8a8a-969d57e79e4f" />
           <condition>
             <global-state-ref id="Engranaje4Encontrado" value="true" />
           </condition>
-          <activate flag="Engranaje1" />
+          <activate flag="Engranaje1" guid="c7ee9776-1137-4405-9286-1f9d9d2bed15" />
           <condition>
             <global-state-ref id="Engranaje1Encontrado" value="true" />
           </condition>
-          <activate flag="Engranaje2" />
+          <activate flag="Engranaje2" guid="76ba3804-591b-4cf1-a4d2-99a3a61991e1" />
           <condition>
             <global-state-ref id="Engranaje2Encontrado" value="true" />
           </condition>
-          <activate flag="Engranaje3" />
+          <activate flag="Engranaje3" guid="72ff205c-3f4f-4c60-b0f6-78c5e503ab7c" />
           <condition>
             <global-state-ref id="Engranaje3Encontrado" value="true" />
           </condition>
-          <activate flag="Engranaje4" />
+          <activate flag="Engranaje4" guid="ca0cb585-43b0-4457-a854-c1ea9376d5e3" />
           <condition>
             <global-state-ref id="Engranaje4Encontrado" value="true" />
           </condition>
-          <speak-player>Parece que ya puedo resolver el último puzle y desactivar la electricidad.</speak-player>
+          <speak-player guid="9c1aab0f-7bd3-416c-b006-e4ddfea38e3f">Parece que ya puedo resolver el último puzle y desactivar la electricidad.</speak-player>
           <condition>
             <global-state-ref id="MetaPuzzleDesbloqueado" value="true" />
           </condition>
@@ -1464,7 +1464,7 @@ La guardaré en la mochila.</speak-player>
     <actions>
       <examine needsGoTo="no" keepDistance="0" not-effects="no">
         <effect>
-          <speak-player>Parece el engranaje de un mecanismo, 
+          <speak-player guid="f0e5885a-16ab-454e-abe6-8cc95eb6bd7e">Parece el engranaje de un mecanismo, 
 puede que sea útil para acceder al despacho.</speak-player>
           <condition />
         </effect>
@@ -1487,7 +1487,7 @@ puede que sea útil para acceder al despacho.</speak-player>
     <actions>
       <examine needsGoTo="no" keepDistance="0" not-effects="no">
         <effect>
-          <speak-player>Parece el engranaje de un mecanismo, 
+          <speak-player guid="55ca40e9-94e5-4f3f-94bd-5e2da915adf5">Parece el engranaje de un mecanismo, 
 puede que sea útil para acceder al despacho.</speak-player>
           <condition />
         </effect>
@@ -1510,7 +1510,7 @@ puede que sea útil para acceder al despacho.</speak-player>
     <actions>
       <examine needsGoTo="no" keepDistance="0" not-effects="no">
         <effect>
-          <speak-player>Parece el engranaje de un mecanismo, 
+          <speak-player guid="84bd4c83-d932-4e43-8266-8bdff386b653">Parece el engranaje de un mecanismo, 
 puede que sea útil para acceder al despacho.</speak-player>
           <condition />
         </effect>
@@ -1533,7 +1533,7 @@ puede que sea útil para acceder al despacho.</speak-player>
     <actions>
       <examine needsGoTo="no" keepDistance="0" not-effects="no">
         <effect>
-          <speak-player>Parece el engranaje de un mecanismo, 
+          <speak-player guid="90c50eaf-f0b4-4a1a-aebb-803881b9c8fc">Parece el engranaje de un mecanismo, 
 puede que sea útil para acceder al despacho.</speak-player>
           <condition />
         </effect>
@@ -1745,7 +1745,7 @@ puede que sea útil para acceder al despacho.</speak-player>
       <condition />
       <end-conversation>
         <effect>
-          <activate flag="JohnGoldConver1Done" />
+          <activate flag="JohnGoldConver1Done" guid="4aa79198-9ce1-41c2-91e8-7bb4394f8f7a" />
           <condition />
         </effect>
       </end-conversation>
@@ -1859,7 +1859,7 @@ puede que sea útil para acceder al despacho.</speak-player>
       <condition />
       <child nodeindex="4" />
       <effect>
-        <set-value var="JohnGoldConverDone" value="2" />
+        <set-value var="JohnGoldConverDone" value="2" guid="6bda75d0-08bf-45d8-a936-6110e36c9075" />
         <condition />
       </effect>
     </dialogue-node>
@@ -1871,7 +1871,7 @@ puede que sea útil para acceder al despacho.</speak-player>
       <condition />
       <child nodeindex="4" />
       <effect>
-        <set-value var="JohnGoldConverDone" value="1" />
+        <set-value var="JohnGoldConverDone" value="1" guid="b97eb044-b6e9-4302-8d27-f227eed74156" />
         <condition>
           <equals var="JohnGoldConverDone" value="0" />
         </condition>
@@ -1964,7 +1964,7 @@ puede que sea útil para acceder al despacho.</speak-player>
       <condition />
       <end-conversation>
         <effect>
-          <activate flag="JimSilverConver1Done" />
+          <activate flag="JimSilverConver1Done" guid="e305fce1-27dd-45a3-a331-4cf6b89cb7ef" />
           <condition />
         </effect>
       </end-conversation>
@@ -2042,7 +2042,7 @@ puede que sea útil para acceder al despacho.</speak-player>
       <condition />
       <end-conversation>
         <effect>
-          <set-value var="JimSilverConverDone" value="2" />
+          <set-value var="JimSilverConverDone" value="2" guid="65409893-40ad-4e0f-8290-f3394cd38067" />
           <condition />
         </effect>
       </end-conversation>
@@ -2055,7 +2055,7 @@ puede que sea útil para acceder al despacho.</speak-player>
       <condition />
       <end-conversation>
         <effect>
-          <set-value var="JimSilverConverDone" value="1" />
+          <set-value var="JimSilverConverDone" value="1" guid="3c8a2ad7-5381-4140-bec8-dedc70672fe3" />
           <condition>
             <equals var="JimSilverConverDone" value="0" />
           </condition>
@@ -2190,7 +2190,7 @@ puede que sea útil para acceder al despacho.</speak-player>
       <condition />
       <end-conversation>
         <effect>
-          <activate flag="ButtlerIronsConver1Done" />
+          <activate flag="ButtlerIronsConver1Done" guid="ae27cb75-a9c8-4acf-badf-a2b5b9fc3274" />
           <condition />
         </effect>
       </end-conversation>
@@ -2264,7 +2264,7 @@ puede que sea útil para acceder al despacho.</speak-player>
       <condition />
       <end-conversation>
         <effect>
-          <activate flag="JackCopperConver1Done" />
+          <activate flag="JackCopperConver1Done" guid="54de7e96-425f-4740-a26c-0d36341101ad" />
           <condition />
         </effect>
       </end-conversation>
@@ -2327,7 +2327,7 @@ puede que sea útil para acceder al despacho.</speak-player>
       <condition />
       <child nodeindex="5" />
       <effect>
-        <set-value var="JackCopperConverDone" value="2" />
+        <set-value var="JackCopperConverDone" value="2" guid="eed0c7d8-e662-42b3-b756-5dc981f6c570" />
         <condition />
       </effect>
     </dialogue-node>
@@ -2357,7 +2357,7 @@ puede que sea útil para acceder al despacho.</speak-player>
       <condition />
       <child nodeindex="5" />
       <effect>
-        <set-value var="JackCopperConverDone" value="1" />
+        <set-value var="JackCopperConverDone" value="1" guid="309890f5-12e6-4274-9d06-c197bcd66671" />
         <condition>
           <equals var="JackCopperConverDone" value="0" />
         </condition>
@@ -2543,7 +2543,7 @@ puede que sea útil para acceder al despacho.</speak-player>
       <condition />
       <end-conversation>
         <effect>
-          <activate flag="AdaMantineConverDone" />
+          <activate flag="AdaMantineConverDone" guid="16054021-900d-461e-bb31-734884a4fc66" />
           <condition />
         </effect>
       </end-conversation>
@@ -2771,7 +2771,7 @@ puede que sea útil para acceder al despacho.</speak-player>
     <documentation>
     </documentation>
     <effect>
-      <set-value var="N_STARS" value="0" />
+      <set-value var="N_STARS" value="0" guid="c6e1cbd9-9779-4175-9148-4bbc3f237dfc" />
       <condition />
     </effect>
     <resources name="InitialCutsceneNoSound">

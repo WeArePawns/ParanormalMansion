@@ -8,6 +8,7 @@ using System;
 using AssetPackage;
 using System.Linq;
 using UniRx;
+using static AssetPackage.TrackerAsset;
 
 namespace uAdventure.Runner
 {
@@ -480,12 +481,16 @@ namespace uAdventure.Runner
             return currentAmbit;
         }
 
-        public void EndChangeAmbitAsExtensions()
+        public void EndChangeAmbitAsExtensions(TrackerEvent trace)
         {
             var currentChanges = EndChangeAmbit(false);
             foreach(var varChange in currentChanges)
             {
                 TrackerAsset.Instance.setVar(varChange.Key, varChange.Value);
+            }
+            if(trace != null)
+            {
+                TrackerAsset.Instance.AddExtensionsToTrace(trace);
             }
         }
 

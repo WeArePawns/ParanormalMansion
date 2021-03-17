@@ -7,6 +7,7 @@ using MapzenGo.Models;
 using UnityStandardAssets.Characters.ThirdPerson;
 using MapzenGo.Helpers;
 using UnityEngine.EventSystems;
+using UnityEngine.Android;
 
 namespace uAdventure.Geo
 {
@@ -107,6 +108,12 @@ namespace uAdventure.Geo
             // Start the gps just in case is not
             if (GeoExtension.Instance.IsStarted())
             {
+#if PLATFORM_ANDROID
+                if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
+                {
+                    Permission.RequestUserPermission(Permission.FineLocation);
+                }
+#endif
                 GeoExtension.Instance.Start();
             }
 
