@@ -2778,7 +2778,7 @@ puede que sea útil para acceder al despacho.</speak-player>
       <condition>
         <inactive flag="Sound" />
       </condition>
-      <asset type="video" uri="assets/video/cutsceneStartNoSound.ogv" />
+      <asset type="video" uri="assets/video/cutsceneStartNoSound.webm" />
       <asset type="slides" uri="assets/special/EmptyAnimation" />
     </resources>
     <resources name="InitialCutscene">
@@ -2795,7 +2795,7 @@ puede que sea útil para acceder al despacho.</speak-player>
       <condition>
         <inactive flag="Sound" />
       </condition>
-      <asset type="video" uri="assets/video/cutsceneEndNoSound.ogv" />
+      <asset type="video" uri="assets/video/cutsceneEndNoSound.webm" />
       <asset type="slides" uri="assets/special/EmptyAnimation" />
     </resources>
     <resources name="EndCutscene">

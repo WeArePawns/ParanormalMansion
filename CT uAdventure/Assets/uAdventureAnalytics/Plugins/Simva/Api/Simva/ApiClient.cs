@@ -200,7 +200,7 @@ namespace Simva
         {
             get { return _defaultHeaderMap; }
         }
-    
+
         /// <summary>
         /// Makes the HTTP request (Sync).
         /// </summary>
@@ -218,8 +218,9 @@ namespace Simva
             Dictionary<String, String> fileParams, String[] authSettings)
         {
             UnityWebRequest request = null;
-            
-            switch(method){
+            var result = new AsyncCompletionSource<UnityWebRequest>();
+
+            switch (method){
                 case UnityWebRequest.kHttpVerbGET:
                     request = UnityWebRequest.Get(BasePath + path);
                     break;
@@ -236,10 +237,9 @@ namespace Simva
                     throw new ApiException(500, "Method not available: " + method);
             }
 
-            return UpdateParamsForAuth(queryParams, headerParams, authSettings, true)
+            UpdateParamsForAuth(queryParams, headerParams, authSettings, true)
                 .Then(() =>
                 {
-                    var result = new AsyncCompletionSource<UnityWebRequest>();
                     // add default header, if any
                     foreach (var defaultHeader in _defaultHeaderMap)
                         request.SetRequestHeader(defaultHeader.Key, defaultHeader.Value);
@@ -285,16 +285,42 @@ namespace Simva
                         request.downloadHandler = new DownloadHandlerBuffer();
                     }
 
+                    result.AddProgressCallback((p) =>
+                    {
+                        UnityEngine.Debug.Log("ApiClientProgress: " + p);
+                        if(!result.IsCompleted&& !result.IsCanceled)
+                        {
+                            result.SetProgress(p);
+                        }
+                    });
+
                     Observable.FromCoroutine(() => DoRequest(result, request)).Subscribe();
-                    return result;
+                })
+                .Catch(error =>
+                {
+                    result.SetException(error);
                 });
 
+            return result;
 
         }
 
         private static IEnumerator DoRequest(IAsyncCompletionSource<UnityWebRequest> op, UnityWebRequest webRequest)
         {
-            yield return webRequest.SendWebRequest();
+            var wr = webRequest.SendWebRequest();
+            if (webRequest.uploadHandler != null)
+            {
+                while (!webRequest.isDone)
+                {
+                    yield return new WaitForEndOfFrame();
+                    Debug.Log("RequestProgress: " + wr.progress);
+                    op.SetProgress(wr.progress);
+                }
+            }
+            else
+            {
+                yield return wr;
+            }
 
             // Sometimes the webrequest is finished but the download is not
             while(!webRequest.isNetworkError && !webRequest.isHttpError && webRequest.downloadProgress != 1)

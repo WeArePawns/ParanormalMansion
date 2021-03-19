@@ -5,7 +5,7 @@
   </description>
   <application-identifier>
   </application-identifier>
-  <configuration keepShowing="no" keyboard-navigation="disabled" defaultClickAction="showDetails" perspective="regular" dragBehaviour="considerNonTargets" show-save-load="yes" show-reset="yes" autosave="no" save-on-suspend="no" restore-after-open="no">
+  <configuration keepShowing="no" keyboard-navigation="disabled" defaultClickAction="showDetails" perspective="regular" dragBehaviour="considerNonTargets" show-save-load="no" show-reset="no" autosave="no" save-on-suspend="no" restore-after-open="no">
     <gui type="contextual" inventoryPosition="icon" inventoryImage="assets/special/DefaultInventory.png" inventoryX="38.54237" inventoryY="598.391" inventoryScale="0.1401415">
       <cursors>
         <cursor type="default" uri="gui/cursors/cursor.png" />

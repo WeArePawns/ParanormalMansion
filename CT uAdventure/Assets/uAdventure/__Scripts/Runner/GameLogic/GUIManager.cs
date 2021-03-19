@@ -414,6 +414,7 @@ namespace uAdventure.Runner
 
         public void ExitApplication()
         {
+            ShowConfigMenu();
             Game.Instance.Quit();
         }
     }

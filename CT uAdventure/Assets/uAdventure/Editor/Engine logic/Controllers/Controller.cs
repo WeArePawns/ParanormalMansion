@@ -18,6 +18,9 @@ using IMS.CP.v1p2;
 using IMS.MD.v1p2;
 using System.Xml;
 using uAdventure.Core.Metadata;
+using SimvaPlugin;
+using Simva.Api;
+using UnityFx.Async.Promises;
 
 namespace uAdventure.Editor
 {
@@ -3713,6 +3716,20 @@ namespace uAdventure.Editor
 
             var window = EditorWindow.GetWindow(typeof(WelcomeWindow));
             window.Show();
+        }
+
+        [UnityEditor.MenuItem("uAdventure/UnComplete", priority = 1)]
+        public static void UnComplete()
+        {
+            SimvaApi<StudentsApi>.LoginWithToken("t1pm").Then(api =>
+            {
+                api.Api.GetSchedule("6040c9d6c34511006e84f516")
+                .Then(schedule =>
+                {
+                    var act = schedule.Activities.First(a => a.Value.Name == "Gameplay");
+                    api.Api.SetCompletion(act.Key, "t1pm", false);
+                });
+            });
         }
 
 

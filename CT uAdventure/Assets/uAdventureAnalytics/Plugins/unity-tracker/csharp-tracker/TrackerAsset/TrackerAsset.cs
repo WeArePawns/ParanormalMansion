@@ -1511,7 +1511,24 @@ namespace AssetPackage
                 Log(Severity.Information, "Nothing to flush");
             }
         }
-#endif
+#endif 
+        public void ForceCompleteTraces()
+        {
+            // Move all possible partial traces to the main queue
+            while (partialQueue.Count > 0)
+            {
+                TrackerEvent pendingTrace = partialQueue.Dequeue();
+                pendingTrace.Completed();
+                queue.Enqueue(pendingTrace);
+
+                // if backup requested, enqueue in the backup queue
+                if (settings.BackupStorage)
+                {
+                    backupQueue.Enqueue(pendingTrace);
+                }
+            }
+        }
+
         private void EnqueueCompletedTraces()
         {
 

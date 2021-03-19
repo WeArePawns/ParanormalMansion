@@ -184,7 +184,7 @@ namespace SimvaPlugin
 
         public static IAsyncOperation<SimvaApi<T>> LoginWithToken(string token)
         {
-            return LoginWithCredentials(token, token);
+            return LoginWithCredentials(token.ToLowerInvariant(), token.ToLowerInvariant());
         }
 
         public static IAsyncOperation<SimvaApi<T>> LoginWithCredentials(string username, string password)

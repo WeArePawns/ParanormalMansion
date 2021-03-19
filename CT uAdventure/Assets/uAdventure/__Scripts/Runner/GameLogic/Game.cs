@@ -512,17 +512,39 @@ namespace uAdventure.Runner
             StartCoroutine(QuitCoroutine());
         }
 
+        private bool quitAborted;
         private IEnumerator QuitCoroutine()
         {
-            var quit = true;
+            var quitOrderExtension = new List<GameExtension>(gameExtensions);
+            // Workaroud Simva extension is the last extension
+            // This lets the analytics extension finish all the completables and flush
+            Simva.SimvaExtension simvaExtension = null;
+            foreach (var gameExtension in quitOrderExtension)
+            {
+                if (gameExtension is Simva.SimvaExtension)
+                {
+                    simvaExtension = gameExtension as Simva.SimvaExtension;
+                    break;
+                }
+            }
+            // Force it being the last
+            quitOrderExtension.Remove(simvaExtension);
+            quitOrderExtension.Add(simvaExtension);
+
+            quitAborted = false;
             foreach (var g in gameExtensions)
             {
                 yield return StartCoroutine(g.OnGameFinished());
             }
-            if (quit)
+            if (!quitAborted)
             {
                 Application.Quit();
             }
+        }
+
+        public void AbortQuit()
+        {
+            quitAborted = true;
         }
 
         public void ClearAndRestart()
