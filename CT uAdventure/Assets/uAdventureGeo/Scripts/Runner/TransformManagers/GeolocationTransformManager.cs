@@ -156,6 +156,7 @@ namespace uAdventure.Geo
 #endif
                     // TODO change this after: https://github.com/e-ucm/unity-tracker/issues/29
                     TrackerAsset.Instance.setVar("geo_element_" + positioner.Element.getId(), 1);
+                    TrackerExtension.Movement.Moved(Game.Instance.GameState.CurrentTarget, GeoExtension.Instance.Location);
                 }
                 if (hint)
                 {

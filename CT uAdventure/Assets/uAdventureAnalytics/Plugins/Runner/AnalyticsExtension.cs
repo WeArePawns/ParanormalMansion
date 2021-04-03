@@ -91,7 +91,14 @@ namespace uAdventure.Analytics
 
         public override IEnumerator OnGameFinished()
         {
-            yield return true;
+            if (TrackerAsset.Instance.Active)
+            {
+                var flushed = false;
+                TrackerAsset.Instance.ForceCompleteTraces();
+                TrackerAsset.Instance.FlushAll(() => flushed = true);
+                yield return new WaitUntil(() => flushed);
+                TrackerAsset.Instance.Stop();
+            }
         }
 
         public override IEnumerator OnAfterGameLoad()

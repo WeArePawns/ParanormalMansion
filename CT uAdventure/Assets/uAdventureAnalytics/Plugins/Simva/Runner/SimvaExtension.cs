@@ -148,6 +148,7 @@ namespace uAdventure.Simva
                 {
                 new LoginScene(),
                 new SurveyScene(),
+                new BackupScene(),
                 new EndScene()
                 });
                 Debug.Log("[SIMVA] Setting current target to Simva.Login...");
@@ -160,6 +161,8 @@ namespace uAdventure.Simva
             yield return null;
         }
 
+        public IAsyncOperation saveActivityAndContinueOperation;
+
         public override IEnumerator OnGameFinished()
         {
             if (IsActive)
@@ -167,20 +170,27 @@ namespace uAdventure.Simva
                 Activity activity = GetActivity(CurrentActivityId);
                 string activityType = activity.Type;
                 var readyToClose = false;
-                if (activityType.Equals("gameplay", StringComparison.InvariantCultureIgnoreCase) 
-                    && activity.Details != null && activity.Details.ContainsKey("backup") && (bool)activity.Details["backup"])
+                if (activityType.Equals("gameplay", StringComparison.InvariantCultureIgnoreCase)
+                && activity.Details != null && activity.Details.ContainsKey("backup") && (bool)activity.Details["backup"])
                 {
+                    Game.Instance.RunTarget("Simva.Backup", null, false);
+                    yield return AnalyticsExtension.Instance.OnGameFinished();
                     string traces = SimvaBridge.Load(((TrackerAssetSettings)TrackerAsset.Instance.Settings).BackupFile);
-                    SaveActivityAndContinue(CurrentActivityId, traces, true)
-                        .Then(() => readyToClose = true);
+                    saveActivityAndContinueOperation = SaveActivityAndContinue(CurrentActivityId, traces, true);
+                    saveActivityAndContinueOperation.Then(() => readyToClose = true);
                 }
                 else
                 {
+                    yield return AnalyticsExtension.Instance.OnGameFinished();
                     Continue(CurrentActivityId, true)
                         .Then(() => readyToClose = true);
                 }
 
                 yield return new WaitUntil(() => readyToClose);
+            }
+            else
+            {
+                yield return AnalyticsExtension.Instance.OnGameFinished();
             }
         }
 
@@ -312,17 +322,35 @@ namespace uAdventure.Simva
                 body.Add("result", traces);
             }
 
-            return API.Api.SetResult(activityId, API.AuthorizationInfo.Username, body)
-                .Then(() =>
+            var result = new AsyncCompletionSource();
+
+            var response = (AsyncCompletionSource) API.Api.SetResult(activityId, API.AuthorizationInfo.Username, body);
+            response.AddProgressCallback((p) =>
+             {
+                 UnityEngine.Debug.Log("SaveActivityAndContinue progress: " + p);
+                 if (!result.IsCompleted && !result.IsCanceled)
+                 {
+                     result.SetProgress(p);
+                 }
+             });
+
+            response.Then(() =>
                 {
                     NotifyLoading(false);
                     return Continue(activityId, completed);
+                })
+                .Then(() =>
+                {
+                    result.SetCompleted();
                 })
                 .Catch(error =>
                 {
                     NotifyLoading(false);
                     NotifyManagers(error.Message);
+                    result.SetException(error);
                 });
+
+            return result;
         }
 
         public IAsyncOperation Continue(string activityId, bool completed)
@@ -361,6 +389,7 @@ namespace uAdventure.Simva
             if (activityId == null)
             {
                 Game.Instance.RunTarget("Simva.End", null, false);
+                schedule = null;
             }
             else
             {
@@ -368,6 +397,7 @@ namespace uAdventure.Simva
 
                 if (activity != null)
                 {
+                    Game.Instance.AbortQuit();
                     Debug.Log("[SIMVA] Schedule: " + activity.Type + ". Name: " + activity.Name + " activityId " + activityId);
                     switch (activity.Type)
                     {

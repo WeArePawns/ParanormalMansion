@@ -30,8 +30,9 @@ namespace uAdventure.Runner
         //#####################################################################
         #region Monobehaviour
 
-        public bool useSystemIO = true, forceScene = false, editor_mode = true;
+        public bool useSystemIO = true, forceScene = false, editor_mode = true, actionCanceled = false;
         public string gamePath = "", gameName = "", scene_name = "";
+        public static readonly Color NoColor = new Color(-1,-1,-1,-1);
 
         // Execution
         private bool waitingRunTarget = false, waitingTransition = false, waitingTargetDestroy = false;
@@ -72,6 +73,10 @@ namespace uAdventure.Runner
         public delegate void ElementInteractedDelegate(bool finished, Element element, Core.Action action);
 
         public ElementInteractedDelegate OnElementInteracted;
+
+        /*public delegate void ShowTextDelegate(bool finished, ConversationLine line, string text, int x, int y, Color textColor, Color textOutlineColor, Color baseColor, Color outlineColor, string id);
+
+        public ShowTextDelegate OnShowText;*/
 
         public delegate void ExecutionEvent(object interactuable);
 
@@ -423,38 +428,53 @@ namespace uAdventure.Runner
                     Debug.LogError("Interacted execution exception: " + ex.Message + ex.StackTrace);
                 }
 
-                if (requiresMore)
+                if (requiresMore && !actionCanceled)
                 {
                     uAdventureRaycaster.Instance.Override = this.gameObject;
                     return true;
                 }
                 else
                 {
-                    Debug.Log("Execution finished " + toExecute.ToString());
-                    if (preInteractSize != executeStack.Count)
+                    Debug.Log("Execution finished " + toExecute.ToString()); 
+                    if (!actionCanceled)
                     {
-                        Debug.Log("The size was different");
-                        var backupStack = new Stack<KeyValuePair<Interactuable, ExecutionEvent>>();
-                        // We backup the new stacked things
-                        while (executeStack.Count > preInteractSize)
+                        if (preInteractSize != executeStack.Count)
                         {
-                            backupStack.Push(executeStack.Pop());
+                            Debug.Log("The size was different");
+                            var backupStack = new Stack<KeyValuePair<Interactuable, ExecutionEvent>>();
+                            // We backup the new stacked things
+                            while (executeStack.Count > preInteractSize)
+                            {
+                                backupStack.Push(executeStack.Pop());
+                            }
+                            // Then we remove our entry
+                            executeStack.Pop();
+                            // Then we reinsert the backuped stuff
+                            while (backupStack.Count > 0)
+                            {
+                                executeStack.Push(backupStack.Pop());
+                            }
                         }
-                        // Then we remove our entry
-                        executeStack.Pop();
-                        // Then we reinsert the backuped stuff
-                        while (backupStack.Count > 0)
+                        else
                         {
-                            executeStack.Push(backupStack.Pop());
+                            executeStack.Pop();
                         }
                     }
-                    else
-                    {
-                        executeStack.Pop();
-                    }
+                    
                     try
                     {
-                        if (toExecute.Value != null)
+                        if (actionCanceled)
+                        {
+                            while (executeStack.Count > 0)
+                            {
+                                var removed = executeStack.Pop();
+                                if (removed.Value != null)
+                                {
+                                    removed.Value(removed.Key);
+                                }
+                            }
+                        }
+                        else if (toExecute.Value != null)
                         {
                             toExecute.Value(toExecute.Key);
                         }
@@ -462,6 +482,10 @@ namespace uAdventure.Runner
                     catch (System.Exception ex)
                     {
                         Debug.Log("Execution OnFinished execution exception: " + ex.Message);
+                        if (actionCanceled)
+                        {
+                            executeStack.Clear();
+                        }
                     }
                 }
             }
@@ -479,6 +503,7 @@ namespace uAdventure.Runner
             }
             // In case any bubble is bugged
             GUIManager.Instance.DestroyBubbles();
+            actionCanceled = false;
             return false;
         }
 
@@ -487,17 +512,39 @@ namespace uAdventure.Runner
             StartCoroutine(QuitCoroutine());
         }
 
+        private bool quitAborted;
         private IEnumerator QuitCoroutine()
         {
-            var quit = true;
+            var quitOrderExtension = new List<GameExtension>(gameExtensions);
+            // Workaroud Simva extension is the last extension
+            // This lets the analytics extension finish all the completables and flush
+            Simva.SimvaExtension simvaExtension = null;
+            foreach (var gameExtension in quitOrderExtension)
+            {
+                if (gameExtension is Simva.SimvaExtension)
+                {
+                    simvaExtension = gameExtension as Simva.SimvaExtension;
+                    break;
+                }
+            }
+            // Force it being the last
+            quitOrderExtension.Remove(simvaExtension);
+            quitOrderExtension.Add(simvaExtension);
+
+            quitAborted = false;
             foreach (var g in gameExtensions)
             {
                 yield return StartCoroutine(g.OnGameFinished());
             }
-            if (quit)
+            if (!quitAborted)
             {
                 Application.Quit();
             }
+        }
+
+        public void AbortQuit()
+        {
+            quitAborted = true;
         }
 
         public void ClearAndRestart()
@@ -538,10 +585,6 @@ namespace uAdventure.Runner
             if(guistate != GUIState.BOOK)
             {
                 guistate = GUIState.NOTHING;
-                if (GUIManager.Instance.InteractWithDialogue() == InteractuableResult.REQUIRES_MORE_INTERACTION)
-                {
-                    return true;
-                }
             }
             if (executeStack.Count > 0)
             {
@@ -791,10 +834,10 @@ namespace uAdventure.Runner
 
         public void SwitchToLastTarget()
         {
-            GeneralScene scene = GameState.GetLastScene();
+            IChapterTarget last = GameState.PreviousChapterTarget;
 
-            if (scene != null)
-                RunTarget(scene.getId());
+            if (last != null) 
+                RunTarget(last.getId(), 1000, TransitionType.FadeIn);
         }
 
         #endregion Rendering
@@ -802,6 +845,14 @@ namespace uAdventure.Runner
         //#################################################################
         //#################################################################
         #region Misc
+        public void ActionCanceled()
+        {
+            if (isSomethingRunning())
+            {
+                this.actionCanceled = true;
+            }
+        }
+
         public void showActions(List<Core.Action> actions, Vector2 position, IActionReceiver actionReceiver = null)
         {
             if (!MenuMB.Instance)
@@ -819,7 +870,7 @@ namespace uAdventure.Runner
             //this.clicked_on = position;
         }
 
-        public void showOptions(ConversationNodeHolder options)
+        public List<int> showOptions(ConversationNodeHolder options)
         {
             var optionsNode = options.getNode() as OptionConversationNode;
             if (optionsNode != null)
@@ -852,7 +903,9 @@ namespace uAdventure.Runner
                 {
                     this.doTimeOut = false;
                 }
+                return order;
             }
+            return null;
         }
 
         public void Talk(string text, int x, int y, Color textColor, Color textOutlineColor)
@@ -867,12 +920,12 @@ namespace uAdventure.Runner
 
         public void Talk(string text, string character)
         {
-            GUIManager.Instance.Talk(text, character);
+            GUIManager.Instance.Talk(new ConversationLine(character, text));
         }
 
-        public void Talk(ConversationLine line, string character)
+        public void Talk(ConversationLine line)
         {
-            GUIManager.Instance.Talk(line, character);
+            GUIManager.Instance.Talk(line);
         }
 
         public void ShowBook(string bookId)
