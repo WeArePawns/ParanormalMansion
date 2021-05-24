@@ -2445,6 +2445,11 @@ puede que sea útil para acceder al despacho.</speak-player>
       <condition />
       <speak-char idTarget="LadyAdaMantine">
         <resources name="No name" />
+        <text>Como los hermanos estaban tardando, me he tomado la libertad de servirme una copa.</text>
+      </speak-char>
+      <condition />
+      <speak-char idTarget="LadyAdaMantine">
+        <resources name="No name" />
         <text>¿Qué quieres saber acerca de él?</text>
       </speak-char>
       <condition />

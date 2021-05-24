@@ -20,10 +20,10 @@ public class Puzzle3 : MonoBehaviour
     bool[,] sol;
     int[,] initialState;
 
-    int[] gridS = { 3, 4, 3 };
-    int[] solClicks = { 5, 7, 5 };
-    int[] maxValues = { 2, 2, 3 };
-    int[] clicksToHint = { 4, 7, 7 };
+    int[] gridS = { 5, 4, 3 };
+    int[] solClicks = { 5, 5, 7 };
+    int[] maxValues = { 2, 2, 2 };
+    int[] clicksToHint = { 4, 4, 3 };
     int clicks;
 
     //Each sol is a sizeXsize grid
